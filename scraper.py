@@ -618,8 +618,9 @@ def generate_year_page(year, docs, all_years):
     # Sort Jan → Dec (ascending)
     sorted_dates = sorted(grouped.keys(), key=sort_date_key)
 
+    active = 'class="active"'
     year_nav = "".join(
-        f'<a href="../{y}/" {"class=\"active\"" if y == year else ""}>{y}</a>'
+        f'<a href="../{y}/" {active if y == year else ""}>{y}</a>'
         for y in sorted(all_years, reverse=True)
     )
 
