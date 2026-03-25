@@ -283,6 +283,10 @@ Keep it factual, neutral, and under 400 words. Plain language a resident would u
         return resp.json()["content"][0]["text"].strip()
     except Exception as e:
         print(f"    AI summary error: {e}")
+        try:
+            print(f"    Response body: {resp.text[:500]}")
+        except:
+            pass
         return None
 
 def render_summary_html(summary_md):
