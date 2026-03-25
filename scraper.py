@@ -916,7 +916,7 @@ def generate_meeting_page(date_text, year, slots, yt_videos, summary):
 </body>
 </html>"""
 
-def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
+def generate_year_page(year, docs, all_years, yt_videos={}, ={}):
     grouped = defaultdict(list)
     for doc in docs:
         grouped[doc["date"]].append(doc)
@@ -1194,9 +1194,12 @@ def build_html(meetings, yt_videos={}):
     DOCS_DIR.mkdir(exist_ok=True)
     all_years = list(meetings.keys())
 
-    # Load existing summaries cache
+    # Load existing  cache
     summaries_file = Path("summaries.json")
-    summaries = json.loads(summaries_file.read_text()) if summaries_file.exists() else {}
+    try:
+        summaries = json.loads(summaries_file.read_text()) if summaries_file.exists() else {}
+    except (json.JSONDecodeError, ValueError):
+        summaries = {}
 
     for year, docs in meetings.items():
         year_dir = DOCS_DIR / year
