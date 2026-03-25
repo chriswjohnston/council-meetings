@@ -31,19 +31,22 @@ STATE_FILE  = Path("state.json")
 #  YOUTUBE RSS
 # ─────────────────────────────────────────────
 
-def fetch_youtube_videos():
+def fetch_youtube_videos(state):
     """Fetch recent videos from the Township YouTube channel via RSS.
+    Saves URLs permanently to state so they persist beyond the 15-video RSS window.
     Returns a dict mapping normalised date strings -> YouTube URL."""
     import xml.etree.ElementTree as ET
 
     rss_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
-    print(f"Fetching YouTube RSS ...")
+    # Load previously saved video URLs from state (persists beyond 15-video RSS limit)
+    videos = {v["date"]: v["url"] for v in state.get("_youtube_videos", {}).values()}
+    print(f"Fetching YouTube RSS ... ({len(videos)} previously saved)")
     try:
         resp = requests.get(rss_url, timeout=15)
         resp.raise_for_status()
     except Exception as e:
         print(f"  Could not fetch YouTube RSS: {e}")
-        return {}
+        return videos
 
     NS = {
         "atom":  "http://www.w3.org/2005/Atom",
@@ -77,7 +80,11 @@ def fetch_youtube_videos():
             videos[date_key] = url
             print(f"  YouTube: {date_key} -> {url}")
 
-    print(f"  Found {len(videos)} dated video(s)")
+    # Save all videos back to state for permanent storage
+    state["_youtube_videos"] = {
+        date: {"date": date, "url": url} for date, url in videos.items()
+    }
+    print(f"  Found {len(videos)} dated video(s) total ({len(videos)} in archive)")
     return videos
 
 def fetch_links():
@@ -894,7 +901,7 @@ if __name__ == "__main__":
     print("=" * 50)
 
     state = load_state()
-    yt_videos = fetch_youtube_videos()
+    yt_videos = fetch_youtube_videos(state)
     meetings = fetch_links()
 
     print("\nDownloading new PDFs ...")
