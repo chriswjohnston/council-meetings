@@ -26,6 +26,60 @@ STATE_FILE  = Path("state.json")
 #  SCRAPING
 # ─────────────────────────────────────────────
 
+
+# ─────────────────────────────────────────────
+#  YOUTUBE RSS
+# ─────────────────────────────────────────────
+
+def fetch_youtube_videos():
+    """Fetch recent videos from the Township YouTube channel via RSS.
+    Returns a dict mapping normalised date strings -> YouTube URL."""
+    import xml.etree.ElementTree as ET
+
+    rss_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
+    print(f"Fetching YouTube RSS ...")
+    try:
+        resp = requests.get(rss_url, timeout=15)
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"  Could not fetch YouTube RSS: {e}")
+        return {}
+
+    NS = {
+        "atom":  "http://www.w3.org/2005/Atom",
+        "yt":    "http://www.youtube.com/xml/schemas/2015",
+        "media": "http://search.yahoo.com/mrss/",
+    }
+
+    DATE_RE = re.compile(
+        r"(January|February|March|April|May|June|July|August|"
+        r"September|October|November|December)\s+(\d{1,2}),?\s+(\d{4})",
+        re.IGNORECASE
+    )
+
+    root = ET.fromstring(resp.content)
+    videos = {}
+
+    for entry in root.findall("atom:entry", NS):
+        title_el = entry.find("atom:title", NS)
+        link_el  = entry.find("atom:link",  NS)
+        if title_el is None or link_el is None:
+            continue
+
+        title = title_el.text or ""
+        url   = link_el.get("href", "")
+
+        m = DATE_RE.search(title)
+        if m:
+            month, day, year = m.group(1), m.group(2), m.group(3)
+            # Normalise to "January 6, 2026"
+            date_key = f"{month.capitalize()} {int(day)}, {year}"
+            videos[date_key] = url
+            print(f"  YouTube: {date_key} -> {url}")
+
+    print(f"  Found {len(videos)} dated video(s)")
+    return videos
+
 def fetch_links():
     print(f"Fetching {SOURCE_URL} ...")
     resp = requests.get(SOURCE_URL, timeout=20)
@@ -170,7 +224,8 @@ def download_pdfs(meetings, state):
 #  SHARED STYLES — matches chriswjohnston.ca
 # ─────────────────────────────────────────────
 
-YOUTUBE_CHANNEL = "https://www.youtube.com/@townshipofnipissing505/streams"
+YOUTUBE_CHANNEL    = "https://www.youtube.com/@townshipofnipissing505/streams"
+YOUTUBE_CHANNEL_ID = "UC2XSMZqRNHbwVppelfKcEXw"
 
 SHARED_CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap');
@@ -652,7 +707,7 @@ def yt_button(url):
     return (f'<a class="doc-link youtube" href="{url}" '
             f'target="_blank" rel="noopener">{YT_ICON} Watch</a>')
 
-def generate_year_page(year, docs, all_years):
+def generate_year_page(year, docs, all_years, yt_videos={}):
     grouped = defaultdict(list)
     for doc in docs:
         grouped[doc["date"]].append(doc)
@@ -688,22 +743,10 @@ def generate_year_page(year, docs, all_years):
 
         # Other column: extra files + optional YouTube
         other_parts = [doc_button(d["label"], d["filename"]) for d in slots["other"]]
-        yt_url = YOUTUBE_VIDEOS.get(date) or YOUTUBE_VIDEOS.get(date.replace(",", ""))
-        if not yt_url:
-            # Fuzzy match: strip "Special Meeting " prefix
-            clean = re.sub(r"^special meeting\s+", "", date, flags=re.IGNORECASE).strip()
-            yt_url = YOUTUBE_VIDEOS.get(clean)
-        if not yt_url:
-            # Link to channel streams page as fallback if no specific video known
-            yt_url = None
-
-        if yt_url:
-            other_parts.append(yt_button(yt_url))
-
         if other_parts:
             other_cell = f'<td class="doc-cell"><div class="extra-docs">{"".join(other_parts)}</div></td>'
         else:
-            other_cell = f'<td class="doc-cell" data-label="Other"><span class="no-doc">—</span></td>'
+            other_cell = '<td class="doc-cell"><span class="no-doc">—</span></td>'
 
         rows_html += f"""
       <tr{row_cls}>
@@ -760,7 +803,8 @@ def generate_year_page(year, docs, all_years):
           <th>Agenda</th>
           <th>Minutes</th>
           <th>Agenda Package</th>
-          <th>Other / Video</th>
+          <th>Additional Files</th>
+          <th>Video</th>
         </tr>
       </thead>
       <tbody>
@@ -822,7 +866,7 @@ def generate_index_page(meetings_by_year):
 </body>
 </html>"""
 
-def build_html(meetings):
+def build_html(meetings, yt_videos={}):
     print("\nGenerating HTML pages ...")
     DOCS_DIR.mkdir(exist_ok=True)
     all_years = list(meetings.keys())
@@ -831,7 +875,7 @@ def build_html(meetings):
         year_dir = DOCS_DIR / year
         year_dir.mkdir(exist_ok=True)
         (year_dir / "index.html").write_text(
-            generate_year_page(year, docs, all_years), encoding="utf-8"
+            generate_year_page(year, docs, all_years, yt_videos), encoding="utf-8"
         )
         print(f"  ✓ docs/{year}/index.html  ({len(docs)} docs)")
 
@@ -850,13 +894,14 @@ if __name__ == "__main__":
     print("=" * 50)
 
     state = load_state()
+    yt_videos = fetch_youtube_videos()
     meetings = fetch_links()
 
     print("\nDownloading new PDFs ...")
     new_count = download_pdfs(meetings, state)
     save_state(state)
 
-    build_html(meetings)
+    build_html(meetings, yt_videos)
 
     print("\n✓ Done.")
     if new_count:
