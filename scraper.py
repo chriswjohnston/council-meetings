@@ -1221,7 +1221,7 @@ def build_html(meetings, yt_videos={}):
             # Generate AI summary if not already cached
             summary_key = f"{year}/{slug}"
             summary = summaries.get(summary_key)
-            has_summary_docs = bool(slots["minutes"] or slots["package"])
+            has_summary_docs = bool(slots["minutes"] and slots["package"])
             if summary is None and has_summary_docs and ANTHROPIC_API_KEY:
                 print(f"  Generating AI summary for {date_text} ...")
                 summary = generate_ai_summary(date_text, slots, year_files_dir)
