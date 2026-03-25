@@ -106,8 +106,10 @@ def fetch_links():
                     # Strip surrounding brackets: "(Agenda)" -> "Agenda"
                     label = re.sub(r"^\(|\)$", "", raw_label).strip()
 
-                    url_year_match = re.search(r"/(\d{4})/", href)
-                    year = url_year_match.group(1) if url_year_match else current_year
+                    # Always use the year from the page heading (current_year),
+                    # not the URL — PDFs are often uploaded the prior year
+                    # e.g. Jan 2026 agenda uploaded in Dec 2025 -> /2025/ in URL
+                    year = current_year
 
                     meetings[year].append({
                         "date": date_text,
@@ -154,6 +156,12 @@ def download_pdfs(meetings, state):
         for doc in docs:
             url = doc["url"]
             dest = year_files_dir / doc["filename"]
+            # Always update label/date/year in state from fresh scrape
+            # so stale cached metadata gets corrected each run
+            if url in state:
+                state[url]["label"] = doc["label"]
+                state[url]["date"]  = doc["date"]
+                state[url]["year"]  = year
             if url in state and dest.exists():
                 continue
             print(f"  Downloading: {doc['filename']} ...")
