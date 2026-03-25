@@ -76,6 +76,15 @@ def fetch_youtube_videos(state):
             url   = link_el.get("href", "")
             m = DATE_RE.search(title)
             if m:
+                # Only match actual council meetings, not committee meetings
+                title_lower = title.lower()
+                is_council = "council meeting" in title_lower
+                is_committee = any(word in title_lower for word in [
+                    "committee", "adjustment", "conservation", "museum", "recreation"
+                ])
+                if not is_council or is_committee:
+                    print(f"  YouTube: skipping non-council video: {title}")
+                    continue
                 month, day, year = m.group(1), m.group(2), m.group(3)
                 date_key = f"{month.capitalize()} {int(day)}, {year}"
                 if date_key not in videos:
