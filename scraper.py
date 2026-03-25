@@ -273,7 +273,7 @@ Keep it factual, neutral, and under 400 words. Plain language a resident would u
                 "content-type": "application/json",
             },
             json={
-                "model": "claude-haiku-4-5-20251001",
+                "model": "claude-haiku-4-5",
                 "max_tokens": 1024,
                 "messages": [{"role": "user", "content": prompt}],
             },
