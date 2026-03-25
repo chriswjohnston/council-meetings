@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Check if this is a run week
         id: week_check
@@ -27,7 +27,7 @@ jobs:
 
       - name: Set up Python
         if: steps.week_check.outputs.run == 'true'
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5.4.0
         with:
           python-version: '3.11'
 
