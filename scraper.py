@@ -33,92 +33,72 @@ def fetch_links():
     soup = BeautifulSoup(resp.text, "html.parser")
 
     meetings = defaultdict(list)
-    current_year = str(datetime.now().year)
-
-    content = soup.find("div", class_="entry-content") or soup.find("main") or soup.body
 
     DATE_RE = re.compile(
-        r"(Special Meeting\s+)?"
         r"(January|February|March|April|May|June|July|August|"
-        r"September|October|November|December)"
-        r"\s+\d{1,2},?\s+\d{4}",
+        r"September|October|November|December)\s+\d{1,2},?\s+\d{4}",
         re.IGNORECASE
     )
-    LABEL_CLEAN_RE = re.compile(r"^\(|\)$")
 
-    # Walk the content looking for year headings, then process <p> blocks
-    # Each <p> contains multiple <br>-separated lines, one per meeting date
-    # Use find_all to search at any nesting depth
-    all_elements = content.find_all(["h1", "h2", "h3", "h4", "p"])
-    for element in all_elements:
-        # Track year from headings
-        if element.name in ("h1", "h2", "h3", "h4"):
-            text = element.get_text(strip=True)
+    current_year = str(datetime.now().year)
+    current_date = "Unknown date"
+
+    # Strategy: walk every node in document order.
+    # When we hit a heading with a year, update current_year.
+    # When we hit a text node or <br> boundary containing a date, update current_date.
+    # When we hit a PDF link, assign it to current_year + current_date.
+    for tag in soup.find_all(["h1", "h2", "h3", "h4", "strong", "b", "a", "br"]):
+        # Year headings
+        if tag.name in ("h1", "h2", "h3", "h4", "strong", "b"):
+            text = tag.get_text(strip=True)
             year_match = re.search(r"\b(20\d{2})\b", text)
             if year_match:
                 current_year = year_match.group(1)
-            continue
 
-        if element.name != "p":
-            continue
+        # PDF links
+        if tag.name == "a" and tag.get("href", "").endswith(".pdf"):
+            href = tag["href"]
+            raw_label = tag.get_text(strip=True)
+            # Strip surrounding brackets: "(Agenda)" -> "Agenda"
+            label = re.sub(r"^\(+|\)+$", "", raw_label).strip()
 
-        # Split the <p> into logical lines by <br> tags
-        # Each line corresponds to one meeting date
-        segments = []
-        current_segment_nodes = []
+            # Find the date by looking at the text of the parent line
+            # Walk up to the parent and get the full text before this link
+            parent = tag.parent
+            if parent:
+                # Get text of entire parent element to find the date on this line
+                parent_text = parent.get_text(" ", strip=True)
+                # Also check the previous siblings for a date
+                line_text = ""
+                for sib in tag.previous_siblings:
+                    if hasattr(sib, 'name') and sib.name == "br":
+                        break  # stop at line break — that's a different meeting
+                    if hasattr(sib, 'get_text'):
+                        line_text = sib.get_text(" ") + " " + line_text
+                    elif isinstance(sib, str):
+                        line_text = sib + " " + line_text
 
-        for child in element.children:
-            if hasattr(child, 'name') and child.name == "br":
-                segments.append(current_segment_nodes)
-                current_segment_nodes = []
-            else:
-                current_segment_nodes.append(child)
-        if current_segment_nodes:
-            segments.append(current_segment_nodes)
+                date_match = DATE_RE.search(line_text)
+                if date_match:
+                    raw_date = date_match.group(0).strip()
+                    # Normalise missing comma: "January 6 2026" -> "January 6, 2026"
+                    raw_date = re.sub(
+                        r"(January|February|March|April|May|June|July|August|"
+                        r"September|October|November|December)\s+(\d{1,2})\s+(\d{4})",
+                        r"\1 \2, \3", raw_date
+                    )
+                    current_date = raw_date
 
-        for segment in segments:
-            # Get the text of this line to find the date
-            segment_text = "".join(
-                n.get_text(" ") if hasattr(n, 'get_text') else str(n)
-                for n in segment
-            ).strip()
+                    # Check for "Special Meeting" before the date in the line
+                    if re.search(r"special meeting", line_text, re.IGNORECASE):
+                        current_date = "Special Meeting " + raw_date
 
-            date_match = DATE_RE.search(segment_text)
-            if not date_match:
-                continue  # no date on this line, skip
-
-            date_text = date_match.group(0).strip()
-            # Normalise: "January 6 2026" -> "January 6, 2026"
-            date_text = re.sub(
-                r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\s+(\d{4})",
-                r"\1 \2, \3",
-                date_text
-            )
-
-            # Collect all PDF links in this segment
-            for node in segment:
-                if not hasattr(node, 'find_all'):
-                    continue
-                for a in node.find_all("a", href=True):
-                    href = a["href"]
-                    if not href.endswith(".pdf"):
-                        continue
-
-                    raw_label = a.get_text(strip=True)
-                    # Strip surrounding brackets: "(Agenda)" -> "Agenda"
-                    label = re.sub(r"^\(|\)$", "", raw_label).strip()
-
-                    # Always use the year from the page heading (current_year),
-                    # not the URL — PDFs are often uploaded the prior year
-                    # e.g. Jan 2026 agenda uploaded in Dec 2025 -> /2025/ in URL
-                    year = current_year
-
-                    meetings[year].append({
-                        "date": date_text,
-                        "label": label,
-                        "url": href,
-                        "filename": os.path.basename(urlparse(href).path),
-                    })
+            meetings[current_year].append({
+                "date": current_date,
+                "label": label,
+                "url": href,
+                "filename": os.path.basename(urlparse(href).path),
+            })
 
     # Deduplicate by URL within each year
     for year in meetings:
