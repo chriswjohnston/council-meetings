@@ -17,6 +17,13 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from collections import defaultdict
 from urllib.parse import urlparse
+import io
+try:
+    from pdfminer.high_level import extract_text_to_fp
+    from pdfminer.layout import LAParams
+    PDF_EXTRACT = True
+except ImportError:
+    PDF_EXTRACT = False
 
 SOURCE_URL  = "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/"
 DOCS_DIR    = Path("docs")
@@ -639,6 +646,112 @@ footer p {
 }
 footer a { color: var(--warm); text-decoration: none; }
 
+
+/* ── DATE LINK ── */
+.date-link {
+  color: var(--forest);
+  text-decoration: none;
+  border-bottom: 2px solid var(--gold-light, #e8d5a3);
+  transition: border-color 0.15s, color 0.15s;
+}
+.date-link:hover {
+  color: var(--rust);
+  border-color: var(--rust);
+}
+
+/* ── MEETING PAGE ── */
+.meeting-hero-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.5s forwards;
+}
+.meeting-hero-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 5px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.meeting-hero-meta a:hover { background: rgba(255,255,255,0.22); }
+.meeting-hero-meta a.yt-btn {
+  background: rgba(192,0,0,0.25);
+  border-color: rgba(255,80,80,0.3);
+}
+.meeting-hero-meta a.yt-btn:hover { background: rgba(192,0,0,0.45); }
+
+.meeting-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.meeting-card {
+  background: var(--white);
+  border: 1px solid rgba(44,74,62,0.12);
+  border-top: 3px solid var(--pine);
+  border-radius: 0 0 10px 10px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+.meeting-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--forest);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+.meeting-card .doc-links { display: flex; flex-direction: column; gap: 0.4rem; }
+.meeting-card .doc-link { justify-content: flex-start; }
+
+.summary-card {
+  background: var(--white);
+  border: 1px solid rgba(44,74,62,0.12);
+  border-top: 3px solid var(--rust);
+  border-radius: 0 0 10px 10px;
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+.summary-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--forest);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.summary-card p { font-size: 0.93rem; line-height: 1.8; color: #444; margin-bottom: 0.75rem; }
+.summary-card strong { color: var(--forest); }
+.summary-card ul { margin: 0.4rem 0 0.75rem 1.25rem; }
+.summary-card li { font-size: 0.91rem; line-height: 1.75; color: #444; margin-bottom: 0.25rem; }
+.ai-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(192,104,48,0.1);
+  color: var(--rust);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+
+@media (max-width: 700px) {
+  .meeting-grid { grid-template-columns: 1fr; }
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -714,7 +827,96 @@ def yt_button(url):
     return (f'<a class="doc-link youtube" href="{url}" '
             f'target="_blank" rel="noopener">{YT_ICON} Watch</a>')
 
-def generate_year_page(year, docs, all_years, yt_videos={}):
+
+def generate_meeting_page(date_text, year, slots, yt_videos, summary):
+    """Generate a standalone page for a single council meeting."""
+    clean_date = re.sub(r"^special meeting\s+", "", date_text, flags=re.IGNORECASE).strip()
+    yt_url = (YOUTUBE_VIDEOS.get(date_text) or YOUTUBE_VIDEOS.get(clean_date)
+           or yt_videos.get(date_text) or yt_videos.get(clean_date))
+
+    is_special = "special" in date_text.lower()
+    badge = '<span class="special-badge">Special Meeting</span>' if is_special else ""
+
+    # Build hero meta links
+    meta_links = ""
+    for d in slots.get("agenda", []):
+        meta_links += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda</a>'
+    for d in slots.get("minutes", []):
+        meta_links += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Minutes</a>'
+    for d in slots.get("package", []):
+        meta_links += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda Package</a>'
+    if yt_url:
+        meta_links += f'<a href="{yt_url}" target="_blank" class="yt-btn">{YT_ICON} Watch Meeting</a>'
+    else:
+        meta_links += f'<a href="{YOUTUBE_CHANNEL}" target="_blank" class="yt-btn">{YT_ICON} YouTube Channel</a>'
+
+    # Build document cards
+    def doc_card(title, docs_list, border_color="var(--pine)"):
+        if not docs_list:
+            return ""
+        links = "".join(
+            f'<a class="doc-link" href="../files/{d["filename"]}" target="_blank" rel="noopener">{PDF_ICON} {d["label"]}</a>'
+            for d in docs_list
+        )
+        return f"""<div class="meeting-card" style="border-top-color:{border_color}">
+      <h3>{title}</h3>
+      <div class="doc-links">{links}</div>
+    </div>"""
+
+    cards_html = (
+        doc_card("Agenda", slots["agenda"], "var(--forest)") +
+        doc_card("Minutes", slots["minutes"], "var(--pine)") +
+        doc_card("Agenda Package", slots["package"], "var(--water)") +
+        doc_card("Additional Files", slots["other"], "var(--warm)")
+    )
+
+    summary_html = ""
+    if summary:
+        summary_html = f"""<div class="summary-card">
+      <h2>Meeting Summary <span class="ai-badge">AI Generated</span></h2>
+      {render_summary_html(summary)}
+      <p style="font-size:0.75rem;color:#aaa;margin-top:1rem;">This summary was generated automatically from the meeting minutes and agenda package using AI. Always refer to the official documents above for authoritative information.</p>
+    </div>"""
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{date_text} Council Meeting – Nipissing Township</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>{SHARED_CSS}</style>
+</head>
+<body>
+{nav_html()}
+
+<div class="page-hero">
+  <div class="inner">
+    <p class="eyebrow">Nipissing Township · Council Meeting</p>
+    <h1>{date_text} {badge}</h1>
+    <p>Official documents and summary for this council meeting.</p>
+    <div class="meeting-hero-meta">{meta_links}</div>
+    <div class="breadcrumb" style="margin-top:1rem;">
+      <a href="../../">All Years</a>
+      <span class="sep">/</span>
+      <a href="../">{year}</a>
+      <span class="sep">/</span>
+      <span>{date_text}</span>
+    </div>
+  </div>
+</div>
+
+<main>
+  {summary_html}
+  <div class="meeting-grid">{cards_html}</div>
+</main>
+
+{footer_html()}
+</body>
+</html>"""
+
+def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
     grouped = defaultdict(list)
     for doc in docs:
         grouped[doc["date"]].append(doc)
@@ -755,9 +957,10 @@ def generate_year_page(year, docs, all_years, yt_videos={}):
         else:
             other_cell = '<td class="doc-cell"><span class="no-doc">—</span></td>'
 
+        slug = date_slug(date)
         rows_html += f"""
       <tr{row_cls}>
-        <td class="date-cell" data-label="Meeting">{date}{badge}</td>
+        <td class="date-cell" data-label="Meeting"><a href="{slug}/" class="date-link">{date}{badge}</a></td>
         {cell(slots["agenda"])}
         {cell(slots["minutes"])}
         {cell(slots["package"])}
@@ -873,16 +1076,168 @@ def generate_index_page(meetings_by_year):
 </body>
 </html>"""
 
+
+# ─────────────────────────────────────────────
+#  AI SUMMARY
+# ─────────────────────────────────────────────
+
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+
+def extract_pdf_text(path, max_chars=40000):
+    """Extract text from a PDF file."""
+    if not PDF_EXTRACT:
+        return ""
+    try:
+        buf = io.StringIO()
+        with open(path, "rb") as f:
+            extract_text_to_fp(f, buf, laparams=LAParams(), output_type="text", codec="utf-8")
+        text = buf.getvalue().strip()
+        return text[:max_chars]
+    except Exception as e:
+        print(f"    PDF extract error: {e}")
+        return ""
+
+def generate_ai_summary(date_text, docs_by_type, year_files_dir):
+    """Generate an AI summary for a meeting using Minutes + Agenda Package text."""
+    if not ANTHROPIC_API_KEY:
+        return None
+
+    # Gather text from minutes and agenda package
+    combined_text = ""
+    for doc_type in ("minutes", "package"):
+        for doc in docs_by_type.get(doc_type, []):
+            path = year_files_dir / doc["filename"]
+            if path.exists():
+                text = extract_pdf_text(path)
+                if text:
+                    label = "Minutes" if doc_type == "minutes" else "Agenda Package"
+                    combined_text += f"\n\n=== {label} ===\n{text}"
+
+    if not combined_text.strip():
+        return None
+
+    prompt = f"""You are summarizing a Nipissing Township Council meeting for public archive purposes.
+
+Meeting date: {date_text}
+
+Documents provided:
+{combined_text[:35000]}
+
+Please provide a concise public summary with these sections:
+1. **Key Decisions** — motions passed or defeated (bullet points)
+2. **Main Topics** — what was discussed (bullet points)
+3. **Notable Items** — anything unusual, significant spending, or of public interest
+
+Keep it factual, neutral, and under 400 words. Use plain language a resident would understand."""
+
+    try:
+        resp = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={
+                "x-api-key": ANTHROPIC_API_KEY,
+                "anthropic-version": "2023-06-01",
+                "content-type": "application/json",
+            },
+            json={
+                "model": "claude-haiku-4-5-20251001",
+                "max_tokens": 1024,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=60,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data["content"][0]["text"].strip()
+    except Exception as e:
+        print(f"    AI summary error: {e}")
+        return None
+
+def render_summary_html(summary_md):
+    """Convert simple markdown (bullets, bold) to HTML."""
+    if not summary_md:
+        return ""
+    lines = summary_md.split("\n")
+    html_lines = []
+    in_ul = False
+    for line in lines:
+        line = line.strip()
+        if not line:
+            if in_ul:
+                html_lines.append("</ul>")
+                in_ul = False
+            continue
+        # Bold headings like **Key Decisions**
+        line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
+        if line.startswith("- ") or line.startswith("• "):
+            if not in_ul:
+                html_lines.append("<ul>")
+                in_ul = True
+            html_lines.append(f"<li>{line[2:].strip()}</li>")
+        else:
+            if in_ul:
+                html_lines.append("</ul>")
+                in_ul = False
+            html_lines.append(f"<p>{line}</p>")
+    if in_ul:
+        html_lines.append("</ul>")
+    return "\n".join(html_lines)
+
+
+def date_slug(date_text):
+    """Convert 'March 17, 2026' to 'march-17-2026'."""
+    clean = re.sub(r"^special meeting\s+", "", date_text, flags=re.IGNORECASE).strip()
+    clean = re.sub(r"[^a-zA-Z0-9\s]", "", clean).strip()
+    return re.sub(r"\s+", "-", clean).lower()
+
 def build_html(meetings, yt_videos={}):
     print("\nGenerating HTML pages ...")
     DOCS_DIR.mkdir(exist_ok=True)
     all_years = list(meetings.keys())
 
+    # Load existing summaries cache
+    summaries_file = Path("summaries.json")
+    summaries = json.loads(summaries_file.read_text()) if summaries_file.exists() else {}
+
     for year, docs in meetings.items():
         year_dir = DOCS_DIR / year
         year_dir.mkdir(exist_ok=True)
+        year_files_dir = year_dir / "files"
+
+        # Group docs by date
+        grouped = defaultdict(list)
+        for doc in docs:
+            grouped[doc["date"]].append(doc)
+
+        # Generate individual meeting pages
+        for date_text, date_docs in grouped.items():
+            slug = date_slug(date_text)
+            meeting_dir = year_dir / slug
+            meeting_dir.mkdir(exist_ok=True)
+
+            slots = {"agenda": [], "minutes": [], "package": [], "other": []}
+            for d in date_docs:
+                slots[classify_doc(d["label"])].append(d)
+
+            # Generate AI summary if not already cached
+            summary_key = f"{year}/{slug}"
+            summary = summaries.get(summary_key)
+            has_summary_docs = bool(slots["minutes"] or slots["package"])
+            if summary is None and has_summary_docs and ANTHROPIC_API_KEY:
+                print(f"  Generating AI summary for {date_text} ...")
+                summary = generate_ai_summary(date_text, slots, year_files_dir)
+                if summary:
+                    summaries[summary_key] = summary
+                    summaries_file.write_text(json.dumps(summaries, indent=2))
+
+            # Write meeting page
+            (meeting_dir / "index.html").write_text(
+                generate_meeting_page(date_text, year, slots, yt_videos, summary),
+                encoding="utf-8"
+            )
+
         (year_dir / "index.html").write_text(
-            generate_year_page(year, docs, all_years, yt_videos), encoding="utf-8"
+            generate_year_page(year, docs, all_years, yt_videos, summaries),
+            encoding="utf-8"
         )
         print(f"  ✓ docs/{year}/index.html  ({len(docs)} docs)")
 
