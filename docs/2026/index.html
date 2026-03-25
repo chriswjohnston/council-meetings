@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Council Meetings – Nipissing Township Archive</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1a2744;
+  --gold: #c9a84c;
+  --gold-light: #e8d5a3;
+  --cream: #faf8f3;
+  --text: #2c3148;
+  --muted: #6b7280;
+  --border: #ddd8cc;
+  --white: #ffffff;
+  --shadow: 0 2px 12px rgba(26,39,68,0.08);
+}
+
+body {
+  font-family: 'Source Sans 3', Georgia, serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 2.5rem 2rem;
+  border-bottom: 4px solid var(--gold);
+}
+
+header .inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+header p {
+  margin-top: 0.5rem;
+  color: var(--gold-light);
+  font-size: 0.95rem;
+}
+
+header a.back {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+header a.back:hover { opacity: 1; }
+
+main {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.notice {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.notice a { color: var(--navy); }
+
+/* Index page */
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.year-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.year-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,39,68,0.12);
+}
+.year-card .yr {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.year-card .count {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Year page */
+.meeting-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.meeting-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.special-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.875rem;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.doc-link:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.doc-link svg { flex-shrink: 0; }
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+}
+footer a { color: var(--muted); }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>2026 Council Meetings</h1>
+      <p>Agendas, Minutes &amp; Agenda Packages &mdash; Nipissing Township</p>
+      <a class="back" href="../">&#8592; All Years</a>
+    </div>
+  </header>
+  <main>
+    <div class="notice">
+      22 documents archived for 2026. Sourced from
+      <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank" rel="noopener">nipissingtownship.com</a>.
+      &nbsp;Other years: <a href="../2025/">2025</a> &nbsp;·&nbsp; <a href="../2024/">2024</a> &nbsp;·&nbsp; <a href="../2023/">2023</a>
+    </div>
+    
+    <div class="meeting-block">
+      <div class="meeting-date">January 6, 2026 </div>
+      <div class="doc-links"><a class="doc-link" href="files/Minutes-January-6-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Agenda-Package-January-6-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+<a class="doc-link" href="files/January-20-2026-Agenda.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda)</a>
+<a class="doc-link" href="files/Minutes-January-20-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Agenda-January-20-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+<a class="doc-link" href="files/February-3-2026-Agenda-Amended.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda)</a>
+<a class="doc-link" href="files/Minutes-February-3-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Agenda-Package-February-3-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+<a class="doc-link" href="files/February-17-2026-Agenda.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda)</a>
+<a class="doc-link" href="files/Minutes-February-17-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Feb-17-Council-Package.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+<a class="doc-link" href="files/March-3-2026-Agenda.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda)</a>
+<a class="doc-link" href="files/Minutes-March-3-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Agenda-Package-March-3-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+<a class="doc-link" href="files/2025-12-31-Township-of-Nipissing-FS-Mar-2-drafts.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (2025 Audited Financial Statements – KPMG)</a>
+<a class="doc-link" href="files/Township-of-Nipissing-Financial-Statement-Presentation-2025.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (2025 Financial Statement Presentation – KPMG)</a>
+<a class="doc-link" href="files/Township-of-Nipissing-Financial-Analysis-Presentation-2025.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (2025 Financial Analysis Presentation – KPMG)</a>
+<a class="doc-link" href="files/2026-Capital-Forecast.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (2026-2036 Capital Forecast)</a>
+<a class="doc-link" href="files/Township-of-Nipissing-2026-Budget-Draft-presentation.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (2026 Budget Draft Presentation)</a>
+<a class="doc-link" href="files/March-17-2026-Agenda-1.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda)</a>
+<a class="doc-link" href="files/Minutes-March-17-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Minutes)</a>
+<a class="doc-link" href="files/Agenda-Package-Mar-17-2026.pdf" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> (Agenda Package)</a>
+</div>
+    </div>
+  </main>
+  <footer>
+    <p>Archived from <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank">nipissingtownship.com</a>
+    &mdash; Last updated March 25, 2026</p>
+  </footer>
+</body>
+</html>

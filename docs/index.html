@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Council Meeting Archive – Nipissing Township</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1a2744;
+  --gold: #c9a84c;
+  --gold-light: #e8d5a3;
+  --cream: #faf8f3;
+  --text: #2c3148;
+  --muted: #6b7280;
+  --border: #ddd8cc;
+  --white: #ffffff;
+  --shadow: 0 2px 12px rgba(26,39,68,0.08);
+}
+
+body {
+  font-family: 'Source Sans 3', Georgia, serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 2.5rem 2rem;
+  border-bottom: 4px solid var(--gold);
+}
+
+header .inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+header p {
+  margin-top: 0.5rem;
+  color: var(--gold-light);
+  font-size: 0.95rem;
+}
+
+header a.back {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+header a.back:hover { opacity: 1; }
+
+main {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.notice {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.notice a { color: var(--navy); }
+
+/* Index page */
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.year-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.year-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26,39,68,0.12);
+}
+.year-card .yr {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.year-card .count {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Year page */
+.meeting-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.meeting-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.special-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.875rem;
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.doc-link:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.doc-link svg { flex-shrink: 0; }
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+}
+footer a { color: var(--muted); }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1>Council Meeting Archive</h1>
+      <p>Nipissing Township &mdash; Agendas, Minutes &amp; Agenda Packages</p>
+    </div>
+  </header>
+  <main>
+    <div class="notice">
+      172 documents preserved across 4 years.
+      Automatically mirrored from
+      <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank" rel="noopener">nipissingtownship.com</a>
+      every two weeks to preserve records before they are deleted.
+    </div>
+    <div class="year-grid">
+    <a class="year-card" href="2026/">
+      <span class="yr">2026</span>
+      <span class="count">22 documents</span>
+    </a>
+    <a class="year-card" href="2025/">
+      <span class="yr">2025</span>
+      <span class="count">71 documents</span>
+    </a>
+    <a class="year-card" href="2024/">
+      <span class="yr">2024</span>
+      <span class="count">78 documents</span>
+    </a>
+    <a class="year-card" href="2023/">
+      <span class="yr">2023</span>
+      <span class="count">1 document</span>
+    </a></div>
+  </main>
+  <footer>
+    <p>Archived from <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank">nipissingtownship.com</a>
+    &mdash; Last updated March 25, 2026</p>
+  </footer>
+</body>
+</html>
