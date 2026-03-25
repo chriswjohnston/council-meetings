@@ -37,35 +37,86 @@ def fetch_links():
 
     content = soup.find("div", class_="entry-content") or soup.find("main") or soup.body
 
-    for element in content.descendants:
-        if element.name in ("h1", "h2", "h3", "h4"):
+    DATE_RE = re.compile(
+        r"(Special Meeting\s+)?"
+        r"(January|February|March|April|May|June|July|August|"
+        r"September|October|November|December)"
+        r"\s+\d{1,2},?\s+\d{4}",
+        re.IGNORECASE
+    )
+    LABEL_CLEAN_RE = re.compile(r"^\(|\)$")
+
+    # Walk the content looking for year headings, then process <p> blocks
+    # Each <p> contains multiple <br>-separated lines, one per meeting date
+    for element in content.children:
+        # Track year from headings
+        if hasattr(element, 'name') and element.name in ("h1", "h2", "h3", "h4"):
             text = element.get_text(strip=True)
             year_match = re.search(r"\b(20\d{2})\b", text)
             if year_match:
                 current_year = year_match.group(1)
+            continue
 
-        if element.name == "a" and element.get("href", "").endswith(".pdf"):
-            href = element["href"]
-            label = element.get_text(strip=True)
+        if not hasattr(element, 'name') or element.name != "p":
+            continue
 
-            parent_text = element.parent.get_text(" ", strip=True) if element.parent else ""
-            date_match = re.search(
-                r"(Special Meeting\s+)?(January|February|March|April|May|June|July|August|"
-                r"September|October|November|December)\s+\d{1,2},?\s+\d{4}",
-                parent_text
+        # Split the <p> into logical lines by <br> tags
+        # Each line corresponds to one meeting date
+        segments = []
+        current_segment_nodes = []
+
+        for child in element.children:
+            if hasattr(child, 'name') and child.name == "br":
+                segments.append(current_segment_nodes)
+                current_segment_nodes = []
+            else:
+                current_segment_nodes.append(child)
+        if current_segment_nodes:
+            segments.append(current_segment_nodes)
+
+        for segment in segments:
+            # Get the text of this line to find the date
+            segment_text = "".join(
+                n.get_text(" ") if hasattr(n, 'get_text') else str(n)
+                for n in segment
+            ).strip()
+
+            date_match = DATE_RE.search(segment_text)
+            if not date_match:
+                continue  # no date on this line, skip
+
+            date_text = date_match.group(0).strip()
+            # Normalise: "January 6 2026" -> "January 6, 2026"
+            date_text = re.sub(
+                r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})\s+(\d{4})",
+                r"\1 \2, \3",
+                date_text
             )
-            date_text = date_match.group(0).strip() if date_match else "Unknown date"
 
-            url_year_match = re.search(r"/(\d{4})/", href)
-            year = url_year_match.group(1) if url_year_match else current_year
+            # Collect all PDF links in this segment
+            for node in segment:
+                if not hasattr(node, 'find_all'):
+                    continue
+                for a in node.find_all("a", href=True):
+                    href = a["href"]
+                    if not href.endswith(".pdf"):
+                        continue
 
-            meetings[year].append({
-                "date": date_text,
-                "label": label,
-                "url": href,
-                "filename": os.path.basename(urlparse(href).path),
-            })
+                    raw_label = a.get_text(strip=True)
+                    # Strip surrounding brackets: "(Agenda)" -> "Agenda"
+                    label = re.sub(r"^\(|\)$", "", raw_label).strip()
 
+                    url_year_match = re.search(r"/(\d{4})/", href)
+                    year = url_year_match.group(1) if url_year_match else current_year
+
+                    meetings[year].append({
+                        "date": date_text,
+                        "label": label,
+                        "url": href,
+                        "filename": os.path.basename(urlparse(href).path),
+                    })
+
+    # Deduplicate by URL within each year
     for year in meetings:
         seen = set()
         unique = []
@@ -78,6 +129,7 @@ def fetch_links():
     total = sum(len(v) for v in meetings.values())
     print(f"  Found {total} PDF links across {len(meetings)} years")
     return meetings
+
 
 
 # ─────────────────────────────────────────────
