@@ -48,16 +48,18 @@ def fetch_links():
 
     # Walk the content looking for year headings, then process <p> blocks
     # Each <p> contains multiple <br>-separated lines, one per meeting date
-    for element in content.children:
+    # Use find_all to search at any nesting depth
+    all_elements = content.find_all(["h1", "h2", "h3", "h4", "p"])
+    for element in all_elements:
         # Track year from headings
-        if hasattr(element, 'name') and element.name in ("h1", "h2", "h3", "h4"):
+        if element.name in ("h1", "h2", "h3", "h4"):
             text = element.get_text(strip=True)
             year_match = re.search(r"\b(20\d{2})\b", text)
             if year_match:
                 current_year = year_match.group(1)
             continue
 
-        if not hasattr(element, 'name') or element.name != "p":
+        if element.name != "p":
             continue
 
         # Split the <p> into logical lines by <br> tags
