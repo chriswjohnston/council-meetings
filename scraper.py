@@ -363,21 +363,41 @@ YT_ICON   = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"
 
 def nav_html():
     if IS_PUBLIC:
-        return '<nav><a class="nav-logo" href="/">Nipissing <span>Council Archive</span></a><ul class="nav-links"><li><a href="/">Home</a></li></ul></nav>'
-    return '<nav><a class="nav-logo" href="https://chriswjohnston.ca">Chris <span>Johnston</span></a><ul class="nav-links"><li><a href="https://chriswjohnston.ca#priorities">Priorities</a></li><li><a href="https://chriswjohnston.ca#issues">Issues</a></li><li><a href="https://chriswjohnston.ca#contact">Contact</a></li><li><a href="https://council.chriswjohnston.ca" style="color:var(--warm);">Council Archive</a></li></ul></nav>'
+        return '<nav><a class="nav-logo" href="/">Nipissing <span>Council Archive</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="https://bylaws.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
+    return '<nav><a class="nav-logo" href="https://chriswjohnston.ca">Chris <span>Johnston</span></a><ul class="nav-links"><li><a href="/">Council Archive</a></li><li><a href="https://bylaws.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
 
 def footer_html():
     if IS_PUBLIC:
         return f'<footer><div class="footer-inner"><div class="footer-logo">Nipissing <span>Council Archive</span></div><p>A community resource for Nipissing Township council meeting documents.</p><p>Sourced from <a href="{SOURCE_URL}" target="_blank" rel="noopener">nipissingtownship.com</a> &mdash; Last updated {datetime.now().strftime("%B %d, %Y")}</p></div></footer>'
-    return f'<footer><div class="footer-inner"><div class="footer-logo">Chris <span>Johnston</span></div><p>Candidate for Nipissing Township Council &middot; Municipal Election October 2026</p><p>Sourced from <a href="{SOURCE_URL}" target="_blank" rel="noopener">nipissingtownship.com</a> &mdash; Last updated {datetime.now().strftime("%B %d, %Y")}</p></div></footer>'
+    return f'<footer><div class="footer-inner"><div class="footer-logo">Chris <span>Johnston</span></div><p>Sourced from <a href="{SOURCE_URL}" target="_blank" rel="noopener">nipissingtownship.com</a> &mdash; Last updated {datetime.now().strftime("%B %d, %Y")}</p></div></footer>'
+
+def next_scrape_date():
+    """Calculate the next odd-week Tuesday scrape date."""
+    from datetime import timedelta
+    today = datetime.now()
+    # Find next Tuesday
+    days_ahead = 1 - today.weekday()  # Tuesday = 1
+    if days_ahead <= 0:
+        days_ahead += 7
+    next_tuesday = today + timedelta(days=days_ahead)
+    # Check if it's an odd ISO week; if not, add another week
+    if next_tuesday.isocalendar()[1] % 2 == 0:
+        next_tuesday += timedelta(days=7)
+    return next_tuesday.strftime("%B %d, %Y")
 
 def notice_text(count, year=None):
-    yt_link = f'<a href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">Township of Nipissing YouTube channel</a>'
+    yt_link  = f'<a href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">Township of Nipissing YouTube channel</a>'
     src_link = f'<a href="{SOURCE_URL}" target="_blank" rel="noopener">nipissingtownship.com</a>'
+    updated  = datetime.now().strftime("%B %d, %Y")
+    next_upd = next_scrape_date()
     if year:
-        return f"{count} documents available for {year}. Sourced from {src_link}. Videos via the {yt_link}. Last updated {datetime.now().strftime('%B %d, %Y')}."
+        return (f"{count} documents available for {year}. "
+                f"Sourced from {src_link}. Videos via the {yt_link}. "
+                f"Last updated {updated} &mdash; Next update {next_upd}.")
     total_str = f"<strong>{count} documents</strong>"
-    return f"{total_str} organized and indexed from {src_link}. Videos via the {yt_link}."
+    return (f"{total_str} organized and indexed from {src_link}. "
+            f"Videos via the {yt_link}. "
+            f"Last updated {updated} &mdash; Next update {next_upd}.")
 
 
 # ─── HTML HELPERS ──────────────────────────────────────────────
@@ -501,7 +521,7 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
       <tr{row_cls}>
         <td class="date-cell"><a href="{slug}/" class="date-link">{date}{badge}</a></td>
         {cell(slots["agenda"])}{cell(slots["minutes"])}{cell(slots["package"])}
-        {other_cell}{yt_cell}
+        {yt_cell}{other_cell}
       </tr>"""
 
     return f"""<!DOCTYPE html>
@@ -518,7 +538,7 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
 <div class="page-hero"><div class="inner">
   <p class="eyebrow">Nipissing Township &middot; Council Archive</p>
   <h1>{year} <em>Council Meetings</em></h1>
-  <p>Agendas, minutes and agenda packages for {year} council meetings.</p>
+  <p>Agendas, minutes, agenda packages and videos for {year} council meetings.</p>
   <div class="breadcrumb"><a href="../">All Years</a><span class="sep">/</span><span>{year}</span></div>
 </div></div>
 <main>
@@ -527,7 +547,7 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
   <div class="year-nav" style="margin-bottom:1.5rem;">{year_nav}</div>
   <div class="table-wrapper">
     <table class="meetings-table">
-      <thead><tr><th>Meeting Date</th><th>Agenda</th><th>Minutes</th><th>Agenda Package</th><th>Additional Files</th><th>Video</th></tr></thead>
+      <thead><tr><th>Meeting Date</th><th>Agenda</th><th>Minutes</th><th>Agenda Package</th><th>Video</th><th>Additional Files</th></tr></thead>
       <tbody>{rows}</tbody>
     </table>
   </div>
@@ -557,7 +577,7 @@ def generate_index_page(meetings_by_year):
 <div class="page-hero"><div class="inner">
   <p class="eyebrow">Nipissing Township</p>
   <h1>Council Meeting <em>Archive</em></h1>
-  <p>Agendas, minutes and agenda packages for Nipissing Township council meetings.</p>
+  <p>Agendas, minutes, agenda packages and videos for Nipissing Township council meetings.</p>
 </div></div>
 <main>
   <div class="notice">{notice_text(total)}</div>
