@@ -363,8 +363,8 @@ YT_ICON   = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"
 
 def nav_html():
     if IS_PUBLIC:
-        return '<nav><a class="nav-logo" href="/">Nipissing <span>Council Archive</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="https://bylaws.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
-    return '<nav><a class="nav-logo" href="https://chriswjohnston.ca">Chris <span>Johnston</span></a><ul class="nav-links"><li><a href="/">Council Archive</a></li><li><a href="https://bylaws.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
+        return '<nav><a class="nav-logo" href="/">Nipissing <span>Council Archive</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="https://bylaw.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
+    return '<nav><a class="nav-logo" href="https://chriswjohnston.ca">Chris <span>Johnston</span></a><ul class="nav-links"><li><a href="/">Council Archive</a></li><li><a href="https://bylaw.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>'
 
 def footer_html():
     if IS_PUBLIC:
