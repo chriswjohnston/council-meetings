@@ -1,8 +1,8 @@
-name: Scrape Nipissing Council Meetings
+name: Scrape Council Meetings
 
 on:
   schedule:
-    - cron: '0 13 * * 1'
+    - cron: '0 13 * * 1'   # Every Monday 9AM Eastern
   workflow_dispatch:
 
 jobs:
@@ -12,46 +12,40 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.2.2
 
-      - name: Check if this is a run week
+      - name: Check run week (odd weeks only)
         id: week_check
         run: |
-          WEEK=$(date +%V)
+          WEEK=$(date +%V | sed 's/^0*//')
           if (( WEEK % 2 == 1 )); then
-            echo "run=true" >> $GITHUB_OUTPUT
-            echo "Week $WEEK — running scraper"
+            echo "run=true"  >> $GITHUB_OUTPUT
+            echo "Week $WEEK — running"
           else
             echo "run=false" >> $GITHUB_OUTPUT
-            echo "Week $WEEK — skipping (off week)"
+            echo "Week $WEEK — skipping (even week)"
           fi
 
-      - name: Set up Python
-        if: steps.week_check.outputs.run == 'true'
-        uses: actions/setup-python@v5.4.0
+      - uses: actions/setup-python@v5.4.0
+        if: steps.week_check.outputs.run == 'true' || github.event_name == 'workflow_dispatch'
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        if: steps.week_check.outputs.run == 'true'
+        if: steps.week_check.outputs.run == 'true' || github.event_name == 'workflow_dispatch'
         run: pip install requests beautifulsoup4 pdfminer.six
 
       - name: Run scraper
-        if: steps.week_check.outputs.run == 'true'
+        if: steps.week_check.outputs.run == 'true' || github.event_name == 'workflow_dispatch'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BRANCH: public
         run: python scraper.py
 
-      - name: Commit and push changes
-        if: steps.week_check.outputs.run == 'true'
+      - name: Commit changes
+        if: steps.week_check.outputs.run == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/ state.json summaries.json
-          if git diff --staged --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Auto-update: council meeting archive $(date +'%Y-%m-%d')"
-            git push
-          fi
+          git add docs/ state.json summaries.json html_page_cache.json || true
+          git diff --staged --quiet && echo "No changes" || (git commit -m "Auto: council archive $(date +'%Y-%m-%d')" && git push)
