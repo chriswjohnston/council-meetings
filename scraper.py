@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 import os
+from collections import OrderedDict
 
 BASE_URL = "https://nipissingtownship.com"
 PAGE_URL = f"{BASE_URL}/council-meeting-dates-agendas-minutes/"
@@ -132,7 +133,7 @@ def discover_2023_pdfs(meetings):
                 except:
                     continue
 
-    # dedupe
+    # dedupe by URL
     seen = set()
     unique = []
     for doc in meetings["2023"]:
@@ -169,23 +170,25 @@ def download_pdfs(meetings):
 
 
 def build_output(meetings):
-    """Convert to your JSON format"""
+    """Convert to JSON with unique keys to prevent overwrites"""
     output = {}
 
     for year, docs in meetings.items():
         for doc in docs:
-            url = doc["url"]
-            filename = doc["filename"]
+            key = f"{year}-{doc['date']}-{doc['label']}"
+            key = key.replace(" ", "_").replace(",", "")
 
-            label = doc["label"]
-
-            output[url] = {
-                "filename": filename,
+            output[key] = {
+                "filename": doc["filename"],
                 "year": year,
-                "label": label,
+                "label": doc["label"],
                 "date": doc["date"],
+                "url": doc["url"],
                 "downloaded_at": datetime.utcnow().isoformat()
             }
+
+    # optional: sort by date
+    output = OrderedDict(sorted(output.items(), key=lambda x: x[1]["date"]))
 
     return output
 
@@ -199,7 +202,7 @@ def main():
 
     meetings = merge_meetings(pdf_meetings, html_meetings)
 
-    # 🔥 ADD THIS LINE
+    # 🔥 Discover 2023 PDFs
     meetings = discover_2023_pdfs(meetings)
 
     print("Downloading PDFs...")
