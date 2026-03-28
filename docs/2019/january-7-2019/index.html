@@ -1,115 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>January 7, 2019 Council Meeting – Nipissing Township</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap');
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{
-  --forest:#2C4A3E;--pine:#3D6B5E;--water:#5B9FAF;--sky:#A8D5E2;
-  --sand:#F2EAD3;--warm:#E8C98A;--rust:#C06830;--charcoal:#1E2B2A;
-  --cream:#FAF7F0;--white:#FFFFFF;--shadow:0 2px 16px rgba(30,43,42,.10);
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+:root{--forest:#2C4A3E;--pine:#3D6B5E;--water:#5B9FAF;--sky:#A8D5E2;--sand:#F2EAD3;--warm:#E8C98A;--rust:#C06830;--charcoal:#1E2B2A;--cream:#FAF7F0;--white:#FFFFFF;--shadow:0 2px 16px rgba(30,43,42,.10)}
 body{font-family:'Lato',Georgia,sans-serif;background:var(--cream);color:var(--charcoal);line-height:1.6;overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(44,74,62,.97);backdrop-filter:blur(8px);box-shadow:0 2px 20px rgba(0,0,0,.2)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--warm);text-decoration:none}
-.nav-logo span{color:var(--sky)}
-.nav-links{display:flex;gap:1.6rem;list-style:none}
-.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--warm)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--warm);text-decoration:none}.nav-logo span{color:var(--sky)}
+.nav-links{display:flex;gap:1.6rem;list-style:none}.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}.nav-links a:hover{color:var(--warm)}
 .page-hero{background:var(--forest);padding:7rem 2rem 3.5rem;border-bottom:4px solid var(--warm);position:relative;overflow:hidden}
 .page-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(255,255,255,.015) 40px,rgba(255,255,255,.015) 80px)}
 .page-hero .inner{max-width:1100px;margin:0 auto;position:relative}
 .page-hero .eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--warm);margin-bottom:.8rem;opacity:0;animation:fadeUp .6s ease .1s forwards}
 .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:.75rem;opacity:0;animation:fadeUp .6s ease .25s forwards}
-.page-hero h1 em{font-style:normal;color:var(--warm)}
-.page-hero p{font-size:1rem;font-weight:300;color:rgba(255,255,255,.75);max-width:580px;line-height:1.75;opacity:0;animation:fadeUp .6s ease .4s forwards}
+.page-hero h1 em{font-style:normal;color:var(--warm)}.page-hero p{font-size:1rem;font-weight:300;color:rgba(255,255,255,.75);max-width:580px;line-height:1.75;opacity:0;animation:fadeUp .6s ease .4s forwards}
 .breadcrumb{display:flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-size:.78rem;color:rgba(255,255,255,.45);opacity:0;animation:fadeUp .6s ease .5s forwards}
-.breadcrumb a{color:var(--sky);text-decoration:none;transition:color .2s}
-.breadcrumb a:hover{color:var(--warm)}
-.breadcrumb .sep{opacity:.4}
+.breadcrumb a{color:var(--sky);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--warm)}.breadcrumb .sep{opacity:.4}
 main{max-width:1100px;margin:3rem auto;padding:0 2rem 5rem}
 .section-label{font-size:.68rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--rust);margin-bottom:.5rem}
 .year-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.2rem;margin-top:1.5rem}
 .year-card{background:var(--white);border:1px solid rgba(44,74,62,.15);border-radius:10px;padding:1.75rem 1.5rem;text-decoration:none;color:var(--charcoal);box-shadow:var(--shadow);transition:border-color .2s,transform .15s,box-shadow .2s;display:flex;flex-direction:column;gap:.4rem;border-top:3px solid var(--forest)}
 .year-card:hover{border-color:var(--warm);border-top-color:var(--rust);transform:translateY(-3px);box-shadow:0 8px 28px rgba(30,43,42,.14)}
-.year-card .yr{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--forest);line-height:1}
-.year-card .count{font-size:.8rem;font-weight:700;color:#888}
+.year-card .yr{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--forest);line-height:1}.year-card .count{font-size:.8rem;font-weight:700;color:#888}
 .notice{background:var(--sand);border-left:4px solid var(--warm);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.88rem;color:#666;line-height:1.65}
-.notice a{color:var(--forest);font-weight:700;text-decoration:none}
-.notice a:hover{color:var(--rust)}
+.notice a{color:var(--forest);font-weight:700;text-decoration:none}.notice a:hover{color:var(--rust)}
 .year-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
 .year-nav a{font-size:.78rem;font-weight:700;padding:.3rem .8rem;border-radius:4px;background:var(--white);border:1px solid rgba(44,74,62,.2);color:var(--forest);text-decoration:none;transition:background .15s,color .15s}
 .year-nav a:hover,.year-nav a.active{background:var(--forest);color:var(--white);border-color:var(--forest)}
 .meetings-table{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:.88rem}
 .meetings-table thead tr{background:var(--forest);color:var(--white)}
 .meetings-table thead th{padding:.75rem 1rem;text-align:left;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
-.meetings-table thead th:first-child{border-radius:8px 0 0 0}
-.meetings-table thead th:last-child{border-radius:0 8px 0 0}
+.meetings-table thead th:first-child{border-radius:8px 0 0 0}.meetings-table thead th:last-child{border-radius:0 8px 0 0}
 .meetings-table tbody tr{border-bottom:1px solid rgba(44,74,62,.1);transition:background .15s}
-.meetings-table tbody tr:last-child{border-bottom:none}
-.meetings-table tbody tr:hover{background:rgba(44,74,62,.04)}
+.meetings-table tbody tr:last-child{border-bottom:none}.meetings-table tbody tr:hover{background:rgba(44,74,62,.04)}
 .meetings-table tbody tr.special-row{background:rgba(192,104,48,.04)}
 .meetings-table td{padding:.85rem 1rem;vertical-align:middle}
 .meetings-table td.date-cell{font-family:'Playfair Display',serif;font-weight:700;color:var(--forest);white-space:nowrap;min-width:180px}
 .meetings-table td.doc-cell{min-width:100px}
-.date-link{color:var(--forest);text-decoration:none;border-bottom:2px solid #e8d5a3;transition:border-color .15s,color .15s}
-.date-link:hover{color:var(--rust);border-color:var(--rust)}
+.date-link{color:var(--forest);text-decoration:none;border-bottom:2px solid #e8d5a3;transition:border-color .15s,color .15s}.date-link:hover{color:var(--rust);border-color:var(--rust)}
 .doc-link{display:inline-flex;align-items:center;gap:.3rem;background:var(--cream);border:1px solid rgba(44,74,62,.18);border-radius:4px;padding:.3rem .65rem;font-size:.8rem;font-weight:700;color:var(--forest);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s,border-color .15s}
 .doc-link:hover{background:var(--forest);color:var(--white);border-color:var(--forest)}
-.doc-link.youtube{background:rgba(255,0,0,.07);border-color:rgba(255,0,0,.2);color:#c00}
-.doc-link.youtube:hover{background:#c00;color:var(--white);border-color:#c00}
-.doc-link svg{flex-shrink:0}
-.extra-docs{display:flex;flex-wrap:wrap;gap:.4rem}
+.doc-link.youtube{background:rgba(255,0,0,.07);border-color:rgba(255,0,0,.2);color:#c00}.doc-link.youtube:hover{background:#c00;color:var(--white);border-color:#c00}
+.doc-link svg{flex-shrink:0}.extra-docs{display:flex;flex-wrap:wrap;gap:.4rem}
 .no-doc{color:rgba(44,74,62,.25);font-size:.8rem}
 .table-wrapper{background:var(--white);border:1px solid rgba(44,74,62,.12);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);overflow-x:auto}
 .special-badge{display:inline-block;background:var(--rust);color:var(--white);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.18rem .55rem;border-radius:3px}
 .meeting-hero-meta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;opacity:0;animation:fadeUp .6s ease .5s forwards}
-.meeting-hero-meta a{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:.4rem .9rem;font-size:.82rem;font-weight:700;color:var(--white);text-decoration:none;transition:background .15s}
-.meeting-hero-meta a:hover{background:rgba(255,255,255,.22)}
-.meeting-hero-meta a.yt-btn{background:rgba(192,0,0,.25);border-color:rgba(255,80,80,.3)}
-.meeting-hero-meta a.yt-btn:hover{background:rgba(192,0,0,.45)}
+.meeting-hero-meta a{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:.4rem .9rem;font-size:.82rem;font-weight:700;color:var(--white);text-decoration:none;transition:background .15s}.meeting-hero-meta a:hover{background:rgba(255,255,255,.22)}
+.meeting-hero-meta a.yt-btn{background:rgba(192,0,0,.25);border-color:rgba(255,80,80,.3)}.meeting-hero-meta a.yt-btn:hover{background:rgba(192,0,0,.45)}
 .meeting-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
 .meeting-card{background:var(--white);border:1px solid rgba(44,74,62,.12);border-top:3px solid var(--pine);border-radius:0 0 10px 10px;padding:1.25rem 1.5rem;box-shadow:var(--shadow)}
 .meeting-card h3{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--forest);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
-.meeting-card .doc-links{display:flex;flex-direction:column;gap:.4rem}
-.meeting-card .doc-link{justify-content:flex-start}
+.meeting-card .doc-links{display:flex;flex-direction:column;gap:.4rem}.meeting-card .doc-link{justify-content:flex-start}
 .summary-card{background:var(--white);border:1px solid rgba(44,74,62,.12);border-top:3px solid var(--rust);border-radius:0 0 10px 10px;padding:1.75rem 2rem;box-shadow:var(--shadow);margin-bottom:2rem}
 .summary-card h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--forest);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
-.summary-card p{font-size:.93rem;line-height:1.8;color:#444;margin-bottom:.75rem}
-.summary-card strong{color:var(--forest)}
-.summary-card ul{margin:.4rem 0 .75rem 1.25rem}
-.summary-card li{font-size:.91rem;line-height:1.75;color:#444;margin-bottom:.25rem}
+.summary-card p{font-size:.93rem;line-height:1.8;color:#444;margin-bottom:.75rem}.summary-card strong{color:var(--forest)}
+.summary-card ul{margin:.4rem 0 .75rem 1.25rem}.summary-card li{font-size:.91rem;line-height:1.75;color:#444;margin-bottom:.25rem}
 .ai-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(192,104,48,.1);color:var(--rust);padding:.2rem .5rem;border-radius:3px}
 footer{background:var(--charcoal);padding:2.5rem 2rem;text-align:center}
 footer .footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:.75rem}
-footer .footer-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--warm)}
-footer .footer-logo span{color:var(--sky)}
-footer p{font-size:.8rem;color:rgba(255,255,255,.35)}
-footer a{color:var(--warm);text-decoration:none}
+footer .footer-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--warm)}.footer-logo span{color:var(--sky)}
+footer p{font-size:.8rem;color:rgba(255,255,255,.35)}footer a{color:var(--warm);text-decoration:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:700px){
-  nav{padding:1rem 1.25rem}.nav-links{gap:.8rem}.nav-links a{font-size:.65rem}
-  .year-grid{grid-template-columns:repeat(2,1fr)}main{padding:0 1.25rem 4rem}
-  .meeting-grid{grid-template-columns:1fr}
-  .meetings-table thead{display:none}
-  .meetings-table tbody tr{display:block;padding:1rem;border-bottom:2px solid rgba(44,74,62,.1)}
-  .meetings-table td{display:block;padding:.3rem 0;border:none}
-  .meetings-table td.date-cell{font-size:1rem;margin-bottom:.5rem}
-}
+@media(max-width:700px){nav{padding:1rem 1.25rem}.nav-links{gap:.8rem}.nav-links a{font-size:.65rem}.year-grid{grid-template-columns:repeat(2,1fr)}main{padding:0 1.25rem 4rem}.meeting-grid{grid-template-columns:1fr}.meetings-table thead{display:none}.meetings-table tbody tr{display:block;padding:1rem;border-bottom:2px solid rgba(44,74,62,.1)}.meetings-table td{display:block;padding:.3rem 0;border:none}.meetings-table td.date-cell{font-size:1rem;margin-bottom:.5rem}}
 </style>
 </head>
 <body>
-<nav><a class="nav-logo" href="https://chriswjohnston.ca">Chris <span>Johnston</span></a><ul class="nav-links"><li><a href="/">Council Archive</a></li><li><a href="https://bylaw.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>
+<nav><a class="nav-logo" href="/">Nipissing <span>Council Archive</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="https://bylaw.chriswjohnston.ca">By-Law Archive</a></li></ul></nav>
 <div class="page-hero"><div class="inner">
   <p class="eyebrow">Nipissing Township &middot; Council Meeting</p>
   <h1>January 7, 2019 </h1>
   <p>Agenda, minutes and supporting documents for this council meeting.</p>
-  <div class="meeting-hero-meta"><a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Agenda</a><a href="https://www.youtube.com/@townshipofnipissing505/streams" target="_blank" class="yt-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.4 2.8 12 2.8 12 2.8s-4.4 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.3v2c0 2.1.3 4.3.3 4.3s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.7 12 21.7 12 21.7s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.3v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.3l8.1 3.6-8.1 3.6z"/></svg> YouTube Channel</a></div>
+  <div class="meeting-hero-meta"><a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Agenda</a><a href="https://www.youtube.com/@townshipofnipissing505/streams" target="_blank" class="yt-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C16.4 2.8 12 2.8 12 2.8s-4.4 0-6.8.1c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.1.7 11.3v2c0 2.1.3 4.3.3 4.3s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C7.5 21.7 12 21.7 12 21.7s4.4 0 6.8-.2c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.1.3-4.3v-2C23.3 9.1 23 7 23 7zM9.7 15.5V8.3l8.1 3.6-8.1 3.6z"/></svg> YouTube Channel</a></div>
   <div class="breadcrumb" style="margin-top:1rem;">
     <a href="../../">All Years</a><span class="sep">/</span>
     <a href="../">2019</a><span class="sep">/</span>
@@ -118,8 +85,8 @@ footer a{color:var(--warm);text-decoration:none}
 </div></div>
 <main><div class="summary-card" style="border-top-color:var(--pine)">
   <h2>Agenda — January 7, 2019</h2>
-  <div style="font-size:.88rem;line-height:1.9;color:#444;max-height:600px;overflow-y:auto;padding-right:.5rem;">*** AGENDA ***<br>Tuesday, January 7, 2020<br>   **START TIME 6:30 p.m.** <br>1.	Disclosure of pecuniary interest.<br>2.	Staff Reports.<br>3.	Committee Reports.<br>4.	Resolution: Adopt the minutes of the meeting held December 17, 2019.<br>5.	Resolution: Closed Session for b) personal matters about an identifiable individual, including municipal or local board employees; e) litigation or potential litigation, including matters before administrative tribunals, affecting the municipality or local board.<br>6.	Resolution: Provide financial assistance to the Commanda Community Centre furnace project.<br>7.	Resolution:  Grant Permission to operate LCBO – Agency Stores on Family Day.<br>8.	Resolution:  Approval in Principle to Name “Johnson Lane”.<br>9.	By-Law: Amend Mayor and Councillor Remuneration 2020.<br>10.	By-Law:  To provide for an Interim Tax Levy.<br>11.	By-Law:  To Confirm Appointment of Committee of Adjustment.<br>12.	Correspondence.<br>13.	Accounts to pay.<br>14.	By-Law: Confirming Proceedings of Council.<br>15.	Adjournment.<br>Attachments:  December 17, 2019 meeting minutes.<br>**Council meetings are held at the Township Office, 45 Beatty Street, Nipissing.</div>
+  <div style="font-size:.88rem;line-height:1.9;color:#444;max-height:600px;overflow-y:auto;">*** AGENDA ***<br>Tuesday, January 7, 2020<br>   **START TIME 6:30 p.m.** <br>1.	Disclosure of pecuniary interest.<br>2.	Staff Reports.<br>3.	Committee Reports.<br>4.	Resolution: Adopt the minutes of the meeting held December 17, 2019.<br>5.	Resolution: Closed Session for b) personal matters about an identifiable individual, including municipal or local board employees; e) litigation or potential litigation, including matters before administrative tribunals, affecting the municipality or local board.<br>6.	Resolution: Provide financial assistance to the Commanda Community Centre furnace project.<br>7.	Resolution:  Grant Permission to operate LCBO – Agency Stores on Family Day.<br>8.	Resolution:  Approval in Principle to Name “Johnson Lane”.<br>9.	By-Law: Amend Mayor and Councillor Remuneration 2020.<br>10.	By-Law:  To provide for an Interim Tax Levy.<br>11.	By-Law:  To Confirm Appointment of Committee of Adjustment.<br>12.	Correspondence.<br>13.	Accounts to pay.<br>14.	By-Law: Confirming Proceedings of Council.<br>15.	Adjournment.<br>Attachments:  December 17, 2019 meeting minutes.<br>**Council meetings are held at the Township Office, 45 Beatty Street, Nipissing.</div>
   <p style="font-size:.75rem;color:#aaa;margin-top:1rem;">Source: <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/" target="_blank" rel="noopener">nipissingtownship.com</a></p>
-</div><div class="meeting-grid"><div class="meeting-card" style="border-top-color:var(--forest)"><h3>Agenda</h3><div class="doc-links"><a class="doc-link" href="../files/agenda-january-7-2019.html" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Agenda</a></div></div></div></main>
-<footer><div class="footer-inner"><div class="footer-logo">Chris <span>Johnston</span></div><p>Sourced from <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank" rel="noopener">nipissingtownship.com</a> &mdash; Last updated March 28, 2026</p></div></footer>
+</div><div class="meeting-grid"><div class="meeting-card" style="border-top-color:var(--forest)"><h3>Agenda</h3><div class="doc-links"><a class="doc-link" href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/" target="_blank" rel="noopener"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Agenda <span style="font-size:.65rem;opacity:.6">(web)</span></a></div></div></div></main>
+<footer><div class="footer-inner"><div class="footer-logo">Nipissing <span>Council Archive</span></div><p>Sourced from <a href="https://nipissingtownship.com/council-meeting-dates-agendas-minutes/" target="_blank" rel="noopener">nipissingtownship.com</a> &mdash; Last updated March 28, 2026</p></div></footer>
 </body></html>
