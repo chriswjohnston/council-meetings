@@ -24,6 +24,12 @@ try:
 except ImportError:
     PDF_EXTRACT = False
 
+try:
+    from weasyprint import HTML as WeasyHTML
+    WEASYPRINT = True
+except ImportError:
+    WEASYPRINT = False
+
 SOURCE_URL         = "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/"
 YOUTUBE_CHANNEL    = "https://www.youtube.com/@townshipofnipissing505/streams"
 YOUTUBE_CHANNEL_ID = "UC2XSMZqRNHbwVppelfKcEXw"
@@ -345,15 +351,25 @@ def fetch_html_page_links():
             is_special = bool(re.search(r"special", title, re.IGNORECASE))
             display_date = ("Special Meeting " + raw_date) if is_special else raw_date
 
-            # Detect document type from title/URL
-            url_lower = url.lower()
+            # Detect document type — slug is most reliable signal
+            slug_part = url.lower().rstrip("/").split("/")[-1]
             title_lower = title.lower()
-            if "minute" in url_lower or "minute" in title_lower:
-                label = "Minutes"
-            elif "agenda" in url_lower or "agenda" in title_lower:
+
+            if slug_part.startswith("agenda"):
                 label = "Agenda"
+            elif slug_part.startswith("minutes"):
+                label = "Minutes"
+            elif title_lower.startswith("agenda"):
+                label = "Agenda"
+            elif title_lower.startswith("minutes") or title_lower.startswith("minute"):
+                label = "Minutes"
+            elif re.search(r"\*+\s*agenda\s*\*+", title_lower):
+                label = "Agenda"
+            elif re.search(r"\*+\s*minutes\s*\*+", title_lower):
+                label = "Minutes"
             else:
-                label = "Minutes"  # default for older pages
+                print(f"  ? Cannot determine type for {url} — skipping")
+                continue
 
             # Extract the minutes text content for display
             content_div = (page_soup.find("div", class_=re.compile(r"entry-content|post-content")) or
@@ -527,6 +543,28 @@ def download_pdfs(meetings, state):
     return new_count
 
 
+def archive_html_pages(meetings, state):
+    """
+    For each HTML page doc, convert to PDF and store locally.
+    Updates the doc record so the archived PDF is linked instead of the live URL.
+    """
+    archived = 0
+    for year, docs in meetings.items():
+        year_files_dir = DOCS_DIR / year / "files"
+        year_files_dir.mkdir(parents=True, exist_ok=True)
+        for doc in docs:
+            if doc.get("type") != "html_page":
+                continue
+            saved_name = save_html_page_as_pdf(doc, year_files_dir)
+            if saved_name:
+                # Update doc so it links to local archive instead of live URL
+                doc["archived_filename"] = saved_name
+                doc["archived_path"] = f"files/{saved_name}"
+                archived += 1
+    print(f"  {archived} HTML page(s) archived as local files")
+    return archived
+
+
 # ─── AI SUMMARY ────────────────────────────────────────────────
 
 def extract_pdf_text(path, max_chars=40000):
@@ -604,6 +642,75 @@ def render_summary_html(md):
             out.append(f"<p>{line}</p>")
     if in_ul: out.append("</ul>")
     return "\n".join(out)
+
+
+
+# ─── HTML → PDF CONVERSION ─────────────────────────────────────
+
+def save_html_page_as_pdf(doc, year_files_dir):
+    """
+    Download an HTML council page and save it as a PDF in the files directory.
+    Uses WeasyPrint for rendering. Falls back to saving raw HTML if unavailable.
+    Returns the saved filename or None on failure.
+    """
+    url       = doc["url"]
+    slug      = doc["filename"]  # e.g. "minutes-september-4-2018"
+    pdf_name  = slug + ".pdf"
+    html_name = slug + ".html"
+    pdf_path  = year_files_dir / pdf_name
+    html_path = year_files_dir / html_name
+
+    # Already saved
+    if pdf_path.exists():
+        return pdf_name
+    if html_path.exists():
+        return html_name
+
+    print(f"    Archiving HTML page: {slug} ...")
+    try:
+        resp = requests.get(url, timeout=20)
+        resp.raise_for_status()
+        raw_html = resp.text
+
+        # Extract just the content — strip nav/header/footer for cleaner PDF
+        from bs4 import BeautifulSoup as _BS
+        soup = _BS(raw_html, "html.parser")
+
+        # Remove navigation, header, footer, sidebar
+        for el in soup.find_all(["nav", "header", "footer", "aside"]):
+            el.decompose()
+        for el in soup.find_all(class_=re.compile(
+                r"nav|menu|sidebar|widget|search|breadcrumb|site-header|site-footer")):
+            el.decompose()
+
+        # Add clean print styles
+        style_tag = soup.new_tag("style")
+        style_tag.string = """
+            body { font-family: Georgia, serif; font-size: 11pt; line-height: 1.6;
+                   max-width: 720px; margin: 0 auto; padding: 20px; color: #111; }
+            h1, h2, h3 { font-family: Georgia, serif; color: #1a1a1a; }
+            a { color: #1a1a1a; text-decoration: none; }
+            img { display: none; }
+            p { margin: 0.5em 0; }
+        """
+        if soup.head:
+            soup.head.append(style_tag)
+
+        clean_html = str(soup)
+
+        if WEASYPRINT:
+            WeasyHTML(string=clean_html, base_url=url).write_pdf(str(pdf_path))
+            print(f"    ✓ Saved PDF: {pdf_name}")
+            return pdf_name
+        else:
+            # Fallback: save raw HTML
+            html_path.write_text(raw_html, encoding="utf-8")
+            print(f"    ✓ Saved HTML: {html_name} (WeasyPrint not available)")
+            return html_name
+
+    except Exception as e:
+        print(f"    ✗ Could not archive {url}: {e}")
+        return None
 
 
 # ─── STYLES ────────────────────────────────────────────────────
@@ -771,7 +878,15 @@ def date_slug(dt):
 
 def doc_button(label, filename, doc=None):
     if doc and doc.get("type") == "html_page":
-        return f'<a class="doc-link" href="{doc["url"]}" target="_blank" rel="noopener">{HTML_ICON} {label} <span style="font-size:.65rem;opacity:.6">(web)</span></a>'
+        if doc.get("archived_filename"):
+            ext = doc["archived_filename"].split(".")[-1].upper()
+            icon = PDF_ICON if ext == "PDF" else HTML_ICON
+            return (f'<a class="doc-link" href="files/{doc["archived_filename"]}" ' +
+                    f'target="_blank" rel="noopener">{icon} {label}</a>')
+        # No local archive yet — link to live page
+        return (f'<a class="doc-link" href="{doc["url"]}" target="_blank" ' +
+                f'rel="noopener">{HTML_ICON} {label} ' +
+                f'<span style="font-size:.65rem;opacity:.6">(web)</span></a>')
     return f'<a class="doc-link" href="files/{filename}" target="_blank" rel="noopener">{PDF_ICON} {label}</a>'
 
 def yt_button(url):
@@ -790,7 +905,14 @@ HTML_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke=
 def doc_link_for(doc):
     """Generate appropriate link button for a doc regardless of type."""
     if doc.get("type") == "html_page":
-        return f'<a class="doc-link" href="{doc["url"]}" target="_blank" rel="noopener">{HTML_ICON} {doc["label"]} <span style="font-size:.65rem;opacity:.6">(web)</span></a>'
+        if doc.get("archived_filename"):
+            ext = doc["archived_filename"].split(".")[-1].upper()
+            icon = PDF_ICON if ext == "PDF" else HTML_ICON
+            return (f'<a class="doc-link" href="../files/{doc["archived_filename"]}" ' +
+                    f'target="_blank" rel="noopener">{icon} {doc["label"]}</a>')
+        return (f'<a class="doc-link" href="{doc["url"]}" target="_blank" ' +
+                f'rel="noopener">{HTML_ICON} {doc["label"]} ' +
+                f'<span style="font-size:.65rem;opacity:.6">(web)</span></a>')
     return f'<a class="doc-link" href="../files/{doc["filename"]}" target="_blank" rel="noopener">{PDF_ICON} {doc["label"]}</a>'
 
 def generate_meeting_page(date_text, year, slots, yt_videos, summary):
@@ -1049,6 +1171,10 @@ if __name__ == "__main__":
 
     print("\nDownloading new PDFs ...")
     new_count = download_pdfs(meetings, state)
+
+    print("\nArchiving HTML pages as PDFs ...")
+    archive_html_pages(meetings, state)
+
     save_state(state)
     build_html(meetings, yt_videos)
     print(f"\n✓ Done. {new_count} new file(s) added." if new_count else "\n✓ Done. No new files.")
