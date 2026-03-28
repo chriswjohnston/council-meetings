@@ -707,10 +707,11 @@ def generate_year_page(year, docs, all_years, yt_videos, summaries):
     grouped = defaultdict(list)
     for doc in docs: grouped[doc["date"]].append(doc)
     sorted_dates = sorted(grouped.keys(), key=sort_date_key)
-    year_nav = "".join(
-        f'<a href="../{y}/" {"class=\"active\"" if y==year else ""}>{y}</a>'
-        for y in sorted(all_years, reverse=True)
-    )
+    year_nav_parts = []
+    for y in sorted(all_years, reverse=True):
+        active = 'class="active"' if y == year else ""
+        year_nav_parts.append(f'<a href="../{y}/" {active}>{y}</a>')
+    year_nav = "".join(year_nav_parts)
     rows = ""
     for date in sorted_dates:
         date_docs = grouped[date]
