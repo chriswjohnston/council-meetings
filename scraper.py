@@ -35,6 +35,87 @@ except ImportError:
 SOURCE_URL         = "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/"
 YOUTUBE_CHANNEL    = "https://www.youtube.com/@townshipofnipissing505/streams"
 YOUTUBE_CHANNEL_ID = "UC2XSMZqRNHbwVppelfKcEXw"
+
+# Hardcoded known videos — permanent fallback so they're never lost
+# Add new ones here manually if RSS stops picking them up
+KNOWN_YOUTUBE_VIDEOS = {
+    # 2022
+    "January 11, 2022":   "https://www.youtube.com/watch?v=TfBrPMmVnrM",
+    "January 25, 2022":   "https://www.youtube.com/watch?v=nX9sYSVgiyU",
+    "February 8, 2022":   "https://www.youtube.com/watch?v=fSmpIfJf7hU",
+    "February 22, 2022":  "https://www.youtube.com/watch?v=HiNQaF_XMTQ",
+    "March 8, 2022":      "https://www.youtube.com/watch?v=CKpUjh2Tz_Y",
+    "March 15, 2022":     "https://www.youtube.com/watch?v=rIBBVRMlniE",
+    "March 22, 2022":     "https://www.youtube.com/watch?v=LLxV_i6XKWU",
+    "April 5, 2022":      "https://www.youtube.com/watch?v=YRX52Nt0j3A",
+    "April 19, 2022":     "https://www.youtube.com/watch?v=5jlKlOp-b3g",
+    "April 26, 2022":     "https://www.youtube.com/watch?v=fFVWNwOcI9o",
+    "May 10, 2022":       "https://www.youtube.com/watch?v=f-LjGOUiTfQ",
+    "May 24, 2022":       "https://www.youtube.com/watch?v=7ImmC8TCWKM",
+    "June 14, 2022":      "https://www.youtube.com/watch?v=Vgs9r1sJHAc",
+    "June 28, 2022":      "https://www.youtube.com/watch?v=Ky7QK1hLyBo",
+    "July 12, 2022":      "https://www.youtube.com/watch?v=hKJ9y_RRq84",
+    "August 9, 2022":     "https://www.youtube.com/watch?v=sElXRJ_WqM4",
+    "August 23, 2022":    "https://www.youtube.com/watch?v=JHWJUcBaXJY",
+    "September 13, 2022": "https://www.youtube.com/watch?v=sCFvFkMWqhY",
+    "September 27, 2022": "https://www.youtube.com/watch?v=yqFWk-OuZ2Q",
+    "October 4, 2022":    "https://www.youtube.com/watch?v=3LWbPO3bBWM",
+    "October 18, 2022":   "https://www.youtube.com/watch?v=MiKTfEQ0e0Y",
+    "November 1, 2022":   "https://www.youtube.com/watch?v=nFPtknOxoT0",
+    "November 22, 2022":  "https://www.youtube.com/watch?v=2RpWRcSlCFI",
+    "December 6, 2022":   "https://www.youtube.com/watch?v=DP8hc8MtLRA",
+    "December 20, 2022":  "https://www.youtube.com/watch?v=RCOlkB5Gt3c",
+    # 2023
+    "March 21, 2023":     "https://www.youtube.com/watch?v=kippOBqmwfk",
+    "April 4, 2023":      "https://www.youtube.com/watch?v=7EbdoWEbwxQ",
+    "April 18, 2023":     "https://www.youtube.com/watch?v=TXOFlTFtUUc",
+    "May 2, 2023":        "https://www.youtube.com/watch?v=BZzIz4qSD9g",
+    "May 16, 2023":       "https://www.youtube.com/watch?v=XKciD82AmcE",
+    "June 20, 2023":      "https://www.youtube.com/watch?v=v8Na_8nEg5Q",
+    "October 3, 2023":    "https://www.youtube.com/watch?v=U5KCHDjMARM",
+    "November 14, 2023":  "https://www.youtube.com/watch?v=5M_sG23RnJE",
+    "December 5, 2023":   "https://www.youtube.com/watch?v=-G4mDYXQUA4",
+    "December 19, 2023":  "https://www.youtube.com/watch?v=w-ojRVeF_-4",
+    # 2024
+    "January 10, 2024":   "https://www.youtube.com/watch?v=v5HtehqR3mU",
+    "January 16, 2024":   "https://www.youtube.com/watch?v=dbsFvOEIpCE",
+    "February 6, 2024":   "https://www.youtube.com/watch?v=rIcfa30oKzA",
+    "March 19, 2024":     "https://www.youtube.com/watch?v=VtYFN3mL8UI",
+    "April 2, 2024":      "https://www.youtube.com/watch?v=OWEucjlHuB8",
+    "April 16, 2024":     "https://www.youtube.com/watch?v=rjBt6-YKf1E",
+    "June 4, 2024":       "https://www.youtube.com/watch?v=UCkolSuqleg",
+    "June 24, 2024":      "https://www.youtube.com/watch?v=A9o88wa5tDA",
+    "July 16, 2024":      "https://www.youtube.com/watch?v=Gz41pUfaWtc",
+    "September 17, 2024": "https://www.youtube.com/watch?v=kgAtYdDfTfY",
+    "October 1, 2024":    "https://www.youtube.com/watch?v=s7UOXkc2dN8",
+    "December 3, 2024":   "https://www.youtube.com/watch?v=Nt6tbnD0_Ao",
+    "December 17, 2024":  "https://www.youtube.com/watch?v=XJUNGhAd-oM",
+    "December 19, 2024":  "https://www.youtube.com/watch?v=9NRPQpCA9Rw",
+    # 2025
+    "January 7, 2025":    "https://www.youtube.com/watch?v=qXkA365W-K4",
+    "January 21, 2025":   "https://www.youtube.com/watch?v=wz5TF8DTOI0",
+    "February 4, 2025":   "https://www.youtube.com/watch?v=wQsO0bwgaLA",
+    "February 18, 2025":  "https://www.youtube.com/watch?v=q-27WqKXd7k",
+    "March 4, 2025":      "https://www.youtube.com/watch?v=mvqHbEWpB7Y",
+    "March 18, 2025":     "https://www.youtube.com/watch?v=cRiBjaHgm6o",
+    "April 8, 2025":      "https://www.youtube.com/watch?v=8CQB010m1xY",
+    "May 13, 2025":       "https://www.youtube.com/watch?v=z7wRNoSr7G8",
+    "May 27, 2025":       "https://www.youtube.com/watch?v=A5TU4_9KMrI",
+    "June 10, 2025":      "https://www.youtube.com/watch?v=hiPxt0g7fvI",
+    "June 24, 2025":      "https://www.youtube.com/watch?v=A9o88wa5tDA",
+    "July 15, 2025":      "https://www.youtube.com/watch?v=iqEmLVk6XHQ",
+    "August 12, 2025":    "https://www.youtube.com/watch?v=WLOhWsICLN0",
+    "September 2, 2025":  "https://www.youtube.com/watch?v=HUPTQajeFWk",
+    "September 16, 2025": "https://www.youtube.com/watch?v=mtgCDDJigjI",
+    "October 7, 2025":    "https://www.youtube.com/watch?v=GmfEZJbNOKY",
+    "October 28, 2025":   "https://www.youtube.com/watch?v=wi6xJN35aRo",
+    "November 18, 2025":  "https://www.youtube.com/watch?v=tNtaUpFm4DQ",
+    "December 2, 2025":   "https://www.youtube.com/watch?v=Zed4sZNUBfo",
+    "December 16, 2025":  "https://www.youtube.com/watch?v=_idoxh5wKLk",
+    # 2026
+    "January 6, 2026":    "https://www.youtube.com/watch?v=B-JeDGKD4GU",
+    "January 20, 2026":   "https://www.youtube.com/watch?v=aHJOVza17GM",
+}
 ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 BRANCH             = os.environ.get("BRANCH", "campaign").lower()
 IS_PUBLIC          = BRANCH == "public"
@@ -187,8 +268,13 @@ def save_cache(cache):
 
 def fetch_youtube_videos(state):
     rss_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
-    videos = {v["date"]: v["url"] for v in state.get("_youtube_videos", {}).values()}
-    print(f"YouTube RSS ({len(videos)} cached)...")
+    # Start with hardcoded known videos (never lost even if state is reset)
+    videos = dict(KNOWN_YOUTUBE_VIDEOS)
+    # Merge in anything previously cached in state (additive — never overwrite)
+    for v in state.get("_youtube_videos", {}).values():
+        if v["date"] not in videos:
+            videos[v["date"]] = v["url"]
+    print(f"YouTube RSS ({len(videos)} known + cached)...")
     try:
         resp = requests.get(rss_url, timeout=15)
         resp.raise_for_status()
