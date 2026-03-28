@@ -115,6 +115,10 @@ KNOWN_YOUTUBE_VIDEOS = {
     # 2026
     "January 6, 2026":    "https://www.youtube.com/watch?v=B-JeDGKD4GU",
     "January 20, 2026":   "https://www.youtube.com/watch?v=aHJOVza17GM",
+    "February 3, 2026":  "https://www.youtube.com/watch?v=zEZK_BNVS4I",
+    "February 17, 2026": "https://www.youtube.com/watch?v=PHK0uaveLEk",
+    "March 3, 2026":     "https://www.youtube.com/watch?v=OGlKpjmXUwM",
+    "March 17, 2026":    "https://www.youtube.com/watch?v=mi40epWqO_s",
 }
 ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 BRANCH             = os.environ.get("BRANCH", "campaign").lower()
@@ -287,8 +291,11 @@ def fetch_youtube_videos(state):
             title = title_el.text or ""
             url   = link_el.get("href", "")
             tl    = title.lower()
-            if "council meeting" not in tl: continue
-            if any(w in tl for w in ["committee","adjustment","museum","recreation"]): continue
+            # Skip non-council videos
+            if any(w in tl for w in ["committee","adjustment","museum","recreation",
+                                      "strategic plan","town hall","budget meeting"]): continue
+            # Must either say "council" or "nipissing" with a date — avoids random videos
+            if "council" not in tl and "nipissing" not in tl: continue
             m = re.search(
                 r"(January|February|March|April|May|June|July|August|"
                 r"September|October|November|December)\s+(\d{1,2}),?\s+(\d{4})",
