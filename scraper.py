@@ -763,7 +763,7 @@ def generate_meeting_page(date_text, year, slots, yt_videos, summary):
         if html_text_card: break
 
     summary_html = ""
-    if summary and not IS_PUBLIC:
+    if summary:
         summary_html = f'<div class="summary-card"><h2>Meeting Summary <span class="ai-badge">AI Generated</span></h2>{render_summary_html(summary)}<p style="font-size:.75rem;color:#aaa;margin-top:1rem;">Generated from meeting documents. Refer to official minutes for authoritative information.</p></div>'
 
     cards = (card("Agenda",slots["agenda"],"var(--forest)") +
@@ -903,7 +903,7 @@ def build_html(meetings, yt_videos):
             has_both    = bool(slots["minutes"] and slots["package"] and
                                any(d.get("type")=="pdf" for d in slots["minutes"]) and
                                any(d.get("type")=="pdf" for d in slots["package"]))
-            if summary is None and has_both and ANTHROPIC_API_KEY and not IS_PUBLIC:
+            if summary is None and has_both and ANTHROPIC_API_KEY:
                 print(f"  AI summary: {date_text}...")
                 summary = generate_ai_summary(date_text, slots, year_files_dir)
                 if summary:
