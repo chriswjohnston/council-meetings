@@ -293,7 +293,7 @@ def fetch_youtube_videos(state):
             tl    = title.lower()
             # Skip non-council videos
             if any(w in tl for w in ["committee","adjustment","museum","recreation",
-                                      "strategic plan","town hall","budget meeting"]): continue
+                                      "strategic plan","town hall"]): continue
             # Must either say "council" or "nipissing" with a date — avoids random videos
             if "council" not in tl and "nipissing" not in tl: continue
             m = re.search(
