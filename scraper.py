@@ -85,18 +85,337 @@ def fetch_youtube_videos(state):
 
 # ─── SCRAPING ──────────────────────────────────────────────────
 
+DATE_RE_GLOBAL = re.compile(
+    r"(January|February|March|April|May|June|July|August|"
+    r"September|October|November|December)\s+\d{1,2},?\s+\d{4}", re.IGNORECASE
+)
+
+def normalise_date(raw):
+    """Normalise a date string to 'Month D, YYYY' format."""
+    raw = raw.strip()
+    raw = re.sub(
+        r"(January|February|March|April|May|June|July|August|"
+        r"September|October|November|December)\s+(\d{1,2})\s+(\d{4})",
+        r"\1 \2, \3", raw
+    )
+    return raw
+
+def extract_year_from_date(date_str):
+    """Extract the 4-digit year from a date string."""
+    m = re.search(r"\b(20\d{2})\b", date_str)
+    return m.group(1) if m else None
+
+def fetch_html_page_links():
+    """
+    Discover and scrape older council meeting HTML pages stored as
+    WordPress child pages under the main council-meetings URL.
+    These contain minutes/agendas as HTML text rather than PDFs.
+    Returns dict keyed by year, list of doc dicts with type='html_page'.
+    """
+    print(f"\nFetching HTML sub-pages from {SOURCE_URL} ...")
+    meetings = defaultdict(list)
+    base = "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/"
+    child_links = set()
+
+    # ── Method 1: WordPress REST API (gets all child pages at once) ──
+    try:
+        # Find the parent page ID first
+        api_base = "https://nipissingtownship.com/wp-json/wp/v2"
+        r = requests.get(
+            f"{api_base}/pages",
+            params={"slug": "council-meeting-dates-agendas-minutes", "_fields": "id"},
+            timeout=15
+        )
+        if r.status_code == 200 and r.json():
+            parent_id = r.json()[0]["id"]
+            print(f"  REST API: parent page ID = {parent_id}")
+            # Fetch all child pages (may need multiple pages)
+            page_num = 1
+            while True:
+                cr = requests.get(
+                    f"{api_base}/pages",
+                    params={"parent": parent_id, "per_page": 100,
+                            "page": page_num, "_fields": "link,slug"},
+                    timeout=15
+                )
+                if cr.status_code != 200 or not cr.json():
+                    break
+                for pg in cr.json():
+                    link = pg.get("link", "")
+                    if link and link.startswith(base):
+                        child_links.add(link.rstrip("/") + "/")
+                if len(cr.json()) < 100:
+                    break
+                page_num += 1
+            print(f"  REST API: found {len(child_links)} child pages")
+    except Exception as e:
+        print(f"  REST API error: {e}")
+
+    # ── Method 2: Scrape main page for any linked child pages ──
+    try:
+        resp = requests.get(SOURCE_URL, timeout=20)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.text, "html.parser")
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if (href.startswith(base) and href != base and
+                    not href.endswith(".pdf") and not href.endswith(".docx")):
+                child_links.add(href.rstrip("/") + "/")
+    except Exception as e:
+        print(f"  Main page scrape error: {e}")
+
+    # ── Method 3: Known pages discovered via search / manual review ──
+    known_pages = [
+        # 2022
+        f"{base}may-10-2022-minutes/",
+        f"{base}special-meeting-minutes/",
+        f"{base}june-8-2021-minutes/",
+        # 2021
+        f"{base}minutes-may-18-2021/",
+        f"{base}agenda-may-18-2021/",
+        f"{base}minutes-june-8-2021/",
+        f"{base}minutes-september-7-2021/",
+        f"{base}minutes-march-9-2021/",
+        f"{base}minutes-special-meeting-march-9-2021/",
+        f"{base}minutes-january-19-2021/",
+        f"{base}minutes-february-2-2021/",
+        f"{base}minutes-february-16-2021/",
+        f"{base}minutes-march-2-2021/",
+        f"{base}minutes-march-16-2021/",
+        f"{base}minutes-april-6-2021/",
+        f"{base}minutes-april-20-2021/",
+        f"{base}minutes-may-4-2021/",
+        f"{base}minutes-june-1-2021/",
+        f"{base}minutes-june-22-2021/",
+        f"{base}minutes-july-13-2021/",
+        f"{base}minutes-august-3-2021/",
+        f"{base}minutes-august-17-2021/",
+        f"{base}minutes-september-21-2021/",
+        f"{base}minutes-october-5-2021/",
+        f"{base}minutes-october-19-2021/",
+        f"{base}minutes-november-2-2021/",
+        f"{base}minutes-november-16-2021/",
+        f"{base}minutes-december-7-2021/",
+        f"{base}minutes-december-21-2021/",
+        # 2021 agendas
+        f"{base}agenda-january-19-2021/",
+        f"{base}agenda-february-2-2021/",
+        f"{base}agenda-february-16-2021/",
+        f"{base}agenda-march-2-2021/",
+        f"{base}agenda-march-16-2021/",
+        f"{base}agenda-april-6-2021/",
+        f"{base}agenda-april-20-2021/",
+        f"{base}agenda-june-1-2021/",
+        f"{base}agenda-june-22-2021/",
+        f"{base}agenda-july-13-2021/",
+        f"{base}agenda-august-17-2021/",
+        f"{base}agenda-september-7-2021/",
+        f"{base}agenda-september-21-2021/",
+        f"{base}agenda-october-5-2021/",
+        f"{base}agenda-october-19-2021/",
+        f"{base}agenda-november-2-2021/",
+        f"{base}agenda-november-16-2021/",
+        f"{base}agenda-december-7-2021/",
+        f"{base}agenda-december-21-2021/",
+        # 2020
+        f"{base}agenda-march-10-2020/",
+        f"{base}minutes-september-15-2020/",
+        f"{base}minutes-january-21-2020/",
+        f"{base}minutes-february-4-2020/",
+        f"{base}minutes-february-18-2020/",
+        f"{base}minutes-march-10-2020/",
+        f"{base}minutes-march-17-2020/",
+        f"{base}minutes-april-21-2020/",
+        f"{base}minutes-may-5-2020/",
+        f"{base}minutes-may-19-2020/",
+        f"{base}minutes-june-2-2020/",
+        f"{base}minutes-june-16-2020/",
+        f"{base}minutes-july-7-2020/",
+        f"{base}minutes-july-21-2020/",
+        f"{base}minutes-august-4-2020/",
+        f"{base}minutes-august-18-2020/",
+        f"{base}minutes-september-1-2020/",
+        f"{base}minutes-october-6-2020/",
+        f"{base}minutes-october-20-2020/",
+        f"{base}minutes-november-3-2020/",
+        f"{base}minutes-november-17-2020/",
+        f"{base}minutes-december-1-2020/",
+        f"{base}minutes-december-15-2020/",
+        # 2019
+        f"{base}minutes-january-8-2019/",
+        f"{base}minutes-january-22-2019/",
+        f"{base}minutes-february-5-2019/",
+        f"{base}minutes-february-19-2019/",
+        f"{base}minutes-march-5-2019/",
+        f"{base}minutes-march-19-2019/",
+        f"{base}minutes-april-2-2019/",
+        f"{base}minutes-april-16-2019/",
+        f"{base}minutes-april-30-2019/",
+        f"{base}minutes-may-14-2019/",
+        f"{base}minutes-may-28-2019/",
+        f"{base}minutes-june-11-2019/",
+        f"{base}minutes-june-25-2019/",
+        f"{base}minutes-july-9-2019/",
+        f"{base}minutes-july-23-2019/",
+        f"{base}minutes-august-13-2019/",
+        f"{base}minutes-august-27-2019/",
+        f"{base}minutes-september-10-2019/",
+        f"{base}minutes-september-24-2019/",
+        f"{base}minutes-october-8-2019/",
+        f"{base}minutes-october-22-2019/",
+        f"{base}minutes-november-5-2019/",
+        f"{base}minutes-november-19-2019/",
+        f"{base}minutes-december-3-2019/",
+        f"{base}minutes-december-17-2019/",
+        # 2018
+        f"{base}minutes-february-6-2018/",
+        f"{base}minutes-january-16-2018/",
+        f"{base}minutes-february-20-2018/",
+        f"{base}minutes-march-6-2018/",
+        f"{base}minutes-march-20-2018/",
+        f"{base}minutes-april-3-2018/",
+        f"{base}minutes-april-17-2018/",
+        f"{base}minutes-may-1-2018/",
+        f"{base}minutes-may-15-2018/",
+        f"{base}minutes-june-5-2018/",
+        f"{base}minutes-june-19-2018/",
+        f"{base}minutes-july-10-2018/",
+        f"{base}minutes-july-24-2018/",
+        f"{base}minutes-august-7-2018/",
+        f"{base}minutes-august-21-2018/",
+        f"{base}minutes-september-4-2018/",
+        f"{base}minutes-september-18-2018/",
+        f"{base}minutes-october-2-2018/",
+        f"{base}minutes-october-16-2018/",
+        f"{base}minutes-november-6-2018/",
+        f"{base}minutes-november-20-2018/",
+        f"{base}minutes-december-4-2018/",
+        f"{base}minutes-december-18-2018/",
+        # Special / historic
+        f"{base}minutes-town-hall-meeting-strategic-plan/",
+    ]
+    for p in known_pages:
+        child_links.add(p)
+
+    print(f"  Found {len(child_links)} candidate sub-pages to check")
+
+    # Load cached 404s so we don't re-probe dead URLs every run
+    cache_file = Path("html_page_cache.json")
+    cache = {}
+    if cache_file.exists():
+        try:
+            cache = json.loads(cache_file.read_text())
+        except:
+            cache = {}
+    known_404s = set(cache.get("not_found", []))
+    new_404s = set()
+
+    for url in sorted(child_links):
+        if url in known_404s:
+            continue
+        try:
+            r = requests.get(url, timeout=15)
+            if r.status_code == 404:
+                new_404s.add(url)
+                continue
+            if r.status_code != 200:
+                continue
+            page_soup = BeautifulSoup(r.text, "html.parser")
+
+            # Get page title
+            title_el = page_soup.find("h1") or page_soup.find("title")
+            title = title_el.get_text(strip=True) if title_el else ""
+
+            # Extract date from title or content
+            date_match = DATE_RE_GLOBAL.search(title)
+            if not date_match:
+                # Try first paragraph
+                content_div = page_soup.find("div", class_=re.compile(r"entry|content|post"))
+                if content_div:
+                    date_match = DATE_RE_GLOBAL.search(content_div.get_text())
+            if not date_match:
+                continue
+
+            raw_date = normalise_date(date_match.group(0))
+            year = extract_year_from_date(raw_date)
+            if not year:
+                continue
+
+            # Detect if special meeting
+            is_special = bool(re.search(r"special", title, re.IGNORECASE))
+            display_date = ("Special Meeting " + raw_date) if is_special else raw_date
+
+            # Detect document type from title/URL
+            url_lower = url.lower()
+            title_lower = title.lower()
+            if "minute" in url_lower or "minute" in title_lower:
+                label = "Minutes"
+            elif "agenda" in url_lower or "agenda" in title_lower:
+                label = "Agenda"
+            else:
+                label = "Minutes"  # default for older pages
+
+            # Extract the minutes text content for display
+            content_div = (page_soup.find("div", class_=re.compile(r"entry-content|post-content")) or
+                           page_soup.find("article") or
+                           page_soup.find("main"))
+            content_text = ""
+            if content_div:
+                # Remove nav/header/footer noise
+                for el in content_div.find_all(["nav","header","footer","script","style"]):
+                    el.decompose()
+                content_text = content_div.get_text(separator="\n").strip()
+
+            # Also check if any PDFs are embedded on this page
+            embedded_pdfs = []
+            for a in page_soup.find_all("a", href=True):
+                if a["href"].endswith(".pdf"):
+                    embedded_pdfs.append({
+                        "url": a["href"],
+                        "label": re.sub(r"^\(+|\)+$", "", a.get_text(strip=True)).strip() or "Document",
+                        "filename": os.path.basename(urlparse(a["href"]).path),
+                    })
+
+            slug = re.sub(r"https?://[^/]+/council-meeting-dates-agendas-minutes/", "", url)
+            slug = slug.strip("/")
+
+            meetings[year].append({
+                "date": display_date,
+                "label": label,
+                "url": url,
+                "filename": slug,  # used as identifier, not a file
+                "type": "html_page",
+                "content_text": content_text[:8000],  # cap for storage
+                "embedded_pdfs": embedded_pdfs,
+                "page_title": title,
+            })
+            print(f"  ✓ {display_date} — {label} ({year})")
+
+        except Exception as e:
+            print(f"  Error fetching {url}: {e}")
+            continue
+
+    # Save updated 404 cache
+    cache["not_found"] = list(known_404s | new_404s)
+    cache_file.write_text(json.dumps(cache, indent=2))
+    if new_404s:
+        print(f"  Cached {len(new_404s)} new 404 URLs")
+
+    total = sum(len(v) for v in meetings.values())
+    print(f"  Found {total} HTML page records across {len(meetings)} years")
+    return meetings
+
+
 def fetch_links():
-    print(f"Fetching {SOURCE_URL} ...")
+    """Fetch PDF links from the main council meetings page."""
+    print(f"\nFetching PDF links from {SOURCE_URL} ...")
     resp = requests.get(SOURCE_URL, timeout=20)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
     meetings = defaultdict(list)
     current_year = str(datetime.now().year)
     current_date = "Unknown date"
-    DATE_RE = re.compile(
-        r"(January|February|March|April|May|June|July|August|"
-        r"September|October|November|December)\s+\d{1,2},?\s+\d{4}", re.IGNORECASE
-    )
+
     for tag in soup.find_all(["h1","h2","h3","h4","strong","b","a","br"]):
         if tag.name in ("h1","h2","h3","h4","strong","b"):
             ym = re.search(r"\b(20\d{2})\b", tag.get_text(strip=True))
@@ -111,21 +430,18 @@ def fetch_links():
                     if hasattr(sib,"name") and sib.name == "br":
                         break
                     line_text = (sib.get_text(" ") if hasattr(sib,"get_text") else str(sib)) + " " + line_text
-            dm = DATE_RE.search(line_text)
+            dm = DATE_RE_GLOBAL.search(line_text)
             if dm:
-                raw = dm.group(0).strip()
-                raw = re.sub(
-                    r"(January|February|March|April|May|June|July|August|"
-                    r"September|October|November|December)\s+(\d{1,2})\s+(\d{4})",
-                    r"\1 \2, \3", raw
-                )
+                raw = normalise_date(dm.group(0))
                 current_date = raw
                 if re.search(r"special meeting", line_text, re.IGNORECASE):
                     current_date = "Special Meeting " + raw
             meetings[current_year].append({
                 "date": current_date, "label": label,
                 "url": href, "filename": os.path.basename(urlparse(href).path),
+                "type": "pdf",
             })
+
     for year in meetings:
         seen, unique = set(), []
         for item in meetings[year]:
@@ -133,9 +449,39 @@ def fetch_links():
                 seen.add(item["url"])
                 unique.append(item)
         meetings[year] = unique
+
     total = sum(len(v) for v in meetings.values())
     print(f"  Found {total} PDF links across {len(meetings)} years")
     return meetings
+
+
+def merge_meetings(pdf_meetings, html_meetings):
+    """
+    Merge PDF and HTML page meetings together.
+    If both exist for the same date/type, prefer the PDF.
+    """
+    merged = defaultdict(list)
+
+    # Add all PDF records first
+    for year, docs in pdf_meetings.items():
+        merged[year].extend(docs)
+
+    # Add HTML records only if no PDF already covers same date+label
+    for year, docs in html_meetings.items():
+        existing = merged[year]
+        for doc in docs:
+            # Check for existing PDF with same date and similar label
+            already_covered = False
+            for existing_doc in existing:
+                if (existing_doc["date"] == doc["date"] and
+                        existing_doc["label"].lower() == doc["label"].lower() and
+                        existing_doc.get("type","pdf") == "pdf"):
+                    already_covered = True
+                    break
+            if not already_covered:
+                merged[year].append(doc)
+
+    return merged
 
 
 # ─── DOWNLOADING ───────────────────────────────────────────────
@@ -156,6 +502,9 @@ def download_pdfs(meetings, state):
         yd = DOCS_DIR / year / "files"
         yd.mkdir(parents=True, exist_ok=True)
         for doc in docs:
+            # Skip HTML page records — they link out to the website
+            if doc.get("type") == "html_page":
+                continue
             url  = doc["url"]
             dest = yd / doc["filename"]
             if url in state:
@@ -420,7 +769,9 @@ def date_slug(dt):
     c = re.sub(r"[^a-zA-Z0-9\s]","",c).strip()
     return re.sub(r"\s+","-",c).lower()
 
-def doc_button(label, filename):
+def doc_button(label, filename, doc=None):
+    if doc and doc.get("type") == "html_page":
+        return f'<a class="doc-link" href="{doc["url"]}" target="_blank" rel="noopener">{HTML_ICON} {label} <span style="font-size:.65rem;opacity:.6">(web)</span></a>'
     return f'<a class="doc-link" href="files/{filename}" target="_blank" rel="noopener">{PDF_ICON} {label}</a>'
 
 def yt_button(url):
@@ -434,22 +785,62 @@ def get_yt_url(date_text, yt_videos):
 
 # ─── MEETING PAGE ──────────────────────────────────────────────
 
+HTML_ICON = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>'
+
+def doc_link_for(doc):
+    """Generate appropriate link button for a doc regardless of type."""
+    if doc.get("type") == "html_page":
+        return f'<a class="doc-link" href="{doc["url"]}" target="_blank" rel="noopener">{HTML_ICON} {doc["label"]} <span style="font-size:.65rem;opacity:.6">(web)</span></a>'
+    return f'<a class="doc-link" href="../files/{doc["filename"]}" target="_blank" rel="noopener">{PDF_ICON} {doc["label"]}</a>'
+
 def generate_meeting_page(date_text, year, slots, yt_videos, summary):
     yt_url = get_yt_url(date_text, yt_videos)
     is_special = "special" in date_text.lower()
     badge = '<span class="special-badge">Special Meeting</span>' if is_special else ""
 
     meta = ""
-    for d in slots.get("agenda",[]): meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda</a>'
-    for d in slots.get("minutes",[]): meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Minutes</a>'
-    for d in slots.get("package",[]): meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda Package</a>'
+    for d in slots.get("agenda",[]):
+        if d.get("type") == "html_page":
+            meta += f'<a href="{d["url"]}" target="_blank">{HTML_ICON} Agenda</a>'
+        else:
+            meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda</a>'
+    for d in slots.get("minutes",[]):
+        if d.get("type") == "html_page":
+            meta += f'<a href="{d["url"]}" target="_blank">{HTML_ICON} Minutes</a>'
+        else:
+            meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Minutes</a>'
+    for d in slots.get("package",[]):
+        meta += f'<a href="../files/{d["filename"]}" target="_blank">{PDF_ICON} Agenda Package</a>'
     if yt_url: meta += f'<a href="{yt_url}" target="_blank" class="yt-btn">{YT_ICON} Watch Meeting</a>'
     else: meta += f'<a href="{YOUTUBE_CHANNEL}" target="_blank" class="yt-btn">{YT_ICON} YouTube Channel</a>'
 
     def card(title, docs, color="var(--pine)"):
         if not docs: return ""
-        links = "".join(f'<a class="doc-link" href="../files/{d["filename"]}" target="_blank" rel="noopener">{PDF_ICON} {d["label"]}</a>' for d in docs)
+        links = "".join(doc_link_for(d) for d in docs)
+        # For HTML page docs, also show any embedded PDFs
+        for d in docs:
+            if d.get("type") == "html_page" and d.get("embedded_pdfs"):
+                for epdf in d["embedded_pdfs"]:
+                    links += f'<a class="doc-link" href="{epdf["url"]}" target="_blank" rel="noopener">{PDF_ICON} {epdf["label"]}</a>'
         return f'<div class="meeting-card" style="border-top-color:{color}"><h3>{title}</h3><div class="doc-links">{links}</div></div>'
+
+    # HTML page content card — show inline text for older records
+    html_content_card = ""
+    for slot_list in slots.values():
+        for d in slot_list:
+            if d.get("type") == "html_page" and d.get("content_text"):
+                text_html = "<br>".join(
+                    line for line in d["content_text"].split("\n")
+                    if line.strip() and len(line.strip()) > 3
+                )
+                html_content_card = f"""<div class="summary-card" style="border-top-color:var(--pine)">
+  <h2>{d["label"]} — {date_text}</h2>
+  <div style="font-size:.88rem;line-height:1.9;color:#444;max-height:600px;overflow-y:auto;padding-right:.5rem;">{text_html}</div>
+  <p style="font-size:.75rem;color:#aaa;margin-top:1rem;">Source: <a href="{d['url']}" target="_blank" rel="noopener">nipissingtownship.com</a></p>
+</div>"""
+                break
+        if html_content_card:
+            break
 
     cards = (card("Agenda",slots["agenda"],"var(--forest)") +
              card("Minutes",slots["minutes"],"var(--pine)") +
@@ -482,7 +873,7 @@ def generate_meeting_page(date_text, year, slots, yt_videos, summary):
     <span>{date_text}</span>
   </div>
 </div></div>
-<main>{summary_html}<div class="meeting-grid">{cards}</div></main>
+<main>{summary_html}{html_content_card}<div class="meeting-grid">{cards}</div></main>
 {footer_html()}
 </body></html>"""
 
@@ -508,9 +899,9 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
 
         def cell(dl):
             if not dl: return '<td class="doc-cell"><span class="no-doc">&mdash;</span></td>'
-            return f'<td class="doc-cell">{"".join(doc_button(d["label"],d["filename"]) for d in dl)}</td>'
+            return f'<td class="doc-cell">{"".join(doc_button(d["label"],d["filename"],d) for d in dl)}</td>'
 
-        other_parts = [doc_button(d["label"],d["filename"]) for d in slots["other"]]
+        other_parts = [doc_button(d["label"],d["filename"],d) for d in slots["other"]]
         other_cell = f'<td class="doc-cell"><div class="extra-docs">{"".join(other_parts)}</div></td>' if other_parts else '<td class="doc-cell"><span class="no-doc">&mdash;</span></td>'
 
         yt_url = get_yt_url(date, yt_videos)
@@ -644,7 +1035,18 @@ if __name__ == "__main__":
     print("=" * 50)
     state = load_state()
     yt_videos = fetch_youtube_videos(state)
-    meetings = fetch_links()
+
+    # Scrape PDFs from main page
+    pdf_meetings = fetch_links()
+
+    # Scrape older HTML pages
+    html_meetings = fetch_html_page_links()
+
+    # Merge both sources
+    meetings = merge_meetings(pdf_meetings, html_meetings)
+
+    print(f"\nTotal after merge: {sum(len(v) for v in meetings.values())} docs across {len(meetings)} years")
+
     print("\nDownloading new PDFs ...")
     new_count = download_pdfs(meetings, state)
     save_state(state)
