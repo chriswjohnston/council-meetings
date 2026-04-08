@@ -119,6 +119,7 @@ KNOWN_YOUTUBE_VIDEOS = {
     "February 17, 2026": "https://www.youtube.com/watch?v=PHK0uaveLEk",
     "March 3, 2026":     "https://www.youtube.com/watch?v=OGlKpjmXUwM",
     "March 17, 2026":    "https://www.youtube.com/watch?v=mi40epWqO_s",
+    "April 7, 2026":     "https://www.youtube.com/watch?v=VM6ar9WfX7c",
 }
 ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 BRANCH             = os.environ.get("BRANCH", "campaign").lower()
