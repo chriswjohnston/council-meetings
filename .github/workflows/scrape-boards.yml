@@ -30,5 +30,6 @@ jobs:
           git add boards/
           git diff --staged --quiet && echo "No changes" || (
             git commit -m "Boards update: $(date +'%Y-%m-%d %H:%M')"
+            git pull --rebase origin main
             git push
           )
