@@ -90,6 +90,8 @@ BOARDS = [
     },
 ]
 
+# Scraper writes to boards/ in the working directory.
+# The workflow copies this to the docs branch for GitHub Pages serving.
 OUTPUT_DIR = Path("boards")
 HEADERS = {"User-Agent": "council-archive-bot/1.0 (chriswjohnston.ca)"}
 AI_API = "https://api.anthropic.com/v1/messages"
