@@ -15,14 +15,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout docs branch (GitHub Pages source)
-        uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.2.2
         with:
-          ref: docs
-          fetch-depth: 0
-
-      - name: Checkout scrape_boards.py from main
-        run: git show main:scrape_boards.py > scrape_boards.py
+          ref: main
 
       - uses: actions/setup-python@v5.4.0
         with:
@@ -35,15 +30,15 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scrape_boards.py
-        # writes to boards/ inside the docs branch checkout
+        # writes to docs/boards/ — inside the docs/ folder GitHub Pages serves
 
-      - name: Commit and push to docs branch
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add boards/
-          git diff --staged --quiet && echo "No changes to commit" || (
+          git add docs/boards/
+          git diff --staged --quiet && echo "No changes" || (
             git commit -m "Boards update: $(date +'%Y-%m-%d %H:%M')"
-            git pull --rebase origin docs
-            git push origin docs
+            git pull --rebase origin main
+            git push origin main
           )
