@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recreation Committee — Nipissing Township Archive</title>
+<style>
+:root{
+  --green:#2C4A3E;--pine:#3D6B5E;--pine-lt:#e8f0eb;
+  --gold:#b8922a;--gold-lt:#fdf6e3;--warm:#E8C98A;
+  --rust:#C06830;--rust-lt:#fdf0e8;
+  --sky:#A8D5E2;--sky-lt:#EAF5F8;
+  --ink:#1c1c1c;--body:#3a3a3a;--muted:#6e6e6e;
+  --rule:#d8d0c8;--bg:#FAF7F0;--white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--body);line-height:1.55}
+
+header{background:var(--green);color:#fff;padding:1.5rem 2rem}
+.bc{font-size:.72rem;margin-bottom:.5rem}
+.bc a{color:var(--warm);text-decoration:none;opacity:.8}
+.bc a:hover{opacity:1}
+header h1{font-size:1.4rem;font-weight:700;margin-bottom:.25rem}
+header p{font-size:.86rem;color:rgba(255,255,255,.7);max-width:600px}
+
+.stats{display:flex;gap:2rem;flex-wrap:wrap;padding:1rem 2rem;background:var(--white);border-bottom:1px solid var(--rule)}
+.stat strong{font-size:1.3rem;display:block;color:var(--green);font-weight:700;font-family:Georgia,serif}
+.stat span{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.stat.upcoming-stat strong{color:var(--sky);}
+
+.main{max-width:960px;margin:0 auto;padding:1.5rem 2rem 4rem}
+
+/* Upcoming meetings banner */
+.upcoming-banner{
+  background:var(--sky-lt);border:1px solid var(--sky);border-left:4px solid var(--sky);
+  border-radius:6px;padding:.9rem 1.2rem;margin-bottom:1.5rem;font-size:.84rem;
+}
+.upcoming-banner strong{color:#1a5a6e}
+
+.bylaw-note{background:var(--pine-lt);border:1px solid #b8d4c2;border-left:4px solid var(--pine);
+  border-radius:6px;padding:.9rem 1.2rem;margin-bottom:1.5rem;font-size:.84rem}
+.bylaw-note a{color:var(--pine)}
+
+.year-group{margin-bottom:2.5rem}
+.year-label{font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);padding:.4rem 0;border-bottom:2px solid var(--rule);margin-bottom:.5rem}
+
+/* ── Meeting rows ─────────────────────────── */
+.meeting-row{
+  display:grid;grid-template-columns:150px 1fr auto;gap:1rem;
+  align-items:start;padding:.7rem 0;border-bottom:1px solid var(--rule);
+}
+.meeting-row:last-child{border-bottom:none}
+
+/* FUTURE / UPCOMING — distinct dashed style, sky blue accent */
+.meeting-row.upcoming{
+  background:var(--sky-lt);
+  border:1px dashed var(--sky);
+  border-radius:6px;
+  padding:.7rem .9rem;
+  margin-bottom:.4rem;
+}
+.meeting-row.upcoming .mdate{color:#1a5a6e;font-weight:700}
+.meeting-row.future-cancelled,.meeting-row.future-postponed{
+  background:#f8f8f8;border:1px dashed var(--rule);border-radius:6px;
+  padding:.7rem .9rem;margin-bottom:.4rem;opacity:.7;
+}
+
+.mdate{font-size:.87rem;font-weight:600;color:var(--ink);padding-top:3px}
+.meeting-row.cancelled .mdate{color:var(--muted);text-decoration:line-through}
+.meeting-row.postponed .mdate{color:var(--muted);font-style:italic}
+
+/* Badges */
+.badge{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-bottom:4px}
+.badge.upcoming{background:var(--sky);color:#fff}
+.badge.has-minutes{background:var(--pine-lt);color:var(--pine)}
+.badge.agenda-only{background:var(--gold-lt);color:var(--gold)}
+.badge.cancelled{background:#f0f0f0;color:var(--muted)}
+.badge.postponed{background:#f5f0ff;color:#6b52a0}
+.badge.rescheduled{background:#fff3e0;color:#b86000}
+.badge.future-cancelled,.badge.future-postponed{background:#f0f0f0;color:var(--muted)}
+.badge.past-no-docs{background:var(--bg);color:var(--muted);border:1px solid var(--rule)}
+
+.summary{font-size:.82rem;line-height:1.62;color:var(--body);margin-top:5px}
+
+/* Events extracted from minutes */
+.events-block{margin-top:.6rem;background:var(--rust-lt);border:1px solid #f0c8a8;
+  border-left:3px solid var(--rust);border-radius:4px;padding:.5rem .75rem}
+.events-label{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:.35rem}
+.events-list{list-style:none;display:flex;flex-direction:column;gap:.3rem;
+  font-size:.82rem;line-height:1.55;color:var(--body)}
+.ev-reg{font-size:.75rem;color:var(--pine);font-weight:600}
+
+.mlinks{display:flex;flex-direction:column;gap:4px;min-width:82px}
+.dl{font-size:.7rem;font-weight:700;letter-spacing:.04em;text-decoration:none;
+  padding:3px 9px;border-radius:3px;text-align:center;white-space:nowrap}
+.dl.agenda{background:var(--green);color:#fff}
+.dl.minutes{background:var(--rust);color:#fff}
+.dl.package{background:#555;color:#fff}
+
+footer{background:#1E2B2A;color:rgba(255,255,255,.35);text-align:center;
+  padding:1.5rem;font-size:.78rem;margin-top:2rem}
+footer a{color:var(--warm);text-decoration:none}
+
+@media(max-width:600px){
+  .meeting-row{grid-template-columns:1fr;gap:.4rem}
+  .mlinks{flex-direction:row;flex-wrap:wrap}
+  header,.main,.stats{padding-left:1rem;padding-right:1rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bc">
+    <a href="/">← Council Archive</a> /
+    <a href="/boards/">Boards &amp; Committees</a>
+  </div>
+  <h1>Recreation Committee</h1>
+  <p>Management of recreational programming and the Community Centre at 2381 Highway 654.</p>
+</header>
+
+<div class="stats">
+  <div class="stat upcoming-stat"><strong>5</strong><span>Upcoming</span></div>
+  <div class="stat"><strong>27</strong><span>Past meetings</span></div>
+  <div class="stat"><strong>23</strong><span>With minutes</span></div>
+  <div class="stat"><strong>4</strong><span>Cancelled</span></div>
+</div>
+
+<div class="main">
+
+  <div class='upcoming-banner'><strong>Upcoming meetings are shown with a blue dashed border.</strong> Documents will appear here once published by the Township.</div>
+
+  <div class="bylaw-note">
+    Governed by <strong>By-Law 2023-09</strong>. <a href="https://nipissingtownship.com/municipal-information/by-laws/2023-09-recreation-committee/" target="_blank">Read the governing by-law →</a>
+    &nbsp;·&nbsp; Source: <a href="https://nipissingtownship.com/services/recreation/" target="_blank">Township of Nipissing</a>
+    &nbsp;·&nbsp; Updated: April 10, 2026
+  </div>
+
+  <div class="year-group" id="y2026"><div class="year-label">2026</div>
+<div class="meeting-row upcoming" data-future="true">
+  <div class="mdate">November 23, 2026</div>
+  <div class="minfo"><span class="badge upcoming">Upcoming</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row upcoming" data-future="true">
+  <div class="mdate">October 5, 2026</div>
+  <div class="minfo"><span class="badge upcoming">Upcoming</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row upcoming" data-future="true">
+  <div class="mdate">September 14, 2026</div>
+  <div class="minfo"><span class="badge upcoming">Upcoming</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row upcoming" data-future="true">
+  <div class="mdate">June 1, 2026</div>
+  <div class="minfo"><span class="badge upcoming">Upcoming</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row upcoming" data-future="true">
+  <div class="mdate">May 4, 2026</div>
+  <div class="minfo"><span class="badge upcoming">Upcoming</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">March 2, 2026</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I appreciate you sharing this document, but I'm unable to extract the text content from this PDF file. The document appears to be heavily compressed/encoded, which makes it unreadable to me.
+
+To help you, could you please:
+1. Copy and paste the plain text content from the PDF, or
+2. Re-upload the document in a different format (like a Word document or plain text file), or
+3. Provide the meeting minutes in text form?
+
+Once I can read the actual content, I'll be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and votes for a general resident audience.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2026/02/Recreation-Agenda-March-2-2026-1.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2026/03/Recreation-Minutes-March-2-2026.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">February 2, 2026</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary"># Recreation Committee Meeting Summary – February 2, 2026
+
+I apologize, but the PDF file you've provided appears to be corrupted or improperly formatted. The content is displayed as compressed code rather than readable text, making it impossible for me to extract the meeting details, discussions, decisions, budgets, programs, or votes.
+
+To provide you with an accurate summary, could you please:
+- Re-upload the PDF file, or
+- Provide the meeting minutes in text or another readable format?
+
+Once I can access the actual content, I'll be happy to write a 2-3 sentence plain-language summary for residents.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2026/02/Recreation-Agenda-February-2-2026-1.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2026/02/Recreation-Minutes-February-2-2026.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">January 19, 2026</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, making the text unreadable to me. The content stream shows encoded data that I cannot reliably decode.
+
+To help you, I would need either:
+- A properly formatted PDF that displays readable text
+- A plain text or Word document version of the meeting minutes
+- A description of what was discussed
+
+If you can share the minutes in a different format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2026/01/Recreation-Agenda-January-19-2026-1.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2026/01/Recreation-Minutes-January-19-2026.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+</div>
+<div class="year-group" id="y2025"><div class="year-label">2025</div>
+<div class="meeting-row cancelled">
+  <div class="mdate">December 15, 2025</div>
+  <div class="minfo"><span class="badge cancelled">Cancelled</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">November 17, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I appreciate you sharing this document, but I'm unable to read the content of the PDF file you've provided. The file appears to be encoded in a compressed format that I cannot parse.
+
+To help you get the summary you need, could you either:
+
+1. **Copy and paste the text content** from the meeting minutes directly into our chat, or
+2. **Share a more readable version** of the document (such as a Word document or plain text file)
+
+Once you do, I'll be happy to write a clear 2-3 sentence summary of what was discussed and decided regarding budgets, programs, and facilities for residents.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/11/Recreation-Agenda-November-17-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/11/Recreation-Minutes-November-17-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">October 6, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or encoded in a way that makes the actual meeting minutes unreadable to me - I can only see the technical PDF structure and formatting information, not the actual text of what was discussed.
+
+To help you, I would need:
+- A text version of the minutes, or
+- A properly formatted PDF that displays the content clearly, or
+- The minutes pasted directly as text
+
+If you can provide the meeting content in one of these formats, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/09/Recreation-Agenda-October-6-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/10/Recreation-Minutes-October-6-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">September 15, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be heavily compressed/encoded in a way that prevents me from extracting the readable text about what the Recreation Committee discussed and decided.
+
+To help you, I would need either:
+- A plain text version of the minutes
+- A more clearly scanned/OCR'd PDF
+- A summary document in text format
+
+If you can provide the minutes in a more accessible format, I'd be happy to write the 2-3 sentence summary you're looking for.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/09/Recreation-Agenda-September-15-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/09/Recreation-Minutes-September-15-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row cancelled">
+  <div class="mdate">August 11, 2025</div>
+  <div class="minfo"><span class="badge cancelled">Cancelled</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row cancelled">
+  <div class="mdate">July 14, 2025</div>
+  <div class="minfo"><span class="badge cancelled">Cancelled</span></div>
+  <div class="mlinks"></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">June 9, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I appreciate you sharing this document, but unfortunately the PDF file appears to be corrupted or heavily compressed in a way that makes the content unreadable to me. The text content shows as garbled data rather than the actual meeting minutes.
+
+To help you, I would need either:
+- A properly formatted PDF that displays the text clearly
+- The minutes in another format (Word document, text file, etc.)
+- A transcription of the key points from the meeting
+
+If you can provide a readable version of the minutes, I'd be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and decisions for a general resident audience.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/06/Recreation-Agenda-June-9-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/06/Recreation-Minutes-June-9-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">May 12, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span><div class="summary">I apologize, but I'm unable to read the content of this PDF file. The document appears to be corrupted or heavily compressed in a way that makes the text unreadable to me. The file shows PDF structure metadata but the actual text content is not legible.
+
+To help you get a summary of the Recreation Committee meeting minutes, could you either:
+1. Provide the text content directly (copy and paste)
+2. Share a different version of the PDF that's not corrupted
+3. Provide a text file with the meeting minutes
+
+Once I can see the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.</div></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/05/Recreation-Agenda-May-12-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/05/Recreation-Minutes-May-12-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row cancelled">
+  <div class="mdate">April 7, 2025</div>
+  <div class="minfo"><span class="badge cancelled">Cancelled</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/04/Recreation-Agenda-April-7-2025.pdf" target="_blank" class="dl agenda">Agenda</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">March 3, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/02/Recreation-Agenda-March-3-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/03/Recreation-Minutes-March-3-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">February 3, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/01/Recreation-Agenda-February-3-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/03/Recreation-Minutes-February-3-2025-amended.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">January 6, 2025</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2025/01/Recreation-Agenda-January-6-2025.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2025/01/Recreation-Minutes-January-6-2025.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+</div>
+<div class="year-group" id="y2024"><div class="year-label">2024</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">December 2, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/11/Recreation-Agenda-December-2-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/12/Recreation-Minutes-December-2-2024.pdf" target="_blank" class="dl minutes">Minutes</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/12/Agenda-Recreation-Package-Dec-2.pdf" target="_blank" class="dl package">Package</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">November 4, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/11/Recreation-Agenda-November-4-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/11/Recreation-Minutes-November-4-2024.pdf" target="_blank" class="dl minutes">Minutes</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/11/Agenda-Package-November-4.pdf" target="_blank" class="dl package">Package</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">October 7, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/10/Recreation-Agenda-October-7-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/10/Recreation-Minutes-October-7-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">September 16, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/09/Recreation-Agenda-September-16-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/09/Recreation-Minutes-September-16-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">August 12, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/09/Recreation-Agenda-August-12-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/09/Recreation-Minutes-August-12-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">July 15, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/07/Recreation-Agenda-July-15-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/07/Recreation-Minutes-July-15-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">June 3, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/05/Recreation-Amended-Agenda-June-3-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/06/Recreation-Minutes-June-3-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">May 13, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/05/Recreation-Agenda-May-13-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/05/Recreation-Minutes-May-13-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">April 15, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/04/Recreation-Agenda-April-15-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/04/Recreation-Minutes-April-15-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">March 4, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/02/Recreation-Agenda-March-4-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/04/Recreation-Minutes-March-4-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">February 5, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/01/Recreation-Agenda-February-5-2024.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/02/Recreation-Minutes-February-5-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+<div class="meeting-row has-minutes">
+  <div class="mdate">January 15, 2024</div>
+  <div class="minfo"><span class="badge has-minutes">Minutes Available</span></div>
+  <div class="mlinks"><a href="https://nipissingtownship.com/wp-content/uploads/2024/01/Recreation-Agenda-January-15-2024-with-attachment.pdf" target="_blank" class="dl agenda">Agenda</a><a href="https://nipissingtownship.com/wp-content/uploads/2024/01/Recreation-Minutes-January-15-2024.pdf" target="_blank" class="dl minutes">Minutes</a></div>
+</div>
+</div>
+
+</div>
+
+<footer>
+  <a href="/">council.chriswjohnston.ca</a> ·
+  <a href="/boards/">Boards &amp; Committees</a> ·
+  Chris Johnston, Nipissing Township Council Candidate 2026
+</footer>
+</body>
+</html>
