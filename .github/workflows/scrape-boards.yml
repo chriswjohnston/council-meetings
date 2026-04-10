@@ -4,6 +4,8 @@ on:
     - cron: '0 6 * * *'   # Daily at 6 AM UTC
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'scrape_boards.py'
 
@@ -13,23 +15,43 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4.2.2
+      - name: Checkout main (scraper lives here)
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: main
+
       - uses: actions/setup-python@v5.4.0
         with:
           python-version: '3.11'
+
       - name: Install dependencies
         run: pip install requests beautifulsoup4
+
       - name: Run board scraper
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scrape_boards.py
-      - name: Commit scraped data
+        # scraper writes to boards/ in the working directory
+
+      - name: Push output to docs branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stash the generated boards/ output before switching branches
+          mkdir -p /tmp/boards-output
+          cp -r boards/ /tmp/boards-output/
+
+          # Switch to the docs branch (GitHub Pages source)
+          git fetch origin docs
+          git checkout docs
+
+          # Copy the generated output into the root of the docs branch
+          cp -r /tmp/boards-output/boards .
+
           git add boards/
           git diff --staged --quiet && echo "No changes" || (
             git commit -m "Boards update: $(date +'%Y-%m-%d %H:%M')"
-            git pull --rebase origin main
-            git push
+            git pull --rebase origin docs
+            git push origin docs
           )
