@@ -90,9 +90,9 @@ BOARDS = [
     },
 ]
 
-# Scraper writes to boards/ in the working directory.
-# The workflow copies this to the docs branch for GitHub Pages serving.
-OUTPUT_DIR = Path("boards")
+# GitHub Pages serves from the docs/ folder on the main branch.
+# Output goes to docs/boards/ so it's live at council.chriswjohnston.ca/boards/
+OUTPUT_DIR = Path("docs/boards")
 HEADERS = {"User-Agent": "council-archive-bot/1.0 (chriswjohnston.ca)"}
 AI_API = "https://api.anthropic.com/v1/messages"
 ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
