@@ -15,10 +15,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout main (scraper lives here)
+      - name: Checkout docs branch (GitHub Pages source)
         uses: actions/checkout@v4.2.2
         with:
-          ref: main
+          ref: docs
+          fetch-depth: 0
+
+      - name: Checkout scrape_boards.py from main
+        run: git show main:scrape_boards.py > scrape_boards.py
 
       - uses: actions/setup-python@v5.4.0
         with:
@@ -31,26 +35,14 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scrape_boards.py
-        # scraper writes to boards/ in the working directory
+        # writes to boards/ inside the docs branch checkout
 
-      - name: Push output to docs branch
+      - name: Commit and push to docs branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Stash the generated boards/ output before switching branches
-          mkdir -p /tmp/boards-output
-          cp -r boards/ /tmp/boards-output/
-
-          # Switch to the docs branch (GitHub Pages source)
-          git fetch origin docs
-          git checkout docs
-
-          # Copy the generated output into the root of the docs branch
-          cp -r /tmp/boards-output/boards .
-
           git add boards/
-          git diff --staged --quiet && echo "No changes" || (
+          git diff --staged --quiet && echo "No changes to commit" || (
             git commit -m "Boards update: $(date +'%Y-%m-%d %H:%M')"
             git pull --rebase origin docs
             git push origin docs
