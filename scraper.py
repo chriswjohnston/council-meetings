@@ -16,10 +16,10 @@ Environment variables:
 Run time target: < 5 minutes on GitHub Actions (cold)
 """
 
-import os, re, io, json, requests, xml.etree.ElementTree as ET
+import os, re, io, json, requests, subprocess, xml.etree.ElementTree as ET
 from pathlib import Path
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from collections import defaultdict
 from urllib.parse import urlparse
 from email.utils import parsedate_to_datetime
@@ -36,8 +36,6 @@ SOURCE_URL         = "https://nipissingtownship.com/council-meeting-dates-agenda
 YOUTUBE_CHANNEL    = "https://www.youtube.com/@townshipofnipissing505/streams"
 YOUTUBE_CHANNEL_ID = "UC2XSMZqRNHbwVppelfKcEXw"
 
-# Hardcoded known videos — permanent fallback so they're never lost
-# Add new ones here manually if RSS stops picking them up
 KNOWN_YOUTUBE_VIDEOS = {
     # 2022
     "January 11, 2022":   "https://www.youtube.com/watch?v=TfBrPMmVnrM",
@@ -115,11 +113,11 @@ KNOWN_YOUTUBE_VIDEOS = {
     # 2026
     "January 6, 2026":    "https://www.youtube.com/watch?v=B-JeDGKD4GU",
     "January 20, 2026":   "https://www.youtube.com/watch?v=aHJOVza17GM",
-    "February 3, 2026":  "https://www.youtube.com/watch?v=zEZK_BNVS4I",
-    "February 17, 2026": "https://www.youtube.com/watch?v=PHK0uaveLEk",
-    "March 3, 2026":     "https://www.youtube.com/watch?v=OGlKpjmXUwM",
-    "March 17, 2026":    "https://www.youtube.com/watch?v=mi40epWqO_s",
-    "April 7, 2026":     "https://www.youtube.com/watch?v=VM6ar9WfX7c",
+    "February 3, 2026":   "https://www.youtube.com/watch?v=zEZK_BNVS4I",
+    "February 17, 2026":  "https://www.youtube.com/watch?v=PHK0uaveLEk",
+    "March 3, 2026":      "https://www.youtube.com/watch?v=OGlKpjmXUwM",
+    "March 17, 2026":     "https://www.youtube.com/watch?v=mi40epWqO_s",
+    "April 7, 2026":      "https://www.youtube.com/watch?v=VM6ar9WfX7c",
 }
 ANTHROPIC_API_KEY  = os.environ.get("ANTHROPIC_API_KEY", "")
 BRANCH             = os.environ.get("BRANCH", "campaign").lower()
@@ -130,9 +128,6 @@ STATE_FILE     = Path("state.json")
 SUMMARIES_FILE = Path("summaries.json")
 HTML_CACHE     = Path("html_page_cache.json")
 
-# ── Known 2023 PDFs (pre-discovered to avoid slow brute-force) ─────────────
-# These are stored in state.json after first discovery — this list is the
-# initial seed so we never need to brute-force again.
 KNOWN_2023 = [
     ("January 3, 2023",    "Minutes",       "https://nipissingtownship.com/wp-content/uploads/2023/01/Minutes-January-3-2023.pdf"),
     ("January 3, 2023",    "Agenda",        "https://nipissingtownship.com/wp-content/uploads/2023/01/Agenda-January-3-2023.pdf"),
@@ -166,13 +161,10 @@ KNOWN_2023 = [
     ("December 19, 2023",  "Agenda",        "https://nipissingtownship.com/wp-content/uploads/2023/12/Agenda-December-19-2023.pdf"),
 ]
 
-# ── Known older HTML pages (2018–2022) ─────────────────────────────────────
 BASE_HTML = "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/"
 KNOWN_HTML_PAGES = [
-    # 2022
     f"{BASE_HTML}may-10-2022-minutes/",
     f"{BASE_HTML}special-meeting-minutes/",
-    # 2021 minutes
     f"{BASE_HTML}minutes-january-19-2021/", f"{BASE_HTML}minutes-february-2-2021/",
     f"{BASE_HTML}minutes-february-16-2021/", f"{BASE_HTML}minutes-march-2-2021/",
     f"{BASE_HTML}minutes-march-16-2021/", f"{BASE_HTML}minutes-april-6-2021/",
@@ -186,7 +178,6 @@ KNOWN_HTML_PAGES = [
     f"{BASE_HTML}minutes-november-16-2021/", f"{BASE_HTML}minutes-december-7-2021/",
     f"{BASE_HTML}minutes-december-21-2021/",
     f"{BASE_HTML}minutes-special-meeting-march-9-2021/",
-    # 2021 agendas
     f"{BASE_HTML}agenda-january-19-2021/", f"{BASE_HTML}agenda-february-2-2021/",
     f"{BASE_HTML}agenda-february-16-2021/", f"{BASE_HTML}agenda-march-2-2021/",
     f"{BASE_HTML}agenda-march-16-2021/", f"{BASE_HTML}agenda-april-6-2021/",
@@ -197,7 +188,6 @@ KNOWN_HTML_PAGES = [
     f"{BASE_HTML}agenda-october-5-2021/", f"{BASE_HTML}agenda-october-19-2021/",
     f"{BASE_HTML}agenda-november-2-2021/", f"{BASE_HTML}agenda-november-16-2021/",
     f"{BASE_HTML}agenda-december-7-2021/", f"{BASE_HTML}agenda-december-21-2021/",
-    # 2020 minutes
     f"{BASE_HTML}minutes-january-21-2020/", f"{BASE_HTML}minutes-february-4-2020/",
     f"{BASE_HTML}minutes-february-18-2020/", f"{BASE_HTML}minutes-march-10-2020/",
     f"{BASE_HTML}minutes-march-17-2020/", f"{BASE_HTML}minutes-april-21-2020/",
@@ -209,9 +199,7 @@ KNOWN_HTML_PAGES = [
     f"{BASE_HTML}minutes-october-6-2020/", f"{BASE_HTML}minutes-october-20-2020/",
     f"{BASE_HTML}minutes-november-3-2020/", f"{BASE_HTML}minutes-november-17-2020/",
     f"{BASE_HTML}minutes-december-1-2020/", f"{BASE_HTML}minutes-december-15-2020/",
-    # 2020 agendas
     f"{BASE_HTML}agenda-march-10-2020/",
-    # 2019 minutes
     f"{BASE_HTML}minutes-january-8-2019/", f"{BASE_HTML}minutes-january-22-2019/",
     f"{BASE_HTML}minutes-february-5-2019/", f"{BASE_HTML}minutes-february-19-2019/",
     f"{BASE_HTML}minutes-march-5-2019/", f"{BASE_HTML}minutes-march-19-2019/",
@@ -225,7 +213,6 @@ KNOWN_HTML_PAGES = [
     f"{BASE_HTML}minutes-october-22-2019/", f"{BASE_HTML}minutes-november-5-2019/",
     f"{BASE_HTML}minutes-november-19-2019/", f"{BASE_HTML}minutes-december-3-2019/",
     f"{BASE_HTML}minutes-december-17-2019/",
-    # 2018 minutes
     f"{BASE_HTML}minutes-january-16-2018/", f"{BASE_HTML}minutes-february-6-2018/",
     f"{BASE_HTML}minutes-february-20-2018/", f"{BASE_HTML}minutes-march-6-2018/",
     f"{BASE_HTML}minutes-march-20-2018/", f"{BASE_HTML}minutes-april-3-2018/",
@@ -238,7 +225,6 @@ KNOWN_HTML_PAGES = [
     f"{BASE_HTML}minutes-october-16-2018/", f"{BASE_HTML}minutes-november-6-2018/",
     f"{BASE_HTML}minutes-november-20-2018/", f"{BASE_HTML}minutes-december-4-2018/",
     f"{BASE_HTML}minutes-december-18-2018/",
-    # Historic
     f"{BASE_HTML}minutes-town-hall-meeting-strategic-plan/",
 ]
 
@@ -273,9 +259,7 @@ def save_cache(cache):
 
 def fetch_youtube_videos(state):
     rss_url = f"https://www.youtube.com/feeds/videos.xml?channel_id={YOUTUBE_CHANNEL_ID}"
-    # Start with hardcoded known videos (never lost even if state is reset)
     videos = dict(KNOWN_YOUTUBE_VIDEOS)
-    # Merge in anything previously cached in state (additive — never overwrite)
     for v in state.get("_youtube_videos", {}).values():
         if v["date"] not in videos:
             videos[v["date"]] = v["url"]
@@ -292,10 +276,8 @@ def fetch_youtube_videos(state):
             title = title_el.text or ""
             url   = link_el.get("href", "")
             tl    = title.lower()
-            # Skip non-council videos
             if any(w in tl for w in ["committee","adjustment","museum","recreation",
                                       "strategic plan","town hall"]): continue
-            # Must either say "council" or "nipissing" with a date — avoids random videos
             if "council" not in tl and "nipissing" not in tl: continue
             m = re.search(
                 r"(January|February|March|April|May|June|July|August|"
@@ -324,7 +306,6 @@ def normalise_date(raw):
     )
 
 def fetch_pdf_links():
-    """Scrape PDFs directly linked from the main council page."""
     print("Scraping main page PDFs...")
     resp = requests.get(SOURCE_URL, timeout=20)
     resp.raise_for_status()
@@ -355,7 +336,6 @@ def fetch_pdf_links():
                 "type": "pdf",
             })
 
-    # Deduplicate
     for yr in meetings:
         seen, uniq = set(), []
         for d in meetings[yr]:
@@ -369,15 +349,13 @@ def fetch_pdf_links():
     return meetings
 
 
-# ── 2023 PDFs (from state or known list — no brute-force) ─────────────────
+# ── 2023 PDFs ─────────────────────────────────────────────────────────────
 
 def get_2023_meetings(state):
-    """Load 2023 meetings from state (seeded from KNOWN_2023 on first run)."""
     cached = state.get("_2023_meetings", [])
     if cached:
         print(f"2023: {len(cached)} meetings from cache")
         return cached
-
     print("2023: seeding from known list...")
     docs = []
     for date, label, url in KNOWN_2023:
@@ -394,16 +372,10 @@ def get_2023_meetings(state):
 # ── HTML page scraping (2018–2022) ─────────────────────────────────────────
 
 def fetch_html_pages(state):
-    """
-    Fetch older council meeting HTML pages.
-    Uses cache so already-fetched pages aren't re-fetched.
-    Only fetches pages not yet in cache.
-    """
     cache = load_cache()
     known_404s   = set(cache.get("not_found", []))
-    fetched_data = cache.get("fetched", {})  # url -> doc dict
+    fetched_data = cache.get("fetched", {})
 
-    # Discover pages via WordPress REST API
     candidate_urls = set(KNOWN_HTML_PAGES)
     try:
         r = requests.get(
@@ -432,7 +404,6 @@ def fetch_html_pages(state):
     except Exception as e:
         print(f"  REST API error: {e} — using known list only")
 
-    # Only fetch URLs not already cached or 404'd
     to_fetch = [u for u in sorted(candidate_urls)
                 if u not in known_404s and u not in fetched_data]
     print(f"  {len(fetched_data)} cached, {len(to_fetch)} to fetch")
@@ -589,7 +560,7 @@ def render_summary_html(md):
 
 def next_scrape_date():
     today = datetime.now()
-    days_ahead = (1 - today.weekday()) % 7 or 7  # next Monday
+    days_ahead = (1 - today.weekday()) % 7 or 7
     nxt = today + timedelta(days=days_ahead)
     if nxt.isocalendar()[1] % 2 == 0:
         nxt += timedelta(days=7)
@@ -738,7 +709,6 @@ def generate_meeting_page(date_text, year, slots, yt_videos, summary):
     meta = ""
     for slot, lbl in [("agenda","Agenda"),("minutes","Minutes"),("package","Agenda Package")]:
         for d in slots.get(slot,[]):
-            p = "../files/" if d.get("type") == "pdf" else ""
             icon = HTML_ICON if d.get("type") == "html_page" else PDF_ICON
             href = d["url"] if d.get("type") == "html_page" else f"../files/{d['filename']}"
             meta += f'<a href="{href}" target="_blank">{icon} {lbl}</a>'
@@ -858,28 +828,78 @@ def generate_year_page(year, docs, all_years, yt_videos, summaries):
 </body></html>"""
 
 
-def generate_index_page(meetings_by_year):
-    years = sorted(meetings_by_year.keys(), reverse=True)
-    total = sum(len(v) for v in meetings_by_year.values())
-    cards = "".join(
-        f'<a class="year-card" href="{y}/"><span class="yr">{y}</span>'
-        f'<span class="count">{len(meetings_by_year[y])} documents</span></a>'
-        for y in years
-    )
-    return f"""{head("Council Meeting Archive")}
-{nav_html()}
-<div class="page-hero"><div class="inner">
-  <p class="eyebrow">Nipissing Township</p>
-  <h1>Council Meeting <em>Archive</em></h1>
-  <p>Agendas, minutes, agenda packages and videos for Nipissing Township council meetings.</p>
-</div></div>
-<main>
-  <div class="notice">{notice_text(total)}</div>
-  <p class="section-label">Select a year</p>
-  <div class="year-grid">{cards}</div>
-</main>
-{footer_html()}
-</body></html>"""
+# ── Council data export for unified SPA ───────────────────────────────────
+# NEW: writes docs/council-data.json consumed by build_index.py
+
+def write_council_data(meetings, yt_videos, summaries):
+    """
+    Export a flat list of council meetings as docs/council-data.json.
+    This feeds the unified SPA index at council.chriswjohnston.ca.
+    """
+    today = date.today().isoformat()
+    records = []
+
+    for year, docs in meetings.items():
+        grouped = defaultdict(list)
+        for doc in docs:
+            grouped[doc["date"]].append(doc)
+
+        for date_text, date_docs in grouped.items():
+            slots = {"agenda": [], "minutes": [], "package": [], "other": []}
+            for d in date_docs:
+                slots[classify(d["label"])].append(d)
+
+            # Parse date string to YYYY-MM-DD for sorting/filtering
+            parsed = None
+            clean = re.sub(r"^special meeting\s+", "", date_text, flags=re.IGNORECASE).strip()
+            for fmt in ("%B %d, %Y", "%B %d %Y"):
+                try:
+                    parsed = datetime.strptime(clean, fmt).date()
+                    break
+                except ValueError:
+                    pass
+            if not parsed:
+                continue
+
+            is_special = "special" in date_text.lower()
+            yt_url = get_yt_url(date_text, yt_videos)
+            summary_key = f"{year}/{date_slug(date_text)}"
+
+            def first_url(slot):
+                for d in slots.get(slot, []):
+                    if d.get("type") == "pdf":
+                        return f"{year}/files/{d['filename']}"
+                    if d.get("type") == "html_page":
+                        return d["url"]
+                return None
+
+            records.append({
+                "date":         parsed.isoformat(),
+                "display_date": clean,
+                "year":         parsed.year,
+                "is_future":    parsed.isoformat() > today,
+                "title":        "Special Meeting" if is_special else "",
+                "meeting_type": "Special" if is_special else "Regular",
+                "agenda_url":   first_url("agenda"),
+                "minutes_url":  first_url("minutes"),
+                "package_url":  first_url("package"),
+                "video_url":    yt_url,
+                "summary":      summaries.get(summary_key),
+                "cancelled":    False,
+            })
+
+    records.sort(key=lambda x: x["date"], reverse=True)
+
+    DOCS_DIR.mkdir(exist_ok=True)
+    output = {
+        "meetings":     records,
+        "total":        len(records),
+        "last_updated": datetime.now().strftime("%B %d, %Y"),
+        "generated":    datetime.now().isoformat(),
+    }
+    (DOCS_DIR / "council-data.json").write_text(json.dumps(output, indent=2))
+    future_count = sum(1 for r in records if r["is_future"])
+    print(f"  ✓ docs/council-data.json: {len(records)} meetings ({future_count} upcoming)")
 
 
 # ── Build HTML site ────────────────────────────────────────────────────────
@@ -929,27 +949,62 @@ def build_html(meetings, yt_videos):
         )
         print(f"  ✓ {year}: {len(docs)} docs")
 
-    (DOCS_DIR / "index.html").write_text(generate_index_page(meetings), encoding="utf-8")
-    print(f"  ✓ index.html ({sum(len(v) for v in meetings.values())} total docs)")
+    # Write council data JSON for the unified SPA
+    print("\n8. Writing council-data.json for unified SPA")
+    write_council_data(meetings, yt_videos, summaries)
+
+    # Rebuild the unified SPA index.html (replaces the old year-grid homepage)
+    print("\n9. Rebuilding unified SPA index.html")
+    try:
+        result = subprocess.run(["python3", "build_index.py"], capture_output=True, text=True)
+        if result.returncode == 0:
+            print("  ✓ docs/index.html rebuilt (SPA)")
+            if result.stdout.strip():
+                for line in result.stdout.strip().split("\n"):
+                    print(f"    {line}")
+        else:
+            # build_index.py not present or failed — fall back to old index
+            print(f"  ⚠ build_index.py not available, writing legacy index")
+            print(f"    {result.stderr[:200]}")
+            total = sum(len(v) for v in meetings.values())
+            years = sorted(meetings.keys(), reverse=True)
+            cards = "".join(
+                f'<a class="year-card" href="{y}/"><span class="yr">{y}</span>'
+                f'<span class="count">{len(meetings[y])} documents</span></a>'
+                for y in years
+            )
+            legacy_index = f"""{head("Council Meeting Archive")}
+{nav_html()}
+<div class="page-hero"><div class="inner">
+  <p class="eyebrow">Nipissing Township</p>
+  <h1>Council Meeting <em>Archive</em></h1>
+  <p>Agendas, minutes, agenda packages and videos for Nipissing Township council meetings.</p>
+</div></div>
+<main>
+  <div class="notice">{notice_text(total)}</div>
+  <p class="section-label">Select a year</p>
+  <div class="year-grid">{cards}</div>
+</main>
+{footer_html()}
+</body></html>"""
+            (DOCS_DIR / "index.html").write_text(legacy_index, encoding="utf-8")
+            print(f"  ✓ docs/index.html (legacy year-grid fallback)")
+    except FileNotFoundError:
+        print("  ⚠ build_index.py not found — writing legacy index")
+
+    print(f"  ✓ Site built ({sum(len(v) for v in meetings.values())} total docs)")
 
 
-# ── Main ───────────────────────────────────────────────────────────────────
+# ── Merge ──────────────────────────────────────────────────────────────────
 
 def merge_all(pdf_meetings, docs_2023, html_docs):
-    """Merge all sources into one dict keyed by year."""
     merged = defaultdict(list)
-
-    # Add PDF meetings (main page)
     for year, docs in pdf_meetings.items():
         merged[year].extend(docs)
-
-    # Add 2023 (no brute-force needed)
     for doc in docs_2023:
         url = doc["url"]
         if not any(d["url"] == url for d in merged["2023"]):
             merged["2023"].append(doc)
-
-    # Add HTML pages — skip if PDF already covers same date+label
     for doc in html_docs:
         year = re.search(r"\b(20\d{2})\b", doc["date"])
         if not year: continue
@@ -962,9 +1017,10 @@ def merge_all(pdf_meetings, docs_2023, html_docs):
         )
         if not already:
             merged[year].append(doc)
-
     return dict(merged)
 
+
+# ── Main ───────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     print("=" * 55)

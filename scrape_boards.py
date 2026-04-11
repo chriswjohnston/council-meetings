@@ -91,8 +91,8 @@ BOARDS = [
 ]
 
 # GitHub Pages serves from the docs/ folder on the main branch.
-# Output goes to docs/boards/ so it's live at council.chriswjohnston.ca/boards/
-OUTPUT_DIR = Path("docs/boards")
+DOCS_DIR   = Path("docs")                # root of served site
+OUTPUT_DIR = Path("docs/boards")         # legacy per-board JSON (kept for reference)
 HEADERS = {"User-Agent": "council-archive-bot/1.0 (chriswjohnston.ca)"}
 AI_API = "https://api.anthropic.com/v1/messages"
 ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -739,7 +739,8 @@ def main():
     print(f"Run: {datetime.now().strftime('%Y-%m-%d %H:%M')} · Today: {TODAY}")
     print("=" * 55)
 
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    DOCS_DIR.mkdir(exist_ok=True)
     boards_data = []
 
     for board in BOARDS:
@@ -749,16 +750,15 @@ def main():
             if ANTHROPIC_KEY:
                 meetings = process_ai(meetings, max_summaries=8)
 
+            # Write per-board data.json for reference
             board_dir = OUTPUT_DIR / board["id"]
             board_dir.mkdir(exist_ok=True)
-
             (board_dir / "data.json").write_text(
                 json.dumps(
                     {"board": board, "meetings": meetings, "generated": datetime.now().isoformat()},
                     indent=2,
                 )
             )
-            (board_dir / "index.html").write_text(build_board_html(board, meetings))
 
             boards_data.append({"id": board["id"], "name": board["name"], "meetings": meetings})
             print(f"  ✓ {board['name']}")
@@ -767,8 +767,26 @@ def main():
             print(f"  ✗ {board['name']}: {e}")
             import traceback; traceback.print_exc()
 
-    (OUTPUT_DIR / "index.html").write_text(build_index_html(boards_data))
-    (OUTPUT_DIR / "calendar.html").write_text(build_calendar_html(boards_data))
+    # Write combined boards-data.json — consumed by build_index.py
+    combined = {
+        "boards": boards_data,
+        "generated": datetime.now().isoformat(),
+    }
+    (DOCS_DIR / "boards-data.json").write_text(json.dumps(combined, indent=2))
+    print(f"  ✓ docs/boards-data.json written ({sum(len(b['meetings']) for b in boards_data)} meetings)")
+
+    # Rebuild the unified SPA index.html
+    try:
+        import subprocess
+        result = subprocess.run(["python3", "build_index.py"], capture_output=True, text=True)
+        if result.returncode == 0:
+            print("  ✓ docs/index.html rebuilt")
+            print(result.stdout.strip())
+        else:
+            print(f"  ⚠ build_index.py failed: {result.stderr[:200]}")
+    except Exception as e:
+        print(f"  ⚠ Could not run build_index.py: {e}")
+
     print(f"\n✓ Done — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
 
 
