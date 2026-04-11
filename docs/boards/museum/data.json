@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to read this PDF document. The file appears to be heavily compressed and encoded in a way that prevents me from extracting the readable text content about the Museum Board meeting.\n\nTo help you, I would need either:\n- A plain text version of the minutes\n- A properly formatted PDF that displays readable text\n- The meeting minutes typed or copied as text\n\nIf you can provide the minutes in a readable format, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
+      "summary": null,
       "events": []
     },
     {
@@ -198,7 +198,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be encoded in a compressed format that displays as garbled text rather than readable meeting minutes.\n\nTo help you, I would need either:\n- A properly formatted PDF that displays readable text\n- A text version of the minutes\n- An image or screenshot of the actual document content\n\nIf you can provide the meeting minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, showing only technical encoding data rather than the actual meeting minutes text.\n\nTo help you, I would need either:\n- A properly formatted PDF that can be read as plain text\n- The minutes provided in another format (Word document, plain text, etc.)\n- A photograph or scan of the printed minutes\n\nIf you can provide a readable version of the meeting minutes, I'd be happy to summarize the key decisions and budget items in plain language for residents.",
       "events": []
     },
     {
@@ -278,7 +278,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've shared appears to be a corrupted or heavily compressed PDF with unreadable encoded text streams, making it impossible for me to extract the meeting minutes or identify what was discussed and decided.\n\nTo help you, I would need:\n- A readable PDF version of the meeting minutes, or\n- The minutes in plain text or another accessible format\n\nIf you can provide a clearer version of the document, I'd be happy to summarize the key decisions for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-04-11T06:04:01.528263"
+  "generated": "2026-04-11T07:00:23.717766"
 }
