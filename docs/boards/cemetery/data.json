@@ -38,7 +38,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/02/February-10-Cemetery-Comm-Agenda-Pkg.pdf",
       "board_id": "cemetery",
       "board_name": "Cemetery Committee",
-      "summary": "I appreciate you sharing this document, but unfortunately the PDF file you've provided appears to be corrupted or heavily compressed. The text content is not readable\u2014it shows only garbled character encodings and stream data rather than the actual meeting minutes.\n\nTo help you, I would need a version of the document that displays the actual text content clearly. You could try:\n\n1. **Re-exporting the PDF** from its source (if you have the original file)\n2. **Copying and pasting the text** directly from a readable version\n3. **Uploading an image** of the minutes if you have a scanned copy\n\nOnce I can see the actual meeting content, I'll be happy to provide a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
+      "summary": null,
       "events": []
     },
     {
@@ -134,9 +134,9 @@
       "package_url": null,
       "board_id": "cemetery",
       "board_name": "Cemetery Committee",
-      "summary": "I apologize, but the PDF file you've provided appears to be corrupted or heavily compressed. The content shows encoded/binary data rather than readable text, making it impossible for me to extract the actual meeting minutes content.\n\nTo help you, I would need:\n- A properly formatted PDF that displays readable text, or\n- The text content copied directly from the minutes\n\nIf you can provide a clean version of the document or the text content, I'd be happy to summarize the Cemetery Committee meeting for you.",
+      "summary": null,
       "events": []
     }
   ],
-  "generated": "2026-04-13T08:02:43.425954"
+  "generated": "2026-04-14T07:30:11.976717"
 }
