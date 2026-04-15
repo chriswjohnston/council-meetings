@@ -1099,6 +1099,36 @@ def write_council_data_json(meetings_by_year, yt_videos={}):
     # Sort newest first
     out.sort(key=lambda x: x["date"], reverse=True)
 
+    # ── Patch in docx-sourced URLs for gaps the scraper can't fill ──
+    # The docx (Council_Meetings_zip.docx) contains authoritative agenda/minutes/
+    # package URLs for 2018-2022 that the live site no longer exposes as PDFs.
+    # For any meeting where the scraper found no URL for a field, fill it from
+    # the docx data file if one exists alongside scraper.py.
+    _docx_patch_file = Path(__file__).parent / "council-data-docx.json"
+    if _docx_patch_file.exists():
+        try:
+            _docx = json.loads(_docx_patch_file.read_text())
+            # Build lookup: (iso_date, meeting_type) -> meeting record
+            _patch_map = {}
+            for _m in _docx.get("meetings", []):
+                _patch_map[(_m["date"], _m.get("meeting_type", "Regular"))] = _m
+
+            _patched = 0
+            for rec in out:
+                _key = (rec["date"], rec.get("meeting_type", "Regular"))
+                _src = _patch_map.get(_key)
+                if not _src:
+                    continue
+                for _field in ("agenda_url", "minutes_url", "package_url"):
+                    if not rec.get(_field) and _src.get(_field):
+                        rec[_field] = _src[_field]
+                        _patched += 1
+            if _patched:
+                print(f"  ✓ Patched {_patched} missing URL(s) from council-data-docx.json")
+        except Exception as _e:
+            print(f"  ⚠ Could not apply docx patch: {_e}")
+    # ── End patch ───────────────────────────────────────────────────
+
     DOCS_DIR.mkdir(exist_ok=True)
     out_path = DOCS_DIR / "council-data.json"
     out_path.write_text(json.dumps({"meetings": out}, indent=2, ensure_ascii=False))
