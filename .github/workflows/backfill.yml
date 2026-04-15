@@ -1,0 +1,69 @@
+name: Backfill — Rebuild All Council Pages
+
+# This is a ONE-TIME workflow. Run it manually once from the Actions tab.
+# It regenerates every year folder (2018–2026) and the home page index.
+# After this runs successfully, delete or disable this file.
+# The regular scrape-boards.yml will keep things current going forward
+# (once scraper.py is added to it — see comments at bottom).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pdfminer.six
+
+      - name: Run council scraper (rebuilds all year HTML + council-data.json)
+        env:
+          BRANCH: public
+        run: python scraper.py
+
+      - name: Run build_index (rebuilds docs/index.html from council-data.json)
+        run: python build_index.py
+
+      - name: Commit and push everything
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --staged --quiet && echo "No changes to commit" || (
+            git commit -m "Backfill: rebuild all council pages $(date +'%Y-%m-%d')"
+            git pull --rebase origin main
+            git push origin main
+          )
+
+# ─────────────────────────────────────────────────────────────────
+# AFTER THIS RUNS: add scraper.py to scrape-boards.yml
+# so it stays current every two weeks automatically.
+#
+# In scrape-boards.yml, add this step BEFORE the commit step:
+#
+#   - name: Run council scraper
+#     env:
+#       BRANCH: public
+#     run: python scraper.py
+#
+# And update the git add line to include the year folders:
+#
+#   git add docs/
+#
+# (instead of the current: git add docs/boards/ docs/boards-data.json docs/index.html)
+# ─────────────────────────────────────────────────────────────────
