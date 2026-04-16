@@ -586,22 +586,45 @@ Factual, neutral, under 400 words, plain language."""
         except: pass
         return None
 
+_SUMMARY_ERROR_PHRASES = [
+    "I'm unable to read", "I apologize, but I'm unable",
+    "I appreciate your request, but I'm unable",
+    "I appreciate you sharing this", "unable to extract",
+    "corrupted or", "compressed format", "unreadable",
+    "improperly encoded", "I would need", "cannot decode",
+    "cannot decompress", "doesn't convert", "not able to read",
+]
+
+def _is_error_summary(text):
+    """Return True if text is an AI failure/error message rather than real content."""
+    return text and any(p in text for p in _SUMMARY_ERROR_PHRASES)
+
 def render_summary_html(md):
-    if not md:
+    """Convert markdown summary to HTML. Returns empty string for errors or None."""
+    if not md or _is_error_summary(md):
         return ""
     lines, out, in_ul = md.split("\n"), [], False
     for line in lines:
-        line = line.strip()
-        if not line:
+        s = line.strip()
+        if not s:
             if in_ul: out.append("</ul>"); in_ul = False
             continue
-        line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
-        if line.startswith(("- ","• ")):
+        if s in ("---", "***", "___"):
+            if in_ul: out.append("</ul>"); in_ul = False
+            out.append("<hr style=\'border:none;border-top:1px solid #e0d8cc;margin:.75rem 0\'>")
+            continue
+        s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+        s = re.sub(r"\*(.+?)\*", r"<em>\1</em>", s)
+        if s.startswith("### "): s = f"<strong>{s[4:]}</strong>"
+        elif s.startswith("## "): s = f"<strong>{s[3:]}</strong>"
+        elif s.startswith("# "): s = f"<strong>{s[2:]}</strong>"
+        if s.startswith(("- ", "• ", "* ")) or re.match(r"^\d+\.\s", s):
+            content = re.sub(r"^[-•*]\s|^\d+\.\s", "", s)
             if not in_ul: out.append("<ul>"); in_ul = True
-            out.append(f"<li>{line[2:].strip()}</li>")
+            out.append(f"<li>{content}</li>")
         else:
             if in_ul: out.append("</ul>"); in_ul = False
-            out.append(f"<p>{line}</p>")
+            out.append(f"<p>{s}</p>")
     if in_ul: out.append("</ul>")
     return "\n".join(out)
 
@@ -888,11 +911,49 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
     active = 'class="active"'
     year_nav = "".join(f'<a href="../{y}/" {active if y==year else ""}>{y}</a>' for y in sorted(all_years, reverse=True))
 
-    rows = ""
-    for date in sorted_dates:
+    today = datetime.now().date()
+
+    def _parsed(d):
+        clean = re.sub(r"^Special Meeting\s+", "", d, flags=re.IGNORECASE).strip()
+        try: return datetime.strptime(clean, "%B %d, %Y").date()
+        except: return datetime.min.date()
+
+    upcoming_dates = sorted(
+        [d for d in sorted_dates if _parsed(d) > today], key=_parsed
+    )
+    past_dates = sorted(
+        [d for d in sorted_dates if _parsed(d) <= today], key=_parsed, reverse=True
+    )
+    ordered_dates = upcoming_dates + past_dates
+
+    upcoming_css = """<style>
+.upcoming-meeting-row { background:#EAF5F8 !important; }
+.upcoming-meeting-row td { border-bottom: 1.5px dashed #A8D5E2; }
+.upcoming-meeting-row .date-link { color:#1a5a6e; border-bottom-color:#7bbcd4; }
+.upcoming-banner-row td {
+  background:#EAF5F8; padding:.45rem 1rem;
+  font-size:.72rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase; color:#1a5a6e;
+  border-bottom:1px solid #A8D5E2;
+}
+</style>"""
+
+    rows = upcoming_css if upcoming_dates else ""
+    first_past = True
+
+    for date in ordered_dates:
         date_docs = grouped[date]
-        is_special = "special" in date.lower() or any("special" in d["filename"].lower() for d in date_docs)
-        row_cls = ' class="special-row"' if is_special else ""
+        is_upcoming = _parsed(date) > today
+        is_special = "special" in date.lower() or any("special" in d.get("filename","").lower() for d in date_docs)
+
+        if is_upcoming and date == upcoming_dates[0]:
+            rows += '<tr class="upcoming-banner-row"><td colspan="6">&#128197; Upcoming meetings — documents will appear once published</td></tr>'
+        if not is_upcoming and first_past:
+            first_past = False
+            if upcoming_dates:
+                rows += '<tr><td colspan="6" style="padding:.35rem 1rem;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#6e6e6e;background:#F2EAD3;border-bottom:1px solid #d8d0c8;">Past meetings</td></tr>'
+
+        row_cls = ' class="upcoming-meeting-row"' if is_upcoming else (' class="special-row"' if is_special else "")
         badge   = '<span class="special-badge">Special</span>' if is_special else ""
         slots   = {"agenda":[],"minutes":[],"package":[],"other":[]}
         for d in date_docs: slots[classify_doc(d["label"])].append(d)
@@ -905,7 +966,9 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
         other_cell = f'<td class="doc-cell"><div class="extra-docs">{"".join(other_parts)}</div></td>' if other_parts else '<td class="doc-cell"><span class="no-doc">&mdash;</span></td>'
 
         yt_url = get_yt_url(date, yt_videos)
-        yt_cell = f'<td class="doc-cell">{yt_button(yt_url)}</td>' if yt_url else f'<td class="doc-cell"><a class="doc-link youtube" href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">{YT_ICON} Channel</a></td>'
+        yt_cell = (f'<td class="doc-cell">{yt_button(yt_url)}</td>' if yt_url
+                   else ('<td class="doc-cell"><span class="no-doc">&mdash;</span></td>' if is_upcoming
+                         else f'<td class="doc-link youtube" href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">{YT_ICON} Channel</a></td>'))
 
         slug = date_slug(date)
         rows += f"""
@@ -913,7 +976,7 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
         <td class="date-cell"><a href="{slug}/" class="date-link">{date}{badge}</a></td>
         {cell(slots["agenda"])}{cell(slots["minutes"])}{cell(slots["package"])}
         {yt_cell}{other_cell}
-      </tr>"""
+      </tr>\""\"" 
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1095,6 +1158,24 @@ def write_council_data_json(meetings_by_year, yt_videos={}):
                 "summary":      None,
                 "cancelled":    False,
             })
+
+    # ── Carry forward existing meetings not found by scraper ──
+    # Preserves 2022/2023 and any other years the live site no longer exposes
+    existing_path = DOCS_DIR / "council-data.json"
+    if existing_path.exists():
+        try:
+            existing = json.loads(existing_path.read_text()).get("meetings", [])
+            scraped_dates = {m["date"] for m in out}
+            carried = 0
+            for m in existing:
+                if m["date"] not in scraped_dates:
+                    out.append(m)
+                    carried += 1
+            if carried:
+                print(f"  ✓ Carried forward {carried} meeting(s) not on live site")
+        except Exception as e:
+            print(f"  ⚠ Could not carry forward existing data: {e}")
+    # ─────────────────────────────────────────────────────────
 
     # Sort newest first
     out.sort(key=lambda x: x["date"], reverse=True)
