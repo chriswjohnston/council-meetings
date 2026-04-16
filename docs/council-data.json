@@ -1,6 +1,19 @@
 {
   "meetings": [
     {
+      "date": "2026-04-21",
+      "display_date": "Apr 21, 2026",
+      "year": 2026,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/04/April-21-2026-Agenda.pdf",
+      "minutes_url": null,
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
       "date": "2026-04-07",
       "display_date": "Apr 7, 2026",
       "year": 2026,
@@ -567,7 +580,7 @@
       "title": "",
       "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2024/04/April-16-2024-Special-Council-Meeting.pdf",
       "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2024/04/Minutes-April-16-2024-Special.pdf",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2024/04/April-16-2024-Council-Agenda-Package.pdf",
+      "package_url": null,
       "video_url": "https://www.youtube.com/watch?v=rjBt6-YKf1E",
       "summary": null,
       "cancelled": false
@@ -937,7 +950,7 @@
           "url": "https://nipissingtownship.com/wp-content/uploads/2022/12/December-20-Accounts-Payable-Report.pdf"
         },
         {
-          "label": "2022 Budget Report)\u00a0",
+          "label": "2022 Budget Report) ",
           "url": "https://nipissingtownship.com/wp-content/uploads/2022/12/2022-Budget-Report.pdf"
         }
       ]
@@ -977,10 +990,13 @@
       "display_date": "Nov 15, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-15-2022/",
-      "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2022/11/Minutes-November-15-2022.pdf",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/11/Council-Agenda-Package-November-15-2022.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-15-2022/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-10-25",
@@ -1047,110 +1063,156 @@
       "display_date": "Jul 12, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-12-2022/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-july-12-2022/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/07/July-12-Council-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-12-2022/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=hKJ9y_RRq84",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-06-21",
       "display_date": "Jun 21, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-21-2022/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-21-2022/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/06/Council-Agenda-Package-June-21-2022.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-21-2022/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-06-07",
       "display_date": "Jun 7, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/june-7-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/june-7-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/06/June-7-Council-Agenda-Package.pdf",
-      "extra_docs": [
-        {
-          "label": "Township of Nipissing Financial Analysis",
-          "url": "https://nipissingtownship.com/wp-content/uploads/2022/06/Township-of-Nipissing-Financial-Analysis-Council-Presentation.pdf"
-        }
-      ]
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/june-7-2022-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-05-24",
       "display_date": "May 24, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/may-24-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/may-24-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/05/May-24-Council-Agenda-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/may-24-2022-agenda/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=7ImmC8TCWKM",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-05-10",
       "display_date": "May 10, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-10-2022/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/may-10-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/05/May-10-Council-Agenda-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-10-2022/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=f-LjGOUiTfQ",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-04-26",
       "display_date": "Apr 26, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-26-2022-agenda/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-26-2022-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2022-04-26",
+      "display_date": "Apr 26, 2022",
+      "year": 2022,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-26-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/04/April-26-Agenda-Package.pdf",
-      "extra_docs": [
-        {
-          "label": "Correspondence",
-          "url": "https://nipissingtownship.com/wp-content/uploads/2022/04/April-26-Correspondence.pdf"
-        }
-      ]
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=fFVWNwOcI9o",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-04-12",
       "display_date": "Apr 12, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-12-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-12-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/04/April-12-Council-Agenda-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/april-12-2022-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-03-29",
       "display_date": "Mar 29, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-29-2022-amended-agenda/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-29-2022-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2022-03-29",
+      "display_date": "Mar 29, 2022",
+      "year": 2022,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-29-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/03/AGENDA-PACKAGE.pdf",
-      "extra_docs": []
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-03-15",
       "display_date": "Mar 15, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-15-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-15-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/03/March-15-Council-Agenda-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/march-15-2022-agenda/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=rIBBVRMlniE",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-02-22",
       "display_date": "Feb 22, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/february-22-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/feb-22-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/02/Feb-22-Council-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/february-22-2022-agenda/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=HiNQaF_XMTQ",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-02-11",
@@ -1167,350 +1229,507 @@
       "display_date": "Feb 8, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/february-8-2022-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/february-8-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/02/February-8-Council-Agenda-Package.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/february-8-2022-agenda/",
+      "package_url": null,
+      "video_url": "https://www.youtube.com/watch?v=fSmpIfJf7hU",
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-01-18",
       "display_date": "Jan 18, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/january-18-2022-amended-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/january-18-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/01/Council-Package-January-18.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/january-18-2022-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2022-01-04",
       "display_date": "Jan 4, 2022",
       "year": 2022,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/january-4th-2022-agenda/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/january-4-2022-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2022/01/January-4-Council-Meeting-Package.pdf",
-      "extra_docs": []
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-12-21",
       "display_date": "Dec 21, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/december-21-2021-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/december-21-2021-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2021/12/Council-Agenda-Package-Dec-21-2021-1.pdf",
-      "extra_docs": []
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/december-21-2021-agenda/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-12-07",
       "display_date": "Dec 7, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-7-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-7-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-12-07",
+      "display_date": "Dec 7, 2021",
+      "year": 2021,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/december-7-2021-minutes/",
-      "package_url": "https://nipissingtownship.com/wp-content/uploads/2021/12/December-7-2021-Agenda-Package.pdf",
-      "extra_docs": []
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-11-16",
       "display_date": "Nov 16, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-16-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-november-16-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-16-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-11-16",
       "display_date": "Nov 16, 2021",
       "year": 2021,
       "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-november-16-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-nov-16-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-november-16-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-10-19",
       "display_date": "Oct 19, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/october-19-2021-amended-agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-19-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-19-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-10-19",
+      "display_date": "Oct 19, 2021",
+      "year": 2021,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-october-19-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-10-05",
       "display_date": "Oct 5, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/october-5-2021-amended-agenda/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-5-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-10-05",
+      "display_date": "Oct 5, 2021",
+      "year": 2021,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/council-meeting-minutes-october-5-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-09-21",
+      "display_date": "Sep 21, 2021",
+      "year": 2021,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-21-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-09-21",
       "display_date": "Sep 21, 2021",
       "year": 2021,
       "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-september-21-2021/",
       "package_url": null,
-      "extra_docs": []
-    },
-    {
-      "date": "2021-09-07",
-      "display_date": "Sep 7, 2021",
-      "year": 2021,
-      "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agendas-september-7-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-special-meeting-september-7-2021/",
-      "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-09-07",
       "display_date": "Sep 7, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agendas-september-7-2021/agenda-tuesday-september-7-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-7-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agendas-september-7-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-09-07",
+      "display_date": "Sep 7, 2021",
+      "year": 2021,
+      "meeting_type": "Special",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-special-meeting-september-7-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-08-17",
       "display_date": "Aug 17, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-17-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-august-17-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-17-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-08-03",
       "display_date": "Aug 3, 2021",
       "year": 2021,
       "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-august-3-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-august-3-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-august-3-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-07-13",
       "display_date": "Jul 13, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-13-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-july-13-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-13-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-06-22",
       "display_date": "Jun 22, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-22-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-22-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-22-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-06-08",
       "display_date": "Jun 8, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-8th-2021/",
-      "minutes_url": "https://nipissingtownship.com/minutes-june-8-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-8-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-05-18",
       "display_date": "May 18, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-18-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-18-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-18-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-05-11",
       "display_date": "May 11, 2021",
       "year": 2021,
       "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-may-11-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-may-11th-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-may-11-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-05-04",
       "display_date": "May 4, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-4th-2021/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-4-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-04-20",
       "display_date": "Apr 20, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-20-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-20-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-20-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-04-06",
       "display_date": "Apr 6, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-6-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-6-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-6-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-03-23",
       "display_date": "Mar 23, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-23-2021-2/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-23-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-23-2021-2/",
       "package_url": null,
-      "extra_docs": []
-    },
-    {
-      "date": "2021-03-09",
-      "display_date": "Mar 9, 2021",
-      "year": 2021,
-      "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-march-9-2021/",
-      "minutes_url": "https://nipissingtownship.com/minutes-special-meeting-march-9-2021/",
-      "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-03-09",
       "display_date": "Mar 9, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-9-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-9-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-9-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2021-03-09",
+      "display_date": "Mar 9, 2021",
+      "year": 2021,
+      "meeting_type": "Special",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-special-meeting-march-9-2021/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-02-17",
       "display_date": "Feb 17, 2021",
       "year": 2021,
       "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-february-17-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-february-17-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-february-17-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-02-16",
       "display_date": "Feb 16, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-16-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-16-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-16-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-02-02",
       "display_date": "Feb 2, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-february-2nd-2021/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-2-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-01-19",
       "display_date": "Jan 19, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-19-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-19-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-19-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2021-01-05",
       "display_date": "Jan 5, 2021",
       "year": 2021,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-5-2021/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-5-2021/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-5-2021/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-12-15",
       "display_date": "Dec 15, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-december-15-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-15-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-december-15-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-12-01",
       "display_date": "Dec 1, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-1-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-1-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-1-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-11-17",
       "display_date": "Nov 17, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-17-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-november-17-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-17-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-10-20",
       "display_date": "Oct 20, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-20-2020-2/",
-      "minutes_url": null,
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-20-2020-2/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-10-06",
       "display_date": "Oct 6, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-6th-2020/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-6-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-09-21",
@@ -1527,110 +1746,143 @@
       "display_date": "Sep 15, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-15-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-15-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-15-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-09-10",
       "display_date": "Sep 10, 2020",
       "year": 2020,
-      "meeting_type": "Special",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-10-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-10-2020/",
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-10-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-09-01",
       "display_date": "Sep 1, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-1-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-1-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-1-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-08-11",
       "display_date": "Aug 11, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-11-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-august-11-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-11-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-07-16",
       "display_date": "Jul 16, 2020",
       "year": 2020,
-      "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-thursday-july-16-2020/",
+      "meeting_type": "Special",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-july-16-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-07-14",
       "display_date": "Jul 14, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-14-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-july-14-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-14-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-06-16",
       "display_date": "Jun 16, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-june-16-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-16-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-june-16-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-06-02",
       "display_date": "Jun 2, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-2-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-2-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-2-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-05-19",
       "display_date": "May 19, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-19-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-19-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-19-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-05-05",
       "display_date": "May 5, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-5-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-5-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-5-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-04-21",
       "display_date": "Apr 21, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-21-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-21-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-21-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-04-07",
@@ -1647,505 +1899,702 @@
       "display_date": "Mar 24, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-24-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-24-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-24-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-03-10",
       "display_date": "Mar 10, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-10-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-10-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-10-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-02-18",
       "display_date": "Feb 18, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-18-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-18-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-18-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-02-04",
       "display_date": "Feb 4, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-4-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-4-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-4-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-01-21",
       "display_date": "Jan 21, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-21-2020/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-21-2020/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-21-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2020-01-07",
       "display_date": "Jan 7, 2020",
       "year": 2020,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-7-2020/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-12-17",
       "display_date": "Dec 17, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-17-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-17-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-17-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-12-03",
       "display_date": "Dec 3, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-3-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-3-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-3-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-11-19",
       "display_date": "Nov 19, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-19-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-november-19-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-19-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2019-10-28",
+      "display_date": "Oct 28, 2019",
+      "year": 2019,
+      "meeting_type": "Special",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-special-meeting-october-28-2019/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-10-28",
       "display_date": "Oct 28, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-special-meeting-october-28-2019/",
-      "minutes_url": null,
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-monday-october-28-2019/",
       "package_url": null,
-      "extra_docs": [
-        {
-          "label": "Meeting",
-          "url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-monday-october-28-2019/"
-        }
-      ]
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-10-15",
       "display_date": "Oct 15, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-15-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-15-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-15-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-10-01",
       "display_date": "Oct 1, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-october-1-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-1-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/amended-agenda-october-1-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-09-17",
       "display_date": "Sep 17, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-17-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-17-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-17-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-09-03",
       "display_date": "Sep 3, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-3rd-2019/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-3-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-08-06",
       "display_date": "Aug 6, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-6-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-august-6-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-august-6-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-07-24",
       "display_date": "Jul 24, 2019",
       "year": 2019,
-      "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-july-24-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-minutes-july-24th-2019/",
+      "meeting_type": "Special",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/special-meeting-agenda-july-24-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-07-09",
       "display_date": "Jul 9, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-9-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-july-9-2019-2/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-9-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-06-18",
       "display_date": "Jun 18, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-18-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-18-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-18-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-06-04",
       "display_date": "Jun 4, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-4-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-4-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-june-4-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-05-21",
       "display_date": "May 21, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-21-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-21-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-may-21-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-05-07",
       "display_date": "May 7, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/agenda-may-7-2019/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-7-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-04-16",
       "display_date": "Apr 16, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/agenda-april-16-2019/",
-      "minutes_url": "https://nipissingtownship.com/minutes-april-16-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-16-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-04-02",
       "display_date": "Apr 2, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-2-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-2-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-april-2-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-03-19",
       "display_date": "Mar 19, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-19-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-19-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-19-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-03-05",
       "display_date": "Mar 5, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-5-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-5-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-march-5-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-02-19",
       "display_date": "Feb 19, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-19-2019/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-19-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-19-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-02-05",
       "display_date": "Feb 5, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-5-2019/",
-      "minutes_url": "https://nipissingtownship.com/minutes-february-5-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-february-5-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-01-22",
       "display_date": "Jan 22, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/",
-      "minutes_url": "https://nipissingtownship.com/minutes-january-22-2019/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-22-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2019-01-08",
       "display_date": "Jan 8, 2019",
       "year": 2019,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-8-2018/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-8-2019/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2019-01-07",
+      "display_date": "Jan 7, 2019",
+      "year": 2019,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-7-2019/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-12-18",
       "display_date": "Dec 18, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-18-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-18-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-18-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-12-04",
       "display_date": "Dec 4, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-4-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-december-4-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-december-4-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-11-20",
       "display_date": "Nov 20, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-20-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-november-20-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-20-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-11-06",
       "display_date": "Nov 6, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-16-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-november-6-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-november-16-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2018-10-18",
+      "display_date": "Oct 18, 2018",
+      "year": 2018,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-18-2018/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-10-16",
       "display_date": "Oct 16, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-16-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-18-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-october-16-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-10-02",
       "display_date": "Oct 2, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-2/",
+      "title": "",
+      "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-october-2-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-09-18",
       "display_date": "Sep 18, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-18-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-09-04",
       "display_date": "Sep 4, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/7182-2/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-september-4-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-september-4-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-08-07",
       "display_date": "Aug 7, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-aug-7-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-august-7-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-aug-7-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-07-10",
       "display_date": "Jul 10, 2018",
       "year": 2018,
       "meeting_type": "Regular",
-      "agenda_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-10-2018/",
-      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-july-10-2018/",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-july-10-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-06-19",
       "display_date": "Jun 19, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-19-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-06-05",
       "display_date": "Jun 5, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-june-5-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-05-22",
       "display_date": "May 22, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-22-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-05-08",
       "display_date": "May 8, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-may-8-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-04-17",
       "display_date": "Apr 17, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-17-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-04-03",
       "display_date": "Apr 3, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-april-3-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-03-20",
       "display_date": "Mar 20, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-20-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-03-06",
       "display_date": "Mar 6, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-march-6-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-02-20",
       "display_date": "Feb 20, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-20-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-02-06",
       "display_date": "Feb 6, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-february-6-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-01-16",
       "display_date": "Jan 16, 2018",
       "year": 2018,
       "meeting_type": "Regular",
+      "title": "",
       "agenda_url": null,
       "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/minutes-january-16-2018/",
       "package_url": null,
-      "extra_docs": []
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
+      "date": "2018-01-08",
+      "display_date": "Jan 8, 2018",
+      "year": 2018,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": null,
+      "minutes_url": "https://nipissingtownship.com/council-meeting-dates-agendas-minutes/agenda-january-8-2018/",
+      "package_url": null,
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
     },
     {
       "date": "2018-01-02",
@@ -2157,6 +2606,5 @@
       "package_url": null,
       "extra_docs": []
     }
-  ],
-  "generated": "2026-04-15T18:17:44.550769"
+  ]
 }
