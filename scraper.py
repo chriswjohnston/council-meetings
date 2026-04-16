@@ -1026,145 +1026,83 @@ def build_html(meetings, yt_videos={}):
     print(f"  ✓ docs/index.html")
 
 
-# ─── LOAD EXISTING council-data.json ───────────────────────────
+# ─── WRITE council-data.json (for build_index.py SPA) ──────────
 
-def load_council_data():
-    """Load existing docs/council-data.json as the base. Returns dict keyed by iso_date."""
-    path = DOCS_DIR / "council-data.json"
-    if not path.exists():
-        return {}
-    try:
-        data = json.loads(path.read_text())
-        meetings = data.get("meetings", [])
-        print(f"  Loaded {len(meetings)} existing meetings from council-data.json")
-        return {m["date"]: m for m in meetings}
-    except Exception as e:
-        print(f"  WARN: Could not load council-data.json: {e}")
-        return {}
-
-
-# ─── MERGE INTO council-data.json ──────────────────────────────
-
-def merge_into_council_data(existing, meetings_by_year, yt_videos):
+def write_council_data_json(meetings_by_year, yt_videos={}):
     """
-    Merge freshly scraped meetings into the existing council-data.json records.
-    Existing records are the source of truth for URLs — scraper only adds
-    new meetings or fills in missing fields.
-    """
-    new_count = 0
+    Convert scraped meetings into the format expected by build_index.py
+    and write docs/council-data.json.
 
+    build_index.py expects a list of meeting objects with:
+      date, display_date, year, agenda_url, minutes_url, package_url,
+      video_url, meeting_type, title, summary, cancelled
+    """
+    from collections import defaultdict
+
+    today = datetime.now().date()
+
+    # Group all docs by (year, date) so we can collect agenda/minutes/package
+    grouped = defaultdict(lambda: defaultdict(list))
     for year, docs in meetings_by_year.items():
-        grouped = defaultdict(list)
         for doc in docs:
-            grouped[doc["date"]].append(doc)
+            grouped[year][doc["date"]].append(doc)
 
-        for date_text, date_docs in grouped.items():
+    out = []
+    for year in sorted(grouped.keys(), reverse=True):
+        for date_text, docs in grouped[year].items():
+            # Determine meeting type
             is_special = "special meeting" in date_text.lower()
             meeting_type = "Special" if is_special else "Regular"
+            # Strip "Special Meeting " prefix from the date text for display
             clean_date = re.sub(r"^Special Meeting\s+", "", date_text, flags=re.IGNORECASE).strip()
 
+            # Parse ISO date for sorting
             try:
                 parsed = datetime.strptime(clean_date, "%B %d, %Y").date()
                 iso_date = parsed.isoformat()
                 display_date = parsed.strftime("%b %-d, %Y")
             except ValueError:
-                continue
+                iso_date = clean_date
+                display_date = clean_date
 
-            # Collect URLs from scraped docs (PDF only)
+            # Collect URLs by doc type
             agenda_url = minutes_url = package_url = None
-            for doc in date_docs:
+            extra_urls = []
+            for doc in docs:
                 kind = classify_doc(doc["label"])
-                url = doc.get("url")
-                if not url or doc.get("type") == "html_page":
-                    continue
+                url = doc.get("url") or doc_link_for(doc)
                 if kind == "agenda" and not agenda_url:
                     agenda_url = url
                 elif kind == "minutes" and not minutes_url:
                     minutes_url = url
                 elif kind == "package" and not package_url:
                     package_url = url
+                elif kind == "other":
+                    extra_urls.append(url)
 
             video_url = get_yt_url(date_text, yt_videos) or get_yt_url(clean_date, yt_videos)
 
-            if iso_date in existing:
-                # Update existing — only fill missing fields, never overwrite
-                rec = existing[iso_date]
-                for field, val in [
-                    ("agenda_url",  agenda_url),
-                    ("minutes_url", minutes_url),
-                    ("package_url", package_url),
-                    ("video_url",   video_url),
-                ]:
-                    if val and not rec.get(field):
-                        rec[field] = val
-                        print(f"  Updated {field}: {iso_date}")
-            else:
-                # New meeting
-                existing[iso_date] = {
-                    "date":         iso_date,
-                    "display_date": display_date,
-                    "year":         int(year),
-                    "meeting_type": meeting_type,
-                    "title":        "",
-                    "agenda_url":   agenda_url,
-                    "minutes_url":  minutes_url,
-                    "package_url":  package_url,
-                    "video_url":    video_url,
-                    "summary":      None,
-                    "cancelled":    False,
-                }
-                print(f"  + New meeting: {iso_date}")
-                new_count += 1
+            out.append({
+                "date":         iso_date,
+                "display_date": display_date,
+                "year":         int(year),
+                "meeting_type": meeting_type,
+                "title":        "",
+                "agenda_url":   agenda_url,
+                "minutes_url":  minutes_url,
+                "package_url":  package_url,
+                "video_url":    video_url,
+                "summary":      None,
+                "cancelled":    False,
+            })
 
-    # Apply YouTube to any meeting still missing a video
-    for iso_date, rec in existing.items():
-        if not rec.get("video_url") and iso_date in yt_videos:
-            rec["video_url"] = yt_videos[iso_date]
+    # Sort newest first
+    out.sort(key=lambda x: x["date"], reverse=True)
 
-    print(f"  {new_count} new meeting(s) added")
-    return existing
-
-
-# ─── SAVE council-data.json ─────────────────────────────────────
-
-def save_council_data(meetings_by_date):
-    """Sort and write docs/council-data.json."""
-    out = sorted(meetings_by_date.values(), key=lambda m: m["date"], reverse=True)
     DOCS_DIR.mkdir(exist_ok=True)
     out_path = DOCS_DIR / "council-data.json"
     out_path.write_text(json.dumps({"meetings": out}, indent=2, ensure_ascii=False))
     print(f"  ✓ {out_path}  ({len(out)} meetings)")
-    return out
-
-
-# ─── CONVERT TO YEAR-GROUPED FORMAT FOR build_html ──────────────
-
-def council_data_to_year_meetings(meetings_list):
-    """
-    Convert flat list of council-data records into the year-keyed
-    dict of doc-list format that build_html() expects.
-    """
-    by_year = defaultdict(list)
-    for m in meetings_list:
-        year = str(m["year"])
-        date_text = m["display_date"]
-        if m.get("meeting_type") == "Special":
-            date_text = "Special Meeting " + date_text
-        for label, url_field in [
-            ("Agenda",         "agenda_url"),
-            ("Minutes",        "minutes_url"),
-            ("Agenda Package", "package_url"),
-        ]:
-            url = m.get(url_field)
-            if url:
-                by_year[year].append({
-                    "date":     date_text,
-                    "label":    label,
-                    "url":      url,
-                    "filename": url.split("/")[-1],
-                    "type":     "pdf",
-                })
-    return dict(by_year)
 
 
 # ─── MAIN ──────────────────────────────────────────────────────
@@ -1174,40 +1112,23 @@ if __name__ == "__main__":
     print(f"Nipissing Council Archive — [{BRANCH.upper()} branch]")
     print(f"Run at: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 50)
-
     state = load_state()
-
-    # YouTube
     yt_videos = fetch_youtube_videos(state)
 
-    # Load existing council-data.json as the base
-    print("\n── Loading existing data ──")
-    existing = load_council_data()
+    # Scrape PDFs from main page
+    pdf_meetings = fetch_links()
 
-    # Scrape for new/updated meetings
-    print("\n── Scraping township site ──")
-    pdf_meetings  = fetch_links()
+    # Scrape older HTML pages
     html_meetings = fetch_html_page_links()
-    scraped       = merge_meetings(pdf_meetings, html_meetings)
 
-    print(f"\nTotal scraped: {sum(len(v) for v in scraped.values())} docs across {len(scraped)} years")
+    # Merge both sources
+    meetings = merge_meetings(pdf_meetings, html_meetings)
 
-    # Download any new PDFs
-    print("\n── Downloading new PDFs ──")
-    new_pdfs = download_pdfs(scraped, state)
+    print(f"\nTotal after merge: {sum(len(v) for v in meetings.values())} docs across {len(meetings)} years")
+
+    print("\nDownloading new PDFs ...")
+    new_count = download_pdfs(meetings, state)
     save_state(state)
-
-    # Merge scraped data into existing — existing URLs win
-    print("\n── Merging ──")
-    merged = merge_into_council_data(existing, scraped, yt_videos)
-
-    # Save council-data.json
-    print("\n── Saving ──")
-    meetings_list = save_council_data(merged)
-
-    # Rebuild HTML year pages from the merged data
-    print("\n── Building HTML pages ──")
-    year_meetings = council_data_to_year_meetings(meetings_list)
-    build_html(year_meetings, yt_videos)
-
-    print(f"\n✓ Done. {new_pdfs} new PDF(s) downloaded." if new_pdfs else "\n✓ Done.")
+    write_council_data_json(meetings, yt_videos)
+    build_html(meetings, yt_videos)
+    print(f"\n✓ Done. {new_count} new file(s) added." if new_count else "\n✓ Done. No new files.")
