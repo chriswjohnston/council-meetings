@@ -1135,7 +1135,71 @@ def write_council_data_json(meetings_by_year, yt_videos={}):
     print(f"  ✓ {out_path}  ({len(out)} meetings)")
 
 
+# ─── APPLY DOCX PATCH ──────────────────────────────────────────
+
+def apply_docx_patch(meetings):
+    """Patch missing PDF URLs into the meetings dict from council-data-docx.json."""
+    patch_file = Path("council-data-docx.json")
+    if not patch_file.exists():
+        return meetings
+    try:
+        docx = json.loads(patch_file.read_text())
+        patch_map = {}
+        for m in docx.get("meetings", []):
+            patch_map[m["date"]] = m
+
+        patched = 0
+        for year, docs in meetings.items():
+            for doc in docs:
+                clean = re.sub(r"^Special Meeting\s+", "", doc["date"], flags=re.IGNORECASE).strip()
+                try:
+                    iso = datetime.strptime(clean, "%B %d, %Y").date().isoformat()
+                except ValueError:
+                    continue
+                src = patch_map.get(iso)
+                if not src:
+                    continue
+                kind = classify_doc(doc["label"])
+                if kind == "package" and not doc.get("url") and src.get("package_url"):
+                    doc["url"] = src["package_url"]
+                    doc["filename"] = src["package_url"].split("/")[-1]
+                    doc["type"] = "pdf"
+                    patched += 1
+                elif kind == "agenda" and not doc.get("url") and src.get("agenda_url"):
+                    doc["url"] = src["agenda_url"]
+                    doc["filename"] = src["agenda_url"].split("/")[-1]
+                    doc["type"] = "pdf"
+                    patched += 1
+        if patched:
+            print(f"  ✓ Pre-patched {patched} doc URL(s) from council-data-docx.json")
+    except Exception as e:
+        print(f"  ⚠ apply_docx_patch failed: {e}")
+    return meetings
+
+
 # ─── MAIN ──────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    print("=" * 50)
+    print(f"Nipissing Council Archive — [{BRANCH.upper()} branch]")
+    print(f"Run at: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print("=" * 50)
+    state = load_state()
+    yt_videos = fetch_youtube_videos(state)
+
+    pdf_meetings = fetch_links()
+    html_meetings = fetch_html_page_links()
+    meetings = merge_meetings(pdf_meetings, html_meetings)
+
+    print(f"\nTotal after merge: {sum(len(v) for v in meetings.values())} docs across {len(meetings)} years")
+
+    print("\nDownloading new PDFs ...")
+    new_count = download_pdfs(meetings, state)
+    save_state(state)
+    meetings = apply_docx_patch(meetings)
+    write_council_data_json(meetings, yt_videos)
+    build_html(meetings, yt_videos)
+    print(f"\n✓ Done. {new_count} new file(s) added." if new_count else "\n✓ Done. No new files.")# ─── MAIN ──────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     print("=" * 50)
