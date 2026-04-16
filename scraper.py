@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Nipissing Township Council Meeting Scraper
 ==========================================
@@ -878,7 +879,7 @@ def generate_meeting_page(date_text, year, slots, yt_videos, summary):
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{date_text} Council Meeting – Nipissing Township</title>
+  <title>{date_text} Council Meeting &ndash; Nipissing Township</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>{CSS}</style>
@@ -968,7 +969,7 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
         yt_url = get_yt_url(date, yt_videos)
         yt_cell = (f'<td class="doc-cell">{yt_button(yt_url)}</td>' if yt_url
                    else ('<td class="doc-cell"><span class="no-doc">&mdash;</span></td>' if is_upcoming
-                         else f'<td class="doc-link youtube" href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">{YT_ICON} Channel</a></td>'))
+                         else f'<td class="doc-cell"><a class="doc-link youtube" href="{YOUTUBE_CHANNEL}" target="_blank" rel="noopener">{YT_ICON} Channel</a></td>'))
 
         slug = date_slug(date)
         rows += f"""
@@ -976,13 +977,13 @@ def generate_year_page(year, docs, all_years, yt_videos={}, summaries={}):
         <td class="date-cell"><a href="{slug}/" class="date-link">{date}{badge}</a></td>
         {cell(slots["agenda"])}{cell(slots["minutes"])}{cell(slots["package"])}
         {yt_cell}{other_cell}
-      </tr>\""\"" 
+      </tr>"""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{year} Council Meetings – Nipissing Township</title>
+  <title>{year} Council Meetings &ndash; Nipissing Township</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>{CSS}</style>
