@@ -1130,8 +1130,6 @@ def write_council_data_json(meetings_by_year, yt_videos={}):
     # ── End patch ───────────────────────────────────────────────────
 
     DOCS_DIR.mkdir(exist_ok=True)
-    write_council_data_json(meetings, yt_videos)
-    build_html(meetings, yt_videos)          # ← ADD THIS LINE
     out_path = DOCS_DIR / "council-data.json"
     out_path.write_text(json.dumps({"meetings": out}, indent=2, ensure_ascii=False))
     print(f"  ✓ {out_path}  ({len(out)} meetings)")
@@ -1162,4 +1160,5 @@ if __name__ == "__main__":
     new_count = download_pdfs(meetings, state)
     save_state(state)
     write_council_data_json(meetings, yt_videos)
-    print(f"\n✓ Done. {new_count} new file(s) added." if new_count else "\n✓ Done. No new files.")
+    build_html(meetings, yt_videos)
+    print(f"\n✓ Done...")
