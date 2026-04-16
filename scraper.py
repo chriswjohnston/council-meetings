@@ -1130,6 +1130,8 @@ def write_council_data_json(meetings_by_year, yt_videos={}):
     # ── End patch ───────────────────────────────────────────────────
 
     DOCS_DIR.mkdir(exist_ok=True)
+    write_council_data_json(meetings, yt_videos)
+    build_html(meetings, yt_videos)          # ← ADD THIS LINE
     out_path = DOCS_DIR / "council-data.json"
     out_path.write_text(json.dumps({"meetings": out}, indent=2, ensure_ascii=False))
     print(f"  ✓ {out_path}  ({len(out)} meetings)")
