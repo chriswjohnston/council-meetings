@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you reaching out, but I'm unable to read or summarize the content of this PDF file. The document you've shared appears to be in a compressed/encoded format that renders as garbled text when I try to access it.\n\nTo help you, could you either:\n\n1. **Copy and paste the readable text** from the PDF directly into our conversation, or\n2. **Share a clearer image or different file format** of the meeting minutes, or\n3. **Describe the key items** you'd like summarized\n\nOnce I can see the actual content, I'd be happy to write those 2-3 plain-language sentences summarizing the budgets, programs, facilities, and votes discussed.",
+      "summary": "I appreciate your request, but I'm unable to read this PDF file. The document appears to be heavily corrupted or improperly encoded\u2014it contains mostly garbled compression data and binary code rather than readable text.\n\nTo help you, I would need:\n- A properly formatted PDF that can be opened in standard PDF readers, or\n- The document in another format (like .docx, .txt, or HTML), or\n- A cleaner scan/version of the original\n\nIf you have access to the original file, I'd recommend trying to re-save or re-scan it, then share that version instead.",
       "events": []
     },
     {
@@ -246,7 +246,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/08/Museum-Agenda-Package-Aug.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be heavily compressed/encoded in PDF format, and the text is not extractable in a readable way on my end.\n\nTo help you get a plain-language summary, you could:\n\n1. **Copy and paste the readable text** from the PDF directly into our conversation\n2. **Upload a different file format** if available (like a Word document or plain text file)\n3. **Share the key points** you'd like summarized\n\nOnce I can see the actual meeting content, I'd be happy to write 2-3 clear sentences about budget decisions, programs, facilities, and votes for a general resident audience.",
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document you've provided appears to be corrupted or heavily compressed in its raw PDF code format, making it impossible for me to extract the actual meeting minutes text.\n\nTo help you, I would need:\n- A properly formatted PDF that can be opened in a standard PDF reader, or\n- The text content copied directly from the minutes, or\n- A different file format (like a Word document or plain text)\n\nOnce you provide a readable version, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you in plain language.",
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-04-16T07:45:18.431767"
+  "generated": "2026-04-17T07:45:20.555347"
 }
