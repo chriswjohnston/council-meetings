@@ -182,7 +182,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Package-March-4-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read this document. The PDF file you've shared appears to be corrupted or improperly encoded\u2014what I'm seeing is raw PDF code rather than readable text content.\n\nTo help you, could you please:\n1. Re-upload the PDF file, or\n2. Copy and paste the text content directly, or\n3. Provide a clearer/properly formatted version of the document?\n\nOnce I can access the actual meeting minutes, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -262,7 +262,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/06/Museum-Agenda-Package-July-2-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read the content. The PDF file you've provided appears to be heavily encoded/compressed in its raw form, and the text content isn't displaying in a way I can parse.\n\nTo help you, could you either:\n1. **Copy and paste the readable text** from the meeting minutes directly, or\n2. **Share a different version** of the PDF that displays text clearly, or\n3. **Provide a text file** with the minutes content?\n\nOnce I can see the actual meeting content, I'll be happy to write 2-3 plain-language sentences summarizing the key decisions and votes for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -278,7 +278,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with corrupted or heavily compressed content that's not displaying as readable text. The visible portions show only PDF technical code and fragmented data streams rather than the actual meeting minutes.\n\nTo help you, could you either:\n1. **Re-share the PDF** in a clearer format, or\n2. **Copy and paste the text content** from the minutes directly into our chat?\n\nOnce I can access the actual content, I'll be happy to provide a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes for a typical resident.",
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-04-19T07:18:15.767717"
+  "generated": "2026-04-20T08:05:40.832931"
 }
