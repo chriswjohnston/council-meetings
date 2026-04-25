@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The PDF file you've provided appears to be heavily corrupted or encoded in a way that makes the text content inaccessible to me\u2014I can only see the underlying PDF code structure, not the actual meeting minutes.\n\nTo help you, I would need:\n- A clean, readable PDF of the minutes, or\n- The minutes in text or Word format, or\n- A screenshot of the readable document\n\nOnce you share a readable version, I'll be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -198,7 +198,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be heavily encoded/compressed, and the text is not extractable in a readable format on my end.\n\nTo help you, I would need either:\n- A plain text version of the minutes\n- A more clearly scanned/OCR'd PDF\n- The key details typed out\n\nIf you can provide the meeting minutes in one of these alternative formats, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
       "events": []
     },
     {
@@ -246,7 +246,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/08/Museum-Agenda-Package-Aug.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be heavily encoded/compressed in PDF format, and the text is not extractable in a readable form from what you've shared.\n\nTo help you, I would need:\n- A plain text version of the minutes, or\n- A PDF that's in a more standard readable format, or\n- You to copy and paste the actual text content\n\nOnce you provide the readable text, I'd be happy to write 2-3 plain-language sentences summarizing the key decisions about budgets, programs, and facilities for a general resident audience.",
+      "summary": null,
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-04-24T08:02:21.055456"
+  "generated": "2026-04-25T07:14:32.970175"
 }
