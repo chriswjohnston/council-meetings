@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a corrupted or improperly encoded PDF with unreadable compressed data streams. The text content isn't legible in its current format.\n\nTo help you, could you either:\n1. Re-save and re-upload the PDF file, or\n2. Provide the meeting minutes in plain text or a different format?\n\nOnce I can access the actual content, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language for residents.",
+      "summary": "I apologize, but I'm unable to read this PDF document. The file you've provided appears to be corrupted or heavily compressed, displaying only raw PDF code and encoded data streams rather than the actual meeting minutes content.\n\nTo help you, I would need:\n- A properly formatted, readable PDF file, or\n- The meeting minutes in plain text format, or\n- An image of the document pages\n\nCould you please resubmit the document in a readable format?",
       "events": []
     },
     {
@@ -182,7 +182,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Package-March-4-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to extract the meeting content from this PDF file. The document appears to be heavily compressed with PDF encoding that makes the actual text content unreadable to me\u2014I can see the technical PDF structure but not the legible meeting minutes themselves.\n\nTo help you, could you either:\n1. Provide the minutes as plain text, or\n2. Share a more clearly scanned/readable PDF version, or\n3. Copy and paste the text content directly?\n\nOnce I can read the actual content, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language for you.",
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document you've shared appears to be encoded in a compressed PDF format that I cannot properly decode or extract text from.\n\nTo help you, could you please:\n\n1. **Copy and paste the readable text** from the PDF directly into our conversation, or\n2. **Convert the PDF to a text file** and share that instead, or\n3. **Summarize the key points** you'd like me to help organize\n\nOnce I can access the actual meeting minutes content, I'll be happy to write those 2-3 plain-language sentences summarizing the budget, programs, facilities, and votes discussed.",
       "events": []
     },
     {
@@ -246,7 +246,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/08/Museum-Agenda-Package-Aug.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've shared appears to be encoded in a compressed format that I cannot reliably decode to extract the actual meeting minutes text.\n\nTo help you, could you please:\n\n1. **Copy and paste the readable text** from the PDF directly into your message, or\n2. **Share a plain text or Word document version** of the minutes, or\n3. **Provide a summary** of the key discussion points and decisions\n\nOnce you share the actual content, I'll be happy to write those 2-3 plain-language sentences summarizing the budget, programs, facilities, and votes for a general resident audience.",
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've provided appears to be heavily encoded/compressed, and the text is not readable in its current form. The visible portions show only PDF technical code and compressed data streams rather than the actual meeting minutes content.\n\nTo help you, I would need:\n- A plain text version of the minutes\n- A more readable PDF (possibly a different export format)\n- The minutes copied and pasted as text\n\nIf you can provide the content in a readable format, I'd be happy to write a 2-3 sentence summary focused on budgets, programs, facilities, and votes for a general resident audience.",
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-06T08:26:01.833240"
+  "generated": "2026-05-07T08:32:57.782188"
 }
