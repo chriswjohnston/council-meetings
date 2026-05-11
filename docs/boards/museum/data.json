@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but unfortunately the PDF you've provided appears to be corrupted or improperly encoded. The file contains mostly compressed/binary data that cannot be read as plain text, so I'm unable to extract the actual meeting minutes content.\n\nTo help you, I would need either:\n- A readable PDF version of the minutes\n- A text file version of the minutes\n- The original document re-saved in a standard format\n\nOnce you provide a readable version, I'd be happy to summarize the key decisions about budgets, programs, and facilities in 2-3 plain-language sentences.",
+      "summary": null,
       "events": []
     },
     {
@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/09/Museum-Agenda-Package-Oct-1.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The PDF appears to be heavily corrupted or improperly encoded, showing mostly garbled characters and code rather than readable text.\n\nTo help you get a summary of the Museum Board meeting minutes, could you either:\n1. Share a clean, readable version of the PDF, or\n2. Copy and paste the actual text content from the document?\n\nOnce I can see the legible meeting minutes, I'll be happy to provide a 2-3 sentence summary focused on budgets, programs, facilities, and votes as you've requested.",
+      "summary": null,
       "events": []
     },
     {
@@ -246,7 +246,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/08/Museum-Agenda-Package-Aug.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, displaying only raw PDF code and binary data rather than readable text.\n\nTo help you, I would need:\n- A properly formatted/uncorrupted PDF file, or\n- A plain text version of the meeting minutes, or\n- A screenshot or image of the readable document\n\nIf you can provide the document in one of these alternative formats, I'll be happy to write a 2-3 sentence plain-language summary for residents.",
       "events": []
     },
     {
@@ -278,7 +278,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be heavily encoded/compressed in its raw PDF format, and the text is not extractable in a readable way from what you've provided.\n\nTo help you, I would need either:\n1. A plain text version of the minutes\n2. A more clearly formatted PDF that can be read directly\n3. A summary or transcription of the key points\n\nIf you can provide the minutes in one of these formats, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes for a general resident audience.",
+      "summary": null,
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-10T08:06:57.669795"
+  "generated": "2026-05-11T09:37:46.448418"
 }
