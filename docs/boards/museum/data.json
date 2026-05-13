@@ -125,13 +125,13 @@
       "date": "2026-05-13",
       "display_date": "May 13, 2026",
       "year": 2026,
-      "is_future": true,
+      "is_future": false,
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
       "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/04/Agenda-May-13-2026-Museum-Board.pdf",
       "minutes_url": null,
-      "package_url": null,
+      "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
       "summary": null,
@@ -166,7 +166,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've provided appears to be heavily compressed or corrupted, with garbled text that I cannot decipher into meaningful meeting minutes.\n\nTo help you, I would need either:\n- A properly readable PDF file\n- The text content copied and pasted directly\n- A scanned image of the minutes that's legible\n\nIf you can provide the document in a more accessible format, I'd be happy to summarize the key decisions and budget items for you.",
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file appears to be a PDF with heavily compressed/encoded content, and the text is not legible in the format provided.\n\nTo help you, I would need either:\n- A readable PDF version of the meeting minutes\n- A plain text version of the document\n- A screenshot or image of the readable minutes\n\nOnce you provide a legible version, I'd be happy to write those 2-3 plain-language sentences summarizing the key decisions about budgets, programs, and facilities for a resident.",
       "events": []
     },
     {
@@ -182,7 +182,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Package-March-4-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with compressed/encoded content that hasn't been properly converted to readable text. The data shows raw PDF code and stream objects rather than the actual meeting minutes.\n\nTo help you, could you either:\n1. Share the minutes as a plain text file or Word document, or\n2. Copy and paste the readable text content directly, or\n3. Share a PDF that isn't encoded in this compressed format?\n\nOnce I can see the actual meeting content, I'll be happy to write 2-3 clear sentences summarizing the key decisions about budgets, programs, and facilities.",
       "events": []
     },
     {
@@ -198,7 +198,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file appears to be a PDF with compressed/encoded content that hasn't rendered properly in text format\u2014what I'm seeing is mostly code and garbled characters rather than readable meeting minutes.\n\nTo help you, could you either:\n1. **Re-share the PDF** (it may have been corrupted in transmission)\n2. **Paste the text content** directly if you have access to it\n3. **Provide a plain text or Word version** of the minutes\n\nOnce I can see the actual meeting content, I'll be happy to write those 2-3 plain-language sentences summarizing the key decisions for a resident.",
+      "summary": null,
       "events": []
     },
     {
@@ -330,5 +330,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-12T08:38:49.508764"
+  "generated": "2026-05-13T08:43:00.453042"
 }
