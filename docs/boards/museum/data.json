@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be heavily compressed or corrupted, showing only raw PDF code and encoded data streams rather than readable text.\n\nTo help you get a summary of the Museum Board meeting, I'd recommend:\n\n1. **Trying a different PDF viewer** - Sometimes PDFs open better in different applications\n2. **Converting the PDF** - Use an online converter to change it to a different format\n3. **Contacting the municipality** - Nipissing Township should be able to provide a readable copy of the minutes\n4. **Copying the text directly** - If you can open it and copy the text, I'd be happy to summarize it\n\nIf you can provide the text content in another format, I'd be glad to create that 2-3 sentence summary for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -246,7 +246,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Agenda-Package-April-1-.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to extract the readable content from this PDF file. The document appears to be heavily corrupted or compressed in a way that prevents me from accessing the actual meeting minutes text.\n\nTo help you, I would need either:\n- A properly formatted, uncorrupted PDF file\n- The text content copied directly from the document\n- A different file format (like a Word document or plain text)\n\nIf you can provide a readable version of the meeting minutes, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language.",
+      "summary": "I appreciate your request, but I'm unable to extract meaningful information from this document. What you've provided appears to be raw PDF code rather than readable text - it contains embedded compression and formatting data that doesn't display as human-readable content.\n\nTo help you, I would need either:\n- A plain text version of the meeting minutes\n- A properly converted/extracted PDF that shows the actual meeting content\n- A screenshot or image of the readable document\n\nIf you can provide the minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
       "events": []
     },
     {
@@ -310,7 +310,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/09/Agenda-Package-September-3-2025-1.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with heavily compressed/encoded content, and the text is not readable in the format it's been shared.\n\nTo help you, I would need:\n\n1. **A plain text version** of the minutes, or\n2. **A readable PDF** that displays the actual meeting content, or\n3. **A scan or image** of the original document\n\nOnce you can share a readable version, I'll be happy to summarize the key decisions about budgets, programs, and facilities in 2-3 plain-language sentences for a general resident.",
       "events": []
     },
     {
@@ -326,7 +326,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/08/Museum-Agenda-Package-Aug.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, showing only raw PDF code and encoding rather than readable text about the museum board meeting.\n\nTo help you, I would need:\n- A properly formatted, readable PDF or text version of the meeting minutes, or\n- The meeting minutes pasted as plain text\n\nIf you can provide the document in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-16T08:02:45.232440"
+  "generated": "2026-05-17T08:20:19.497130"
 }
