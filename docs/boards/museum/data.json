@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate your request, but I'm unable to extract meaningful content from this document. The PDF file you've provided appears to be corrupted or improperly encoded\u2014it contains compressed data streams and binary code rather than readable text about the Museum Board meeting.\n\nTo help you, I would need:\n- A properly formatted PDF that displays readable text, or\n- A text file containing the actual meeting minutes\n\nIf you have access to the original document, please try re-saving it or providing it in a different format, and I'll be happy to summarize the key decisions for you.",
       "events": []
     },
     {
@@ -278,7 +278,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be heavily compressed with encoding that prevents me from extracting the readable text of the meeting minutes.\n\nTo help you, I would need either:\n- A text version of the minutes\n- A clearer PDF that isn't compressed\n- The minutes pasted as plain text\n\nIf you can provide the minutes in one of these alternative formats, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-26T09:54:12.848245"
+  "generated": "2026-05-27T09:43:06.790534"
 }
