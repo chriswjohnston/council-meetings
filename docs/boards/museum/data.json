@@ -193,7 +193,7 @@
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
-      "agenda_url": null,
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-June-3-2026-Museum-Board.pdf",
       "minutes_url": null,
       "package_url": null,
       "board_id": "museum",
@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but the PDF file you've provided appears to be corrupted or improperly encoded. The content is displayed as compressed binary data rather than readable text, so I cannot extract the actual meeting minutes to summarize the discussion and decisions.\n\nTo help you, I would need:\n- A properly formatted/readable PDF file, or\n- The text content of the minutes copied directly\n\nIf you can share the document in a readable format, I'd be happy to provide a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
+      "summary": null,
       "events": []
     },
     {
@@ -262,7 +262,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Package-March-4-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be encoded in a compressed format that hasn't been properly extracted into readable text. The document shows primarily raw PDF code and metadata rather than the actual meeting minutes content.\n\nTo help you, I would need either:\n- A properly converted text or plain PDF version of the minutes\n- A scanned image of the document that I could read\n- The meeting minutes pasted directly as text\n\nIf you can provide the content in one of these formats, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-29T09:52:59.647252"
+  "generated": "2026-05-30T08:26:38.277832"
 }
