@@ -61,7 +61,7 @@
       "date": "2026-06-01",
       "display_date": "June 1, 2026",
       "year": 2026,
-      "is_future": true,
+      "is_future": false,
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
@@ -522,5 +522,5 @@
       "events": []
     }
   ],
-  "generated": "2026-05-31T08:43:10.182078"
+  "generated": "2026-06-01T11:29:55.169655"
 }
