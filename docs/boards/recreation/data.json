@@ -62,10 +62,10 @@
       "display_date": "June 1, 2026",
       "year": 2026,
       "is_future": false,
-      "cancelled": false,
+      "cancelled": true,
       "rescheduled": false,
       "postponed": false,
-      "agenda_url": null,
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Recreation-Agenda-June-1-2026.pdf",
       "minutes_url": null,
       "package_url": null,
       "board_id": "recreation",
@@ -522,5 +522,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-01T11:29:55.169655"
+  "generated": "2026-06-02T10:20:34.186223"
 }
