@@ -194,11 +194,11 @@
       "rescheduled": false,
       "postponed": false,
       "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-June-3-2026-Museum-Board.pdf",
-      "minutes_url": null,
+      "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Museum-Boad-Minutes-June-3-2026-docx.pdf",
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Museum-June-3-Package.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've provided appears to be corrupted or heavily compressed, displaying only raw PDF code and encoded data rather than readable text.\n\nTo help you summarize the meeting minutes, I would need:\n- A clean, readable version of the PDF, or\n- The minutes in plain text format, or\n- A different file format (like Word or an image)\n\nIf you can provide a readable version of the document, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes for a general resident audience.",
       "events": []
     },
     {
@@ -262,7 +262,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/03/Museum-Package-March-4-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be heavily encoded/compressed with technical PDF formatting that obscures the actual meeting minutes text.\n\nTo help you, I would need:\n- A plain text version of the minutes, or\n- A clearer/uncompressed PDF, or\n- The original document file in a more readable format\n\nIf you can copy and paste the actual text content from the minutes, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
       "events": []
     },
     {
@@ -310,7 +310,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/09/Agenda-Package-September-3-2025-1.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "# Museum Board Meeting Summary \u2014 September 3, 2025\n\nI apologize, but I'm unable to read the content of this PDF document. The file appears to be heavily compressed with encoded content, and the text is not accessible in a readable format. To provide you with an accurate 2-3 sentence summary of what was discussed and decided at the Nipissing Township Museum Board meeting, I would need a document that displays the actual meeting minutes text clearly.\n\nCould you please provide the minutes in one of these formats instead?\n- A plain text or Word document version\n- A PDF with uncompressed, readable text\n- A typed-out summary of the key points",
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-04T09:53:58.119772"
+  "generated": "2026-06-05T09:44:41.705101"
 }
