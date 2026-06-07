@@ -198,7 +198,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Museum-June-3-Package.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document you've shared appears to be in a compressed/encoded format that displays as raw code rather than readable text. \n\nTo help you get a summary of the Museum Board meeting minutes, I'd suggest:\n\n1. **Copy-paste the readable text** directly from the PDF into a text format\n2. **Download the PDF again** in case it was corrupted during upload\n3. **Check if there's an alternative version** of the document available\n\nOnce you can share the actual meeting content in readable form, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF that's been encoded in a way that renders it as unreadable raw data to me\u2014I can see the PDF structure but not the actual meeting minutes content.\n\nTo help you, could you please:\n- Copy and paste the readable text from the minutes, or\n- Share a clearer version of the document, or\n- Provide the meeting minutes in a text format?\n\nOnce I can see the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, and facilities decisions for a general reader.",
       "events": []
     },
     {
@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, showing only raw PDF code and encoded data rather than readable text.\n\nTo help you, I would need:\n- A properly formatted PDF that can be opened normally, or\n- The meeting minutes in text or Word format, or\n- A clearer scan/copy of the document\n\nIf you can provide the readable text of the minutes, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": null,
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-06T08:32:29.989704"
+  "generated": "2026-06-07T08:54:27.920811"
 }
