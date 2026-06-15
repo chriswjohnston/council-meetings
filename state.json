@@ -2219,5 +2219,26 @@
     "label": "Agenda Package",
     "date": "June 2, 2026",
     "downloaded_at": "2026-06-01T18:38:57.294411"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/06/Minutes-June-2-2026.pdf": {
+    "filename": "Minutes-June-2-2026.pdf",
+    "year": "2026",
+    "label": "Minutes",
+    "date": "June 2, 2026",
+    "downloaded_at": "2026-06-15T18:05:45.802387"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/06/June-16-2026-Agenda.pdf": {
+    "filename": "June-16-2026-Agenda.pdf",
+    "year": "2026",
+    "label": "Agenda",
+    "date": "June 16, 2026",
+    "downloaded_at": "2026-06-15T18:05:45.975634"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/06/Agenda-Package-June-16-2026.pdf": {
+    "filename": "Agenda-Package-June-16-2026.pdf",
+    "year": "2026",
+    "label": "Agenda Package",
+    "date": "June 16, 2026",
+    "downloaded_at": "2026-06-15T18:05:46.394101"
   }
 }
