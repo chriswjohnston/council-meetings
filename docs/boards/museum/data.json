@@ -198,7 +198,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Museum-June-3-Package.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've provided appears to be corrupted or heavily compressed in its raw form, with the text rendered as unreadable encoded data rather than plain text.\n\nTo help you, I would need either:\n- A properly formatted, readable PDF file\n- The meeting minutes in text or Word format\n- A screenshot of the readable minutes\n\nIf you can provide the document in a more accessible format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for a general audience.",
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with corrupted or compressed content streams that aren't displaying as readable text. \n\nTo help you, could you either:\n1. **Provide the minutes as plain text** (copy and paste the readable content), or\n2. **Share a different version of the PDF** that displays text properly, or\n3. **Summarize the key discussion points** you'd like me to work from?\n\nOnce I can see the actual content of the meeting minutes, I'll be happy to write those 2-3 plain-language sentences about budgets, programs, facilities, and decisions made.",
       "events": []
     },
     {
@@ -214,7 +214,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-May-13-2026.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided is a PDF with compressed/encoded content that doesn't display as readable text in this format\u2014it shows only the underlying PDF code structure rather than the actual meeting minutes.\n\nTo help you, could you please:\n1. Share the text content directly (copy and paste the readable text), or\n2. Convert the PDF to a text file, or\n3. Provide a clearer/uncompressed version of the document?\n\nOnce I can see the actual meeting content, I'll be happy to write those 2-3 plain-language summary sentences for you.",
       "events": []
     },
     {
@@ -278,7 +278,7 @@
       "package_url": null,
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with corrupted or compressed data that doesn't display readable text content on my end.\n\nTo help you, I would need either:\n- A clean, readable PDF of the meeting minutes\n- The minutes in text or Word format\n- A screenshot or transcription of the actual content\n\nOnce you can share a readable version, I'd be happy to write those 2-3 plain-language sentences summarizing the key decisions about budgets, programs, and facilities.",
       "events": []
     },
     {
@@ -294,7 +294,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/09/Museum-Agenda-Package-Oct-1.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with corrupted or compressed content that doesn't display readable text on my end.\n\nTo help you get a plain-language summary of the Museum Board meeting, could you either:\n\n1. **Copy and paste the readable text** from the meeting minutes directly into our chat, or\n2. **Share the document in a different format** (like a Word document or plain text file), or\n3. **Describe the key topics** discussed so I can help you organize them into a summary?\n\nOnce I can see the actual content, I'll be happy to write 2-3 clear sentences summarizing the budget, program, facility, and voting decisions from the October 1, 2025 meeting.",
+      "summary": null,
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-16T11:08:26.136388"
+  "generated": "2026-06-17T10:53:14.617399"
 }
