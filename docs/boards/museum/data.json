@@ -198,7 +198,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/06/Museum-June-3-Package.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file you've provided appears to be a corrupted or improperly encoded PDF\u2014the text is displayed as raw compressed data and binary code rather than readable content.\n\nTo help you, I would need:\n- A properly formatted, readable PDF file, or\n- The minutes transcribed as plain text, or\n- A different file format (like .docx or .txt)\n\nIf you can provide the meeting minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file appears to be a PDF with compressed/encoded content that doesn't display as readable text in the format provided. \n\nTo help you get a summary of the museum board meeting, could you either:\n- Share the minutes as plain text or a Word document, or\n- Copy and paste the readable text content directly?\n\nOnce I can see the actual meeting content, I'd be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -294,7 +294,7 @@
       "package_url": "https://nipissingtownship.com/wp-content/uploads/2025/09/Museum-Agenda-Package-Oct-1.pdf",
       "board_id": "museum",
       "board_name": "Museum Board",
-      "summary": null,
+      "summary": "I appreciate you sharing this document, but I'm unable to read it. The file you've provided appears to be a PDF with compressed data that hasn't been properly decoded, so it's displaying as garbled text rather than readable content.\n\nTo help you, could you either:\n1. **Paste the readable text** directly from the meeting minutes, or\n2. **Re-upload the PDF** (it may have been corrupted during transfer), or\n3. **Provide a text version** of the minutes\n\nOnce I can see the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -410,5 +410,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-18T10:19:04.464107"
+  "generated": "2026-06-19T10:24:00.418779"
 }
