@@ -17,7 +17,7 @@
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
-      "agenda_url": "http://nipissingtownship.com/wp-content/uploads/2026/05/CEMETERY-Committee-AGENDA-May-20-2026.pdf",
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/CEMETERY-Committee-AGENDA-May-20-2026.pdf",
       "minutes_url": null,
       "package_url": null,
       "board_id": "cemetery",
@@ -26,5 +26,5 @@
       "events": []
     }
   ],
-  "generated": "2026-06-25T08:58:54.736677"
+  "generated": "2026-06-26T09:22:28.915550"
 }
