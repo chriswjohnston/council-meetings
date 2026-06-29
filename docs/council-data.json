@@ -1,6 +1,19 @@
 {
   "meetings": [
     {
+      "date": "Unknown date",
+      "display_date": "Unknown date",
+      "year": 2026,
+      "meeting_type": "Regular",
+      "title": "",
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/January-6-2026-Agenda.pdf",
+      "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Minutes-January-6-2026.pdf",
+      "package_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Agenda-Package-January-6-2026.pdf",
+      "video_url": null,
+      "summary": null,
+      "cancelled": false
+    },
+    {
       "date": "2026-06-16",
       "display_date": "Jun 16, 2026",
       "year": 2026,
