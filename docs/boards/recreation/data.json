@@ -86,7 +86,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be corrupted or encoded in a way that makes the text unreadable to me\u2014I can see the PDF structure and formatting codes, but not the actual meeting minutes content.\n\nTo help you, could you either:\n1. Provide the text content directly (copy and paste the readable text), or\n2. Share a different version of the PDF that displays properly?\n\nOnce I can see the actual meeting content, I'll be happy to write a 2-3 sentence plain-language summary for residents.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format (FlateDecode), and the raw text stream is not decipherable in the form you've provided.\n\nTo help you summarize the meeting minutes, could you either:\n\n1. **Copy and paste the readable text** from the PDF directly into your message, or\n2. **Provide a text version** of the document, or\n3. **Share the key points** you'd like summarized?\n\nOnce I can see the actual content, I'll be happy to write 2-3 plain-language sentences focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -102,7 +102,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be corrupted or heavily compressed in a way that makes the text unreadable to me\u2014it shows as encoded data rather than plain text.\n\nTo help you, I would need either:\n- A text version of the minutes\n- A clearer, uncompressed PDF\n- The minutes typed out or pasted as plain text\n\nIf you can provide the content in one of these formats, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, as the text content is not displaying in a readable format. \n\nTo help you get a summary of the Recreation Committee meeting minutes, I'd recommend:\n\n1. **Converting the PDF** to a more readable format (like .docx or .txt)\n2. **Re-saving the PDF** from the original source\n3. **Copying and pasting** the text directly if possible\n4. **Checking with Nipissing Township** to request a cleaner copy of the minutes\n\nIf you can provide the meeting minutes in a readable text format, I'd be happy to summarize the key decisions and budget items for residents.",
       "events": []
     },
     {
@@ -118,7 +118,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "# Recreation Committee Meeting Summary\n**Nipissing Township, Ontario \u2013 February 2, 2026**\n\nI apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text content is not extractable from the format provided. To get an accurate summary of what was discussed and decided at this Recreation Committee meeting, you would need to either:\n\n1. Provide a cleaner/uncorrupted version of the PDF\n2. Share the text content directly\n3. Provide a different file format (such as a Word document or plain text file)\n\nIf you can access the document yourself, feel free to paste the text content here, and I'll be happy to create a 2-3 sentence plain-language summary for residents.",
+      "summary": "# Recreation Committee Meeting Summary \u2014 February 2, 2026\n\nI apologize, but the PDF file you've provided appears to be corrupted or improperly encoded. The document content is displayed as compressed data that cannot be read as plain text. \n\nTo help you, I would need:\n- A readable version of the meeting minutes, or\n- The text extracted from the PDF, or\n- A different file format (Word document, text file, etc.)\n\nOnce you provide a readable version, I'll be happy to write a 2-3 sentence plain-language summary covering budgets, programs, facilities, and any votes that took place.",
       "events": []
     },
     {
@@ -134,9 +134,9 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be corrupted or heavily compressed, as the text stream is unreadable garbled data rather than plain text.\n\nTo help you get a summary of the Recreation Committee meeting minutes, you could:\n\n1. **Try opening the PDF in a different viewer** (Adobe Reader, Preview, etc.) to confirm it's readable\n2. **Contact Nipissing Township directly** to request a readable copy of the minutes\n3. **Re-upload a cleaner version** of the document if you have access to one\n\nIf you can copy and paste the actual text content from the minutes, I'd be happy to write the plain-language summary you're looking for.",
+      "summary": "I apologize, but the PDF you've provided appears to be corrupted or improperly encoded. The content stream contains compressed/binary data that cannot be read as plain text, so I'm unable to extract the actual meeting minutes content.\n\nTo help you, I would need:\n- A properly readable PDF file, or\n- The text of the minutes copied and pasted directly, or\n- A different file format (Word document, plain text, etc.)\n\nOnce you provide a readable version, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language for residents.",
       "events": []
     }
   ],
-  "generated": "2026-07-10T09:31:59.743896"
+  "generated": "2026-07-11T07:52:43.851517"
 }
