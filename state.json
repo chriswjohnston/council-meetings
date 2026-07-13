@@ -2482,5 +2482,33 @@
     "label": "Agenda",
     "date": "Unknown date",
     "downloaded_at": "2026-06-29T16:40:22.973045"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/06/Minutes-June-30-2026-Special.pdf": {
+    "filename": "Minutes-June-30-2026-Special.pdf",
+    "year": "2026",
+    "label": "Minutes",
+    "date": "Unknown date",
+    "downloaded_at": "2026-07-13T15:39:02.072067"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/06/Sp-Council-Meeting-June-3026.pdf": {
+    "filename": "Sp-Council-Meeting-June-3026.pdf",
+    "year": "2026",
+    "label": "Agenda Package",
+    "date": "Unknown date",
+    "downloaded_at": "2026-07-13T15:39:02.433785"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/07/July-14-2026-Agenda.pdf": {
+    "filename": "July-14-2026-Agenda.pdf",
+    "year": "2026",
+    "label": "Agenda",
+    "date": "Unknown date",
+    "downloaded_at": "2026-07-13T15:39:02.688060"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/07/Agenda-Package-July-14-2026-2.pdf": {
+    "filename": "Agenda-Package-July-14-2026-2.pdf",
+    "year": "2026",
+    "label": "Agenda Package",
+    "date": "Unknown date",
+    "downloaded_at": "2026-07-13T15:39:03.528493"
   }
 }
