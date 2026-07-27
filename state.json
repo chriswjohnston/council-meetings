@@ -307,6 +307,10 @@
     "June 16, 2026": {
       "date": "June 16, 2026",
       "url": "https://www.youtube.com/watch?v=tYBgPz1ioXM"
+    },
+    "July 14, 2026": {
+      "date": "July 14, 2026",
+      "url": "https://www.youtube.com/watch?v=3X8q6nmVGCs"
     }
   },
   "_2023_meetings": [
@@ -2510,5 +2514,12 @@
     "label": "Agenda Package",
     "date": "Unknown date",
     "downloaded_at": "2026-07-13T15:39:03.528493"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/07/Minutes-July-14-2026.pdf": {
+    "filename": "Minutes-July-14-2026.pdf",
+    "year": "2026",
+    "label": "Minutes",
+    "date": "Unknown date",
+    "downloaded_at": "2026-07-27T15:38:21.407154"
   }
 }
