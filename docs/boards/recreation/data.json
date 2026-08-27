@@ -49,7 +49,7 @@
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
-      "agenda_url": null,
+      "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/08/Recreation-Agenda-September-14-2026.pdf",
       "minutes_url": null,
       "package_url": null,
       "board_id": "recreation",
@@ -86,7 +86,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate you sharing this document, but I'm unable to read it. The PDF file you've provided appears to be corrupted or heavily compressed, showing only garbled data rather than readable text.\n\nTo help you, could you please:\n1. Re-upload the PDF file, or\n2. Copy and paste the text content directly, or\n3. Share a different format (like a Word document or plain text)\n\nOnce I can see the actual meeting minutes, I'll be happy to provide a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text is encoded in a way that makes it unreadable to me - I'm seeing raw PDF code rather than the actual meeting minutes.\n\nTo help you, could you either:\n1. Convert the PDF to a plain text file and share that, or\n2. Copy and paste the text content directly, or\n3. Provide a clearer/re-scanned version of the PDF?\n\nOnce I can see the actual meeting content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -102,7 +102,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate your request, but I'm unable to read the PDF file you've provided. The document appears to be encoded in a compressed format that renders as unreadable characters when extracted.\n\nTo help you, could you please:\n\n1. **Copy and paste the text content** directly from the PDF, or\n2. **Re-upload the PDF** as a clearer file, or\n3. **Provide a text version** of the meeting minutes\n\nOnce I can see the actual content of the Recreation Committee meeting, I'll be happy to summarize the key decisions about budgets, programs, and facilities in 2-3 plain-language sentences.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text is encoded in a way that's not readable to me\u2014I'm seeing only raw PDF code and compressed data streams rather than the actual meeting minutes.\n\nTo help you, I would need either:\n- A clean, readable PDF version of the minutes\n- A text file with the minutes content\n- A screenshot or image of the document\n- The minutes copied and pasted as plain text\n\nIf you can provide the minutes in one of these formats, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
       "events": []
     },
     {
@@ -118,7 +118,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "# Recreation Committee Meeting Summary \u2013 February 2, 2026\n\nI apologize, but I cannot read the content of this PDF document. The file appears to be corrupted or the text content is not properly encoded in the PDF structure you've provided. While I can see the document metadata indicates it's a Recreation Committee meeting from Nipissing Township on February 2, 2026, created by Kristin Linklater, the actual meeting minutes text is not accessible to me.\n\nTo help you, could you please:\n- Provide the minutes in plain text format, or\n- Re-upload the PDF file, or\n- Copy and paste the text content directly?\n\nOnce I have access to the actual content, I'll be happy to summarize the key decisions about budgets, programs, and facilities in 2-3 plain-language sentences.",
+      "summary": "# Recreation Committee Meeting Summary\n\nI apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text content is not properly encoded, showing only compressed data and formatting information rather than readable text.\n\nTo help you, I would need:\n- A readable version of the meeting minutes (as a text file, Word document, or properly formatted PDF)\n- Or the meeting minutes typed or pasted as plain text\n\nIf you can provide the content in another format, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
       "events": []
     },
     {
@@ -134,9 +134,9 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be corrupted or heavily compressed, as the text stream is unreadable to me.\n\nTo help you get a summary of the Recreation Committee meeting minutes, I'd suggest:\n\n1. **Copy and paste the text** directly from the PDF into a plain text format\n2. **Try opening the PDF** in a different reader to see if it displays properly\n3. **Request a cleaner version** of the document from Nipissing Township\n\nOnce you can share the readable text, I'll be happy to provide a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, displaying only garbled characters and encoded data rather than readable text.\n\nTo help you, I would need:\n- A properly formatted PDF that can be read\n- The meeting minutes in plain text format\n- Or a screenshot/image of the readable document\n\nIf you can provide the content in a readable format, I'd be happy to summarize the key decisions and budget items for you.",
       "events": []
     }
   ],
-  "generated": "2026-08-26T06:43:43.419568"
+  "generated": "2026-08-27T17:19:57.056466"
 }
