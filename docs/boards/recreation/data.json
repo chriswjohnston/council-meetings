@@ -45,7 +45,7 @@
       "date": "2026-09-14",
       "display_date": "September 14, 2026",
       "year": 2026,
-      "is_future": true,
+      "is_future": false,
       "cancelled": false,
       "rescheduled": false,
       "postponed": false,
@@ -86,7 +86,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format (FlateDecode stream), and what's visible in the raw code is the PDF's internal structure rather than the actual meeting minutes text.\n\nTo help you, I would need either:\n- A plain text version of the minutes\n- An uncompressed or more accessible PDF\n- The minutes copied and pasted as text\n\nIf you can provide the minutes in one of these formats, I'd be happy to summarize the key decisions about budgets, programs, and facilities in plain language for a resident.",
+      "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format that I cannot decompress or decode to extract the actual meeting minutes text.\n\nTo help you, you could:\n1. Copy and paste the text content directly from the PDF\n2. Convert the PDF to a text file\n3. Share the minutes in another format (Word doc, plain text, etc.)\n\nOnce you provide the readable text, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
       "events": []
     },
     {
@@ -102,7 +102,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be corrupted or heavily compressed, as the text stream is unreadable in the format provided.\n\nTo help you get a summary of the Recreation Committee meeting minutes, you could:\n\n1. **Re-upload the PDF** - try converting it to a different format or re-scanning if it's a scanned document\n2. **Copy and paste the text** - if you can open it in a PDF reader, copy the readable text and share it directly\n3. **Share as a different file type** - try converting to Word (.docx) or plain text (.txt)\n\nOnce I can access the actual meeting content, I'll be happy to provide a clear 2-3 sentence summary focused on budgets, programs, facilities, and decisions.",
+      "summary": "I appreciate you sharing this document, but unfortunately the PDF file you've provided appears to be corrupted or improperly encoded. The content stream shows compressed/unreadable data rather than plain text, so I'm unable to extract the actual meeting minutes to summarize what was discussed and decided.\n\nTo help you, I would need either:\n- A properly formatted PDF that opens and displays text clearly\n- The meeting minutes in another format (Word document, text file, etc.)\n- A photo or scan of the physical minutes document\n\nOnce you can provide a readable version, I'd be happy to write a plain-language summary focusing on budgets, programs, facilities, and votes as requested.",
       "events": []
     },
     {
@@ -118,7 +118,7 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I apologize, but I'm unable to read this PDF file. The document appears to be corrupted or the content stream is not properly decompressed, so I cannot extract the actual text of the meeting minutes to summarize them for you.\n\nTo help you, I would need either:\n1. A properly formatted PDF that can be read\n2. The text content copied and pasted directly\n3. A different file format (like .docx or .txt)\n\nIf you can provide the meeting minutes in a readable format, I'd be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and decisions.",
+      "summary": "# Recreation Committee Meeting Summary \u2013 February 2, 2026\n\nI apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text is encoded in a way that prevents me from accessing the actual meeting minutes and their content.\n\nTo provide you with an accurate summary of what was discussed and decided, I would need a version of the document that displays the readable text. You could try:\n\n1. Re-exporting the PDF from the original source\n2. Providing the minutes in another format (Word, text file, etc.)\n3. Sharing the raw text content directly\n\nOnce I can access the actual meeting content, I'll be happy to write a clear 2-3 sentence summary for residents highlighting budgets, programs, facilities, and voting decisions.",
       "events": []
     },
     {
@@ -134,9 +134,9 @@
       "package_url": null,
       "board_id": "recreation",
       "board_name": "Recreation Committee",
-      "summary": "I appreciate you sharing this document, but unfortunately the PDF file you've provided appears to be corrupted or improperly encoded. The content stream is compressed and unreadable, so I cannot extract the actual meeting minutes or determine what was discussed and decided.\n\nTo help you, I would need:\n- A properly formatted PDF that can be read, or\n- The meeting minutes in plain text or another readable format\n\nIf you can provide a readable version of the meeting minutes, I'd be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and votes for a general resident audience.",
+      "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be encoded in a way that makes the text inaccessible to me\u2014I can see the PDF structure and formatting information, but not the actual meeting minutes content.\n\nTo help you, I would need either:\n- A plain text version of the minutes\n- An image or screenshot of the readable document\n- The minutes re-saved in a more accessible PDF format\n\nIf you can share the text content in another format, I'd be happy to write a 2-3 sentence summary focusing on budgets, programs, facilities, and votes for a general resident audience.",
       "events": []
     }
   ],
-  "generated": "2026-09-13T11:05:48.431545"
+  "generated": "2026-09-14T11:49:05.892844"
 }
