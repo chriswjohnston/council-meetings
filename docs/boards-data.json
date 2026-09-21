@@ -1,4 +1,161 @@
 {
-  "boards": [],
-  "generated": "2026-09-20T10:38:00.503306"
+  "boards": [
+    {
+      "id": "recreation",
+      "name": "Recreation Committee",
+      "meetings": [
+        {
+          "date": "2026-11-23",
+          "display_date": "November 23, 2026",
+          "year": 2026,
+          "is_future": true,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": null,
+          "minutes_url": null,
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": null,
+          "events": []
+        },
+        {
+          "date": "2026-10-05",
+          "display_date": "October 5, 2026",
+          "year": 2026,
+          "is_future": true,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": null,
+          "minutes_url": null,
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": null,
+          "events": []
+        },
+        {
+          "date": "2026-09-14",
+          "display_date": "September 14, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/08/Recreation-Agenda-September-14-2026.pdf",
+          "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/09/Recreation-Minutes-September-14-2026.pdf",
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": "I appreciate you sharing this document, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format that I cannot decompress or interpret.\n\nTo help you get the summary you're looking for, could you either:\n1. **Copy and paste the text** from the PDF directly into our conversation, or\n2. **Share the file in a different format** (like a .txt or .docx file), or\n3. **Describe the main topics** that were discussed?\n\nOnce I can access the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions.",
+          "events": []
+        },
+        {
+          "date": "2026-06-01",
+          "display_date": "June 1, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": true,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Agenda-June-1-2026.pdf",
+          "minutes_url": null,
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": null,
+          "events": []
+        },
+        {
+          "date": "2026-05-04",
+          "display_date": "May 4, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Agenda-May-4-2026.pdf",
+          "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Minutes-May-4-2026.pdf",
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format that I cannot decompress or display as readable text.\n\nTo help you, I would need either:\n1. A text version of the meeting minutes\n2. A different file format (like .txt or .docx)\n3. The minutes retyped or copied as plain text\n\nIf you can provide the minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+          "events": []
+        },
+        {
+          "date": "2026-03-02",
+          "display_date": "March 2, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Agenda-March-2-2026.pdf",
+          "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Minutes-March-2-2026.pdf",
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format that hasn't been properly decoded in what you've shared with me. \n\nTo help you, I would need either:\n- A plain text version of the minutes\n- A properly converted/readable PDF\n- The minutes typed out or copied as text\n\nOnce you provide the readable content, I'd be happy to summarize the key decisions about budgets, programs, and facilities in 2-3 plain-language sentences for residents.",
+          "events": []
+        },
+        {
+          "date": "2026-02-02",
+          "display_date": "February 2, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Agenda-February-2-2026.pdf",
+          "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Minutes-February-2-2026.pdf",
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": "# Recreation Committee Meeting Summary \u2013 February 2, 2026\n\nI apologize, but the PDF file you've provided appears to be corrupted or improperly formatted. The document content is showing raw PDF code and compressed data streams rather than readable text, making it impossible for me to extract the actual meeting minutes and determine what was discussed or decided.\n\nTo help you, I would need:\n- A properly formatted/readable PDF file, or\n- The meeting minutes in plain text or another readable format\n\nOnce you provide a readable version, I'll be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+          "events": []
+        },
+        {
+          "date": "2026-01-19",
+          "display_date": "January 19, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Agenda-January-19-2026.pdf",
+          "minutes_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/Recreation-Minutes-January-19-2026.pdf",
+          "package_url": null,
+          "board_id": "recreation",
+          "board_name": "Recreation Committee",
+          "summary": "I appreciate your request, but I'm unable to read the PDF content you've provided. The file appears to be a compressed/encoded PDF document, and the raw data is not displaying as readable text in the format you've shared.\n\nTo help you, I would need either:\n1. A text-based version of the meeting minutes\n2. An image or screenshot of the actual document content\n3. The uncompressed text content copied directly from the PDF\n\nOnce you provide the readable content, I'd be happy to summarize the Recreation Committee's decisions about budgets, programs, and facilities in 2-3 plain-language sentences for residents.",
+          "events": []
+        }
+      ]
+    },
+    {
+      "id": "cemetery",
+      "name": "Cemetery Committee",
+      "meetings": [
+        {
+          "date": "2026-05-20",
+          "display_date": "May 20, 2026",
+          "year": 2026,
+          "is_future": false,
+          "cancelled": false,
+          "rescheduled": false,
+          "postponed": false,
+          "agenda_url": "https://nipissingtownship.com/wp-content/uploads/2026/05/CEMETERY-Committee-AGENDA-May-20-2026.pdf",
+          "minutes_url": null,
+          "package_url": null,
+          "board_id": "cemetery",
+          "board_name": "Cemetery Committee",
+          "summary": null,
+          "events": []
+        }
+      ]
+    }
+  ],
+  "generated": "2026-09-21T12:01:36.798305"
 }
