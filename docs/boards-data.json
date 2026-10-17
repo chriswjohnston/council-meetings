@@ -49,7 +49,7 @@
           "package_url": null,
           "board_id": "recreation",
           "board_name": "Recreation Committee",
-          "summary": "I appreciate your request, but I'm unable to read the content of this PDF document. The file appears to be corrupted or heavily compressed, showing only garbled code rather than readable text.\n\nTo help you, I would need either:\n- A properly formatted PDF that can be read clearly\n- The meeting minutes in another format (Word document, text file, etc.)\n- A direct copy-paste of the minutes text\n\nOnce you can provide a readable version, I'll be happy to summarize the key discussion points and decisions in plain language for residents.",
+          "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be encoded/compressed in a way that makes the text inaccessible to me - I can only see the PDF structure and formatting codes, not the actual meeting minutes content.\n\nTo help you, could you either:\n1. Paste the text content of the minutes directly, or\n2. Provide a plain text version of the document?\n\nOnce I can see the actual content, I'll be happy to summarize the key decisions about budgets, programs, and facilities in plain language for you.",
           "events": []
         },
         {
@@ -81,7 +81,7 @@
           "package_url": null,
           "board_id": "recreation",
           "board_name": "Recreation Committee",
-          "summary": "I appreciate your request, but I'm unable to read the PDF content you've shared. The file appears to be corrupted or improperly formatted in the text provided\u2014it displays as compressed binary data rather than readable text.\n\nTo help you get a summary, you could:\n\n1. **Copy and paste the text** directly from the PDF if possible\n2. **Re-upload the PDF** using a different method\n3. **Provide the document in another format** (Word, Google Docs, etc.)\n\nOnce I can access the actual content of the Recreation Committee meeting minutes, I'll be happy to write 2-3 plain-language sentences summarizing the key decisions about budgets, programs, and facilities for you.",
+          "summary": "I apologize, but I'm unable to read the PDF content you've provided. The file appears to be heavily compressed or corrupted in the stream data, making it impossible for me to extract the actual meeting minutes text.\n\nTo help you, could you please:\n\n1. **Re-upload the PDF** if it might be corrupted, or\n2. **Copy and paste the text** directly from the minutes, or\n3. **Provide a clearer version** of the document?\n\nOnce I can read the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and decisions for Nipissing Township residents.",
           "events": []
         },
         {
@@ -97,7 +97,7 @@
           "package_url": null,
           "board_id": "recreation",
           "board_name": "Recreation Committee",
-          "summary": "I apologize, but I'm unable to read the content of this PDF file. The document appears to be corrupted or improperly encoded - the text stream shows compressed/unreadable data rather than plain text.\n\nTo help you, I would need either:\n1. A properly formatted PDF that displays readable text\n2. The minutes provided as plain text or a Word document\n3. A screenshot or image of the readable document\n\nIf you can provide the minutes in another format, I'd be happy to summarize the key decisions and budget items for you.",
+          "summary": "I appreciate your request, but I'm unable to read the content of this PDF file. The document appears to be encoded in a compressed format (FlateDecode stream) that isn't directly readable to me in this form.\n\nTo help you, I would need either:\n- A plain text version of the minutes\n- An image or screenshot of the document\n- The text copied and pasted directly\n\nOnce you provide the content in a readable format, I'd be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
           "events": []
         },
         {
@@ -113,7 +113,7 @@
           "package_url": null,
           "board_id": "recreation",
           "board_name": "Recreation Committee",
-          "summary": "# Recreation Committee Meeting Summary \u2013 February 2, 2026\n\nI'm unable to provide an accurate summary of this meeting. The PDF file appears to be corrupted or improperly encoded\u2014the text content is not readable in the document data you've provided. \n\nTo help you, I would need either:\n- A properly formatted PDF that displays readable text, or\n- The meeting minutes in another format (Word document, text file, etc.)\n\nIf you can share a readable version of the document, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+          "summary": "I cannot extract the content from this PDF file. The document appears to be corrupted or the text content is not properly encoded in the compressed stream data, making it unreadable.\n\nTo help you create a summary, could you please:\n1. Re-upload the PDF file, or\n2. Copy and paste the text content directly, or\n3. Provide the minutes in another format (Word document, plain text, etc.)\n\nOnce I can access the actual content, I'll be happy to write a 2-3 sentence plain-language summary focusing on budgets, programs, facilities, and votes.",
           "events": []
         },
         {
@@ -129,7 +129,7 @@
           "package_url": null,
           "board_id": "recreation",
           "board_name": "Recreation Committee",
-          "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or the text is not properly encoded in a way that I can extract and summarize the meeting minutes.\n\nTo help you, I would need:\n- A readable version of the PDF, or\n- The text copied and pasted directly from the document, or\n- A different file format (like a Word document or plain text)\n\nIf you can provide the meeting minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
+          "summary": "I apologize, but I'm unable to read the content of this PDF document. The file appears to be corrupted or improperly encoded - the text is showing as compressed/garbled data rather than readable text.\n\nTo help you, I would need:\n- A properly formatted PDF that can be read\n- Or a text version of the meeting minutes\n- Or an image scan of the document\n\nIf you can provide the minutes in a readable format, I'd be happy to summarize the key decisions about budgets, programs, and facilities for you.",
           "events": []
         }
       ]
@@ -157,5 +157,5 @@
       ]
     }
   ],
-  "generated": "2026-10-16T10:42:49.081975"
+  "generated": "2026-10-17T10:09:01.526749"
 }
