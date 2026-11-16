@@ -2647,5 +2647,19 @@
     "label": "Minutes",
     "date": "Unknown date",
     "downloaded_at": "2026-11-02T22:03:02.132440"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/11/Agenda-November-17-2026.pdf": {
+    "filename": "Agenda-November-17-2026.pdf",
+    "year": "2026",
+    "label": "Agenda",
+    "date": "Unknown date",
+    "downloaded_at": "2026-11-16T22:41:26.933241"
+  },
+  "https://nipissingtownship.com/wp-content/uploads/2026/11/Agenda-Package-November-17-2026.pdf": {
+    "filename": "Agenda-Package-November-17-2026.pdf",
+    "year": "2026",
+    "label": "Agenda Package",
+    "date": "Unknown date",
+    "downloaded_at": "2026-11-16T22:41:27.452805"
   }
 }
